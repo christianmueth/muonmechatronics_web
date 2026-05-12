@@ -7,7 +7,7 @@ export default function Page() {
 				<p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Get started</p>
 				<h1 className="text-4xl font-semibold tracking-tight text-slate-950">Create an account and start building your study routine.</h1>
 				<p className="text-sm leading-7 text-slate-600">
-					Once you sign up, QuickStud-E can start tracking your learning spaces, tutor guidance, and recovery progress.
+					Once you sign up, Mate-E can start tracking your learning spaces, tutor guidance, and recovery progress.
 				</p>
 			</section>
 			<div className="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-4 shadow-sm">

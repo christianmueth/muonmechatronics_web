@@ -1,5 +1,7 @@
-export const TUTOR_CHAT_SESSION_CONTEXT_STORAGE_KEY = "quickstud:tutor-chat-session-context";
-export const TUTOR_CHAT_SESSION_CONTEXT_EVENT = "quickstud:tutor-chat-session-context";
+export const TUTOR_CHAT_SESSION_CONTEXT_STORAGE_KEY = "mate-e:tutor-chat-session-context";
+export const TUTOR_CHAT_SESSION_CONTEXT_EVENT = "mate-e:tutor-chat-session-context";
+export const LEGACY_TUTOR_CHAT_SESSION_CONTEXT_STORAGE_KEY = "quickstud:tutor-chat-session-context";
+export const LEGACY_TUTOR_CHAT_SESSION_CONTEXT_EVENT = "quickstud:tutor-chat-session-context";
 
 export type TutorChatSessionContext = {
   deckId: string;
@@ -78,6 +80,31 @@ export function sanitizeTutorChatSessionContext(value: unknown): TutorChatSessio
       : null,
     sessionComplete: Boolean(record.sessionComplete),
   };
+}
+
+export function readStoredTutorChatSessionContext() {
+  if (typeof window === "undefined") return null;
+
+  const raw =
+    window.localStorage.getItem(TUTOR_CHAT_SESSION_CONTEXT_STORAGE_KEY) ??
+    window.localStorage.getItem(LEGACY_TUTOR_CHAT_SESSION_CONTEXT_STORAGE_KEY);
+  if (!raw) return null;
+
+  try {
+    return JSON.parse(raw) as unknown;
+  } catch {
+    return null;
+  }
+}
+
+export function writeStoredTutorChatSessionContext(nextContext: TutorChatSessionContext) {
+  if (typeof window === "undefined") return;
+
+  const serialized = JSON.stringify(nextContext);
+  window.localStorage.setItem(TUTOR_CHAT_SESSION_CONTEXT_STORAGE_KEY, serialized);
+  window.localStorage.setItem(LEGACY_TUTOR_CHAT_SESSION_CONTEXT_STORAGE_KEY, serialized);
+  window.dispatchEvent(new CustomEvent(TUTOR_CHAT_SESSION_CONTEXT_EVENT, { detail: nextContext }));
+  window.dispatchEvent(new CustomEvent(LEGACY_TUTOR_CHAT_SESSION_CONTEXT_EVENT, { detail: nextContext }));
 }
 
 function asRecord(value: unknown) {

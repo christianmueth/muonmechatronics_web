@@ -5,10 +5,13 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import {
   TUTOR_CHAT_SESSION_CONTEXT_EVENT,
-  TUTOR_CHAT_SESSION_CONTEXT_STORAGE_KEY,
+  LEGACY_TUTOR_CHAT_SESSION_CONTEXT_EVENT,
+  readStoredTutorChatSessionContext,
   sanitizeTutorChatSessionContext,
   type TutorChatSessionContext,
 } from "@/lib/tutorChatSessionContext";
+import { readTutorChatEnabled, setTutorChatEnabled, TUTOR_CHAT_ENABLED_EVENT } from "@/lib/tutorChatPreferences";
+import { readWorkspaceContext, updateWorkspaceContext } from "@/lib/workspaceContext";
 
 type TutorChatMessage = {
   id: string;
@@ -36,11 +39,13 @@ type TutorChatResponse = {
   error?: string;
 };
 
-const OPEN_STORAGE_KEY = "quickstud:tutor-chat-open";
+const OPEN_STORAGE_KEY = "mate-e:tutor-chat-open";
+const LEGACY_OPEN_STORAGE_KEY = "quickstud:tutor-chat-open";
 
 export default function TutorChatPanel() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [enabled, setEnabled] = useState(true);
   const [open, setOpen] = useState(true);
   const [bootstrapping, setBootstrapping] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -53,44 +58,63 @@ export default function TutorChatPanel() {
 
   const isWorkspaceRoute = pathname?.startsWith("/app") ?? false;
   const deckId = useMemo(() => extractDeckId(pathname), [pathname]);
+  const isDeckStudyRoute = Boolean(deckId);
   const focusConcept = searchParams.get("concept");
   const focusReason = searchParams.get("reason");
+  const workspaceMode = searchParams.get("workspaceMode");
+  const starterPrompt = searchParams.get("starterPrompt");
   const routeKey = `${pathname || ""}?${searchParams.toString()}`;
+  const activeSessionContext =
+    isDeckStudyRoute && sessionContext?.deckId === deckId && !sessionContext.sessionComplete
+      ? sessionContext
+      : null;
+  const lastStarterPromptRef = useRef<string | null>(null);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(OPEN_STORAGE_KEY);
+    const stored = window.localStorage.getItem(OPEN_STORAGE_KEY) ?? window.localStorage.getItem(LEGACY_OPEN_STORAGE_KEY);
     if (stored === "0") setOpen(false);
     if (stored === "1") setOpen(true);
   }, []);
 
   useEffect(() => {
+    setEnabled(readTutorChatEnabled());
+
+    function syncEnabledState(event?: Event) {
+      const detail = event && "detail" in event ? (event as CustomEvent<{ enabled?: unknown }>).detail : undefined;
+      if (typeof detail?.enabled === "boolean") {
+        setEnabled(detail.enabled);
+        return;
+      }
+
+      setEnabled(readTutorChatEnabled());
+    }
+
+    window.addEventListener(TUTOR_CHAT_ENABLED_EVENT, syncEnabledState);
+    return () => window.removeEventListener(TUTOR_CHAT_ENABLED_EVENT, syncEnabledState);
+  }, []);
+
+  useEffect(() => {
     window.localStorage.setItem(OPEN_STORAGE_KEY, open ? "1" : "0");
+    window.localStorage.setItem(LEGACY_OPEN_STORAGE_KEY, open ? "1" : "0");
   }, [open]);
 
   useEffect(() => {
-    function readStoredSessionContext() {
-      const raw = window.localStorage.getItem(TUTOR_CHAT_SESSION_CONTEXT_STORAGE_KEY);
-      if (!raw) return null;
-
-      try {
-        return JSON.parse(raw) as unknown;
-      } catch {
-        return null;
-      }
-    }
-
     function syncSessionContext(nextValue: unknown) {
       setSessionContext(sanitizeTutorChatSessionContext(nextValue));
     }
 
-    syncSessionContext(readStoredSessionContext());
+    syncSessionContext(readStoredTutorChatSessionContext());
 
     function onSessionContext(event: Event) {
       syncSessionContext((event as CustomEvent).detail);
     }
 
     window.addEventListener(TUTOR_CHAT_SESSION_CONTEXT_EVENT, onSessionContext);
-    return () => window.removeEventListener(TUTOR_CHAT_SESSION_CONTEXT_EVENT, onSessionContext);
+    window.addEventListener(LEGACY_TUTOR_CHAT_SESSION_CONTEXT_EVENT, onSessionContext);
+    return () => {
+      window.removeEventListener(TUTOR_CHAT_SESSION_CONTEXT_EVENT, onSessionContext);
+      window.removeEventListener(LEGACY_TUTOR_CHAT_SESSION_CONTEXT_EVENT, onSessionContext);
+    };
   }, []);
 
   useEffect(() => {
@@ -98,6 +122,9 @@ export default function TutorChatPanel() {
 
     let cancelled = false;
     async function loadHistory() {
+      if (!cancelled) {
+        setContext((current) => (deckId ? current : null));
+      }
       setLoading(true);
       try {
         const query = new URLSearchParams();
@@ -133,10 +160,55 @@ export default function TutorChatPanel() {
     viewport.scrollTop = viewport.scrollHeight;
   }, [messages, open]);
 
-  if (!isWorkspaceRoute) return null;
+  useEffect(() => {
+    updateWorkspaceContext((currentWorkspaceContext) => ({
+      ...currentWorkspaceContext,
+      weakConcepts: context?.weakConcepts?.length ? context.weakConcepts.slice(0, 8) : currentWorkspaceContext.weakConcepts,
+      tutorMemory: {
+        explanationStyle: context?.explanationStyle || currentWorkspaceContext.tutorMemory?.explanationStyle || null,
+        recentGuidance: context?.recentGuidance?.length ? context.recentGuidance.slice(0, 4) : currentWorkspaceContext.tutorMemory?.recentGuidance || [],
+      },
+      recentTutorInteractions: messages.slice(-6).map((message) => ({
+        role: message.role,
+        content: message.content,
+        createdAt: message.createdAt,
+      })),
+      currentGuidedSession: activeSessionContext
+        ? {
+            answerDraft: activeSessionContext.answerDraft,
+            latestHint: activeSessionContext.latestCoaching?.hint || null,
+            latestRationale: activeSessionContext.latestCoaching?.rationale || null,
+            confidence: activeSessionContext.latestCoaching?.confidence || null,
+            strategyType: activeSessionContext.latestCoaching?.strategyType || null,
+            worldModelExplanation: activeSessionContext.latestCoaching?.worldModelExplanation || null,
+            projectedConfidenceDelta: activeSessionContext.latestCoaching?.projectedConfidenceDelta || null,
+            projectedRecoveryProbability: activeSessionContext.latestCoaching?.projectedRecoveryProbability || null,
+            projectedStabilityGain: activeSessionContext.latestCoaching?.projectedStabilityGain || null,
+          }
+        : currentWorkspaceContext.currentGuidedSession,
+    }));
+  }, [activeSessionContext, context, messages]);
+
+  useEffect(() => {
+    if (!isWorkspaceRoute) return;
+
+    const nextStarter = starterPrompt?.trim() || null;
+    if (!nextStarter) {
+      lastStarterPromptRef.current = null;
+      return;
+    }
+
+    if (lastStarterPromptRef.current === routeKey) return;
+
+    setOpen(true);
+    setDraft((current) => current.trim() ? current : nextStarter);
+    lastStarterPromptRef.current = routeKey;
+  }, [isWorkspaceRoute, routeKey, starterPrompt]);
+
+  if (!isWorkspaceRoute || !enabled) return null;
 
   const promptSuggestions = buildPromptSuggestions(context, pathname);
-  const summaryLabel = context?.deckTitle || (pathname === "/app/progress" ? "progress view" : deckId ? "current study set" : "workspace");
+  const summaryLabel = buildSummaryLabel({ pathname, deckId, deckTitle: context?.deckTitle ?? null });
 
   async function submitMessage(prefill?: string) {
     const content = (prefill ?? draft).trim();
@@ -163,7 +235,8 @@ export default function TutorChatPanel() {
           deckId,
           focusConcept,
           focusReason,
-          liveContext: sessionContext,
+          liveContext: activeSessionContext,
+          workspaceContext: readWorkspaceContext(),
         }),
       });
       const data = (await safeJson(res)) as TutorChatResponse | null;
@@ -191,7 +264,7 @@ export default function TutorChatPanel() {
           </div>
           <button
             type="button"
-            className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50"
+            className="shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50"
             onClick={() => setOpen((current) => !current)}
           >
             {open ? "Minimize" : "Open"}
@@ -201,6 +274,11 @@ export default function TutorChatPanel() {
         {open ? (
           <div className="space-y-4 p-4">
             <div className="flex flex-wrap gap-2 text-[11px] text-slate-600">
+              {workspaceMode === "instructional-chat" ? (
+                <span className="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-amber-800">
+                  instructional chat
+                </span>
+              ) : null}
               {context?.weakConcepts?.slice(0, 2).map((concept) => (
                 <span key={concept} className="rounded-full border border-sky-200 bg-sky-50 px-2.5 py-1">
                   weak area: {concept}
@@ -211,45 +289,45 @@ export default function TutorChatPanel() {
                   style: {context.explanationStyle}
                 </span>
               ) : null}
-              {typeof context?.cardCount === "number" ? (
+              {deckId && typeof context?.cardCount === "number" ? (
                 <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1">
                   {context.cardCount} cards in view
                 </span>
               ) : null}
-              {sessionContext?.queuePosition ? (
+              {activeSessionContext?.queuePosition ? (
                 <span className="rounded-full border border-violet-200 bg-violet-50 px-2.5 py-1 text-violet-800">
-                  prompt {sessionContext.queuePosition.current} of {sessionContext.queuePosition.total}
+                  prompt {activeSessionContext.queuePosition.current} of {activeSessionContext.queuePosition.total}
                 </span>
               ) : null}
             </div>
 
-            {sessionContext?.currentCard ? (
+            {activeSessionContext?.currentCard ? (
               <div className="rounded-2xl border border-violet-200 bg-violet-50/80 px-4 py-3 text-sm leading-6 text-slate-700">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-violet-800">Live study context</p>
-                <p className="mt-1 font-medium text-slate-900">{sessionContext.currentCard.question}</p>
-                {sessionContext.latestCoaching?.hint ? (
-                  <p className="mt-2 text-slate-700">Latest tutor hint: {sessionContext.latestCoaching.hint}</p>
-                ) : sessionContext.answerDraft ? (
+                <p className="mt-1 font-medium text-slate-900">{activeSessionContext.currentCard.question}</p>
+                {activeSessionContext.latestCoaching?.hint ? (
+                  <p className="mt-2 text-slate-700">Latest tutor hint: {activeSessionContext.latestCoaching.hint}</p>
+                ) : activeSessionContext.answerDraft ? (
                   <p className="mt-2 text-slate-700">Your current draft is loaded, so the tutor can respond to what you have already tried.</p>
                 ) : null}
-                {sessionContext.latestCoaching?.worldModelExplanation ? (
+                {activeSessionContext.latestCoaching?.worldModelExplanation ? (
                   <div className="mt-3 rounded-2xl border border-fuchsia-200 bg-white/70 px-3 py-3 text-[13px] leading-5 text-slate-700">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-fuchsia-800">Learner world model</p>
-                    <p className="mt-1 text-slate-800">{sessionContext.latestCoaching.worldModelExplanation}</p>
+                    <p className="mt-1 text-slate-800">{activeSessionContext.latestCoaching.worldModelExplanation}</p>
                     <div className="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-600">
-                      {typeof sessionContext.latestCoaching.projectedConfidenceDelta === "number" ? (
+                      {typeof activeSessionContext.latestCoaching.projectedConfidenceDelta === "number" ? (
                         <span className="rounded-full border border-fuchsia-200 bg-fuchsia-50 px-2.5 py-1 text-fuchsia-800">
-                          confidence {formatSignedPercent(sessionContext.latestCoaching.projectedConfidenceDelta)}
+                          confidence {formatSignedPercent(activeSessionContext.latestCoaching.projectedConfidenceDelta)}
                         </span>
                       ) : null}
-                      {typeof sessionContext.latestCoaching.projectedRecoveryProbability === "number" ? (
+                      {typeof activeSessionContext.latestCoaching.projectedRecoveryProbability === "number" ? (
                         <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-emerald-800">
-                          recovery {formatPercent(sessionContext.latestCoaching.projectedRecoveryProbability)}
+                          recovery {formatPercent(activeSessionContext.latestCoaching.projectedRecoveryProbability)}
                         </span>
                       ) : null}
-                      {typeof sessionContext.latestCoaching.projectedStabilityGain === "number" ? (
+                      {typeof activeSessionContext.latestCoaching.projectedStabilityGain === "number" ? (
                         <span className="rounded-full border border-sky-200 bg-sky-50 px-2.5 py-1 text-sky-800">
-                          stability {formatPercent(sessionContext.latestCoaching.projectedStabilityGain)}
+                          stability {formatPercent(activeSessionContext.latestCoaching.projectedStabilityGain)}
                         </span>
                       ) : null}
                     </div>
@@ -281,11 +359,7 @@ export default function TutorChatPanel() {
               ) : (
                 <div className="space-y-3 rounded-2xl border border-sky-100 bg-sky-50 px-4 py-4 text-sm leading-6 text-slate-700">
                   <p className="font-medium text-slate-900">Ask for a quick explanation, a next-step recommendation, or help unpacking what feels shaky.</p>
-                  {context?.recentFailures?.length ? (
-                    <p>The tutor still sees some hesitation around {context.recentFailures.slice(0, 2).join(" and ")}.</p>
-                  ) : (
-                    <p>The tutor can use your current workspace, recent study history, and saved weak concepts to keep guidance continuous.</p>
-                  )}
+                  <p>The tutor can use your current workspace, recent study history, and saved weak concepts to keep guidance continuous.</p>
                 </div>
               )}
             </div>
@@ -321,13 +395,22 @@ export default function TutorChatPanel() {
               />
               <div className="flex items-center justify-between gap-3">
                 <p className="text-xs leading-5 text-slate-500">The tutor can explain and recommend, but it will not take study actions for you.</p>
-                <button
-                  type="submit"
-                  className="rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
-                  disabled={sending || !draft.trim()}
-                >
-                  {sending ? "Thinking..." : "Ask tutor"}
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                    onClick={() => setOpen(false)}
+                  >
+                    Minimize chat
+                  </button>
+                  <button
+                    type="submit"
+                    className="rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+                    disabled={sending || !draft.trim()}
+                  >
+                    {sending ? "Thinking..." : "Ask tutor"}
+                  </button>
+                </div>
               </div>
             </form>
           </div>
@@ -371,6 +454,20 @@ function buildPromptSuggestions(context: TutorChatContext | null, pathname: stri
   ];
 
   return Array.from(new Set(suggestions));
+}
+
+function buildSummaryLabel({
+  pathname,
+  deckId,
+  deckTitle,
+}: {
+  pathname: string | null;
+  deckId: string | null;
+  deckTitle: string | null;
+}) {
+  if (pathname === "/app/progress") return "progress view";
+  if (deckId) return deckTitle || "current study set";
+  return "workspace";
 }
 
 function getErrorMessage(error: unknown, fallback: string) {

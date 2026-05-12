@@ -1,6 +1,6 @@
 # Launch Brief
 
-QuickStud-E is launching as a governed adaptive tutoring platform.
+Mate-E is launching as a governed adaptive tutoring platform.
 
 It is not launching as:
 
@@ -113,7 +113,7 @@ Initial launch succeeds only if:
 Use the following message when transitioning from active design work into the launch window.
 
 ```text
-QuickStud-E is now entering launch freeze.
+Mate-E is now entering launch freeze.
 
 From this point until launch completion, the repository is no longer in active design mode. It is now in launch execution mode.
 

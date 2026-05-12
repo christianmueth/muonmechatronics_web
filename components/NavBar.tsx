@@ -12,7 +12,7 @@ export default function NavBar() {
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <Link href="/" className="font-semibold text-lg">
-          QuickStud-E
+          Mate-E
         </Link>
 
         <div className="flex items-center gap-3">
@@ -23,6 +23,9 @@ export default function NavBar() {
           <SignedIn>
             <Link href="/app" className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50">
               Study
+            </Link>
+            <Link href="/app/workspace" className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50">
+              Workspace
             </Link>
             <Link href="/app/progress" className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50">
               Progress

@@ -1,6 +1,6 @@
 # UX Review Playbook
 
-Use this playbook after deployment to evaluate QuickStud-E as a lived tutoring experience rather than as a set of individual screens.
+Use this playbook after deployment to evaluate Mate-E as a lived tutoring experience rather than as a set of individual screens.
 
 The goal is not more abstract polish. The goal is to observe real interaction flow, find continuity breaks, and improve the behavioral feel of the product without widening authority.
 

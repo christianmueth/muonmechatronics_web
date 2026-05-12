@@ -6,7 +6,7 @@ Use it to keep shadow telemetry, replay review, recovery monitoring, and bounded
 
 ## Purpose
 
-QuickStud-E is now beyond the stage where product work alone is sufficient.
+Mate-E is now beyond the stage where product work alone is sufficient.
 
 The next risk is operational drift:
 

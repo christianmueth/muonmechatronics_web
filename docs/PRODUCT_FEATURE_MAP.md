@@ -1,6 +1,6 @@
 # Product Feature Map
 
-This document defines the next high-value student-facing product work for QuickStud-E.
+This document defines the next high-value student-facing product work for Mate-E.
 
 For a visual system map spanning public surfaces, governed adaptive state, offline model roles, and operator-only governance layers, see `docs/VISUAL_PRODUCT_ARCHITECTURE_MAP.md`.
 
@@ -10,7 +10,7 @@ The goal is not to increase authority. The goal is to make existing adaptive beh
 
 ## Product Principle
 
-QuickStud-E is already technically adaptive. The next phase is to make it behaviorally adaptive.
+Mate-E is already technically adaptive. The next phase is to make it behaviorally adaptive.
 
 That means prioritizing:
 
@@ -28,7 +28,7 @@ Phase 1 is the visible adaptive intelligence phase for the student product.
 
 Phase objective:
 
-- make QuickStud-E feel deeply adaptive
+- make Mate-E feel deeply adaptive
 - expand continuity, not authority
 - preserve bounded, interpretable tutor behavior across workspace, study, reflection, and progress surfaces
 

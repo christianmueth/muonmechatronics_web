@@ -17,8 +17,8 @@ export default async function Home({
         {/* Logo / feature image */}
         <div className="relative mx-auto h-40 w-40 sm:h-48 sm:w-48">
           <Image
-            src="/quickstud_e.png"   // put quickstud_e.png in /public
-            alt="QuickStud-E"
+            src="/logo.png"
+            alt="Mate-E"
             fill
             sizes="(max-width: 640px) 160px, 192px"
             className="object-contain"
@@ -31,7 +31,7 @@ export default async function Home({
           A calm adaptive tutor for real study sessions
         </h1>
         <p className="mx-auto max-w-2xl text-gray-600">
-          QuickStud-E helps you study with guided review, tutoring hints, progress memory, and recovery-aware recommendations that stay understandable from one session to the next.
+          Mate-E helps you study with guided review, tutoring hints, progress memory, and recovery-aware recommendations that stay understandable from one session to the next.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-gray-700">

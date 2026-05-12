@@ -245,13 +245,13 @@ Shadow Evaluation Data
 
 ## 6. Strategic Positioning
 
-QuickStud-E is not:
+Mate-E is not:
 
 ```text
 A flashcard app with AI features.
 ```
 
-QuickStud-E is:
+Mate-E is:
 
 ```text
 A governed adaptive tutoring platform

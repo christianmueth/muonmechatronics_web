@@ -4,9 +4,10 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import NavBar from "@/components/NavBar"; // <-- make sure this path exists
 import TutorChatPanel from "@/components/TutorChatPanel";
+import WorkspaceContextSync from "@/components/WorkspaceContextSync";
 
 export const metadata = {
-  title: "QuickStud-E",
+  title: "Mate-E",
   description: "Replay-governed adaptive tutoring with student-state memory, tutoring hints, and shadow-scored personalization.",
   icons: {
     icon: "/logo.ico",
@@ -30,6 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <NavBar />
           </Suspense>
           {children}
+          <Suspense fallback={null}>
+            <WorkspaceContextSync />
+          </Suspense>
           <Suspense fallback={null}>
             <TutorChatPanel />
           </Suspense>
