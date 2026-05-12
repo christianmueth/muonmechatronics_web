@@ -8,6 +8,8 @@ import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@cl
 import UserStatsPill from "@/components/UserStatsPill"; // remove this line + usage if you don't have the pill yet
 
 export default function NavBar() {
+  const hasClerk = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
       <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
@@ -20,26 +22,34 @@ export default function NavBar() {
             Resources
           </Link>
 
-          <SignedIn>
-            <Link href="/app" className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50">
-              Study
-            </Link>
-            <Link href="/app/workspace" className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50">
-              Workspace
-            </Link>
-            <Link href="/app/progress" className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50">
-              Progress
-            </Link>
-          </SignedIn>
+          {hasClerk ? (
+            <>
+              <SignedIn>
+                <Link href="/app" className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50">
+                  Study
+                </Link>
+                <Link href="/app/workspace" className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50">
+                  Workspace
+                </Link>
+                <Link href="/app/progress" className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50">
+                  Progress
+                </Link>
+              </SignedIn>
 
-          <Suspense fallback={<SignedOutAuthButtons nextTarget="/app" />}>
-            <SignedOutAuthButtonsFromLocation />
-          </Suspense>
+              <Suspense fallback={<SignedOutAuthButtons nextTarget="/app" />}>
+                <SignedOutAuthButtonsFromLocation />
+              </Suspense>
 
-          <SignedIn>
-            <UserStatsPill />
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
+              <SignedIn>
+                <UserStatsPill />
+                <UserButton afterSignOutUrl="/" />
+              </SignedIn>
+            </>
+          ) : (
+            <Link href="/app" className="text-sm px-3 py-1.5 rounded bg-black text-white hover:opacity-90">
+              Open study workspace
+            </Link>
+          )}
         </div>
       </nav>
     </header>

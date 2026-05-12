@@ -10,6 +10,7 @@ export default async function Home({
 }) {
   const resolvedSearchParams = await searchParams;
   const nextTarget = normalizeNextTarget(resolvedSearchParams.next);
+  const hasClerk = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
 
   return (
     <main className="flex min-h-[calc(100vh-64px)] items-center justify-center p-6">
@@ -54,35 +55,46 @@ export default async function Home({
             Explore resources
           </Link>
 
-          <SignedOut>
-            <SignUpButton
-              mode="modal"
-              forceRedirectUrl={nextTarget}
-              signInForceRedirectUrl={nextTarget}
-            >
-              <button className="rounded-full bg-black px-6 py-3 text-sm font-medium text-white hover:opacity-90">
-                Start guided study
-              </button>
-            </SignUpButton>
-            <SignInButton
-              mode="modal"
-              forceRedirectUrl={nextTarget}
-              signUpForceRedirectUrl={nextTarget}
-            >
-              <button className="rounded-full border border-gray-300 px-6 py-3 text-sm font-medium text-gray-800 hover:bg-gray-50">
-                Sign in
-              </button>
-            </SignInButton>
-          </SignedOut>
+          {hasClerk ? (
+            <>
+              <SignedOut>
+                <SignUpButton
+                  mode="modal"
+                  forceRedirectUrl={nextTarget}
+                  signInForceRedirectUrl={nextTarget}
+                >
+                  <button className="rounded-full bg-black px-6 py-3 text-sm font-medium text-white hover:opacity-90">
+                    Start guided study
+                  </button>
+                </SignUpButton>
+                <SignInButton
+                  mode="modal"
+                  forceRedirectUrl={nextTarget}
+                  signUpForceRedirectUrl={nextTarget}
+                >
+                  <button className="rounded-full border border-gray-300 px-6 py-3 text-sm font-medium text-gray-800 hover:bg-gray-50">
+                    Sign in
+                  </button>
+                </SignInButton>
+              </SignedOut>
 
-          <SignedIn>
+              <SignedIn>
+                <Link
+                  href="/app"
+                  className="rounded-full bg-black px-6 py-3 text-sm font-medium text-white hover:opacity-90"
+                >
+                  Open study workspace
+                </Link>
+              </SignedIn>
+            </>
+          ) : (
             <Link
               href="/app"
               className="rounded-full bg-black px-6 py-3 text-sm font-medium text-white hover:opacity-90"
             >
               Open study workspace
             </Link>
-          </SignedIn>
+          )}
         </div>
       </div>
     </main>
