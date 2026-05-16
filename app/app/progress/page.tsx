@@ -7,6 +7,9 @@ import { prisma } from "@/lib/db";
 import { summarizeReasoningRuns } from "@/lib/reasoningEngine/analytics";
 import { humanizeMisconceptionCategory } from "@/lib/reasoningEngine/contracts";
 import { formatStudentState } from "@/lib/reasoningEngine/studentState";
+import { buildHumanCenteredRecommendation } from "@/lib/workspaceConstitution";
+import { getLatestPersistedWorkspaceContext } from "@/lib/workspaceContextPersistence";
+import type { WorkspaceContext } from "@/lib/workspaceContext";
 
 type RecentRunRow = {
   id: string;
@@ -48,21 +51,10 @@ export default async function ProgressPage() {
     clerkUserId = authResult.userId;
   } catch (error) {
     console.error("[Progress] Auth error:", error);
-    return <StateMessage title="We couldn't restore your study session." body="Sign in again to continue reviewing your progress and guided study history." tone="error" />;
+    return <StateMessage title="We couldn't restore your workspace session." body="Sign in again to continue reviewing your progress and workspace history." tone="error" />;
   }
 
   if (!clerkUserId) redirect(`/?next=${encodeURIComponent("/app/progress")}`);
-
-  try {
-    await prisma.user.upsert({
-      where: { clerkUserId },
-      update: {},
-      create: { clerkUserId },
-    });
-  } catch (error) {
-    console.error("[Progress] Database error creating user:", error);
-    return <StateMessage title="We couldn't load your progress right now." body="Your tutor history and recovery signals will appear again once the study data connection is back." tone="error" />;
-  }
 
   let userRecord: {
     id: string;
@@ -83,42 +75,69 @@ export default async function ProgressPage() {
     cards: Array<{ question: string; answer: string }>;
   }> = [];
 
-  try {
-    userRecord = await prisma.user.findFirst({
+  async function loadUserRecord(includeStudentState: boolean) {
+    return prisma.user.findFirst({
       where: { clerkUserId },
-      select: {
-        id: true,
-        xp: true,
-        studyStreak: true,
-        xpToday: true,
-        xpTodayDate: true,
-        dailyGoal: true,
-        studentState: true,
-      },
-    });
-  } catch (error: unknown) {
-    const message = String(error?.message || "");
+      select: includeStudentState
+        ? {
+            id: true,
+            xp: true,
+            studyStreak: true,
+            xpToday: true,
+            xpTodayDate: true,
+            dailyGoal: true,
+            studentState: true,
+          }
+        : {
+            id: true,
+            xp: true,
+            studyStreak: true,
+            xpToday: true,
+            xpTodayDate: true,
+            dailyGoal: true,
+          },
+    }) as Promise<typeof userRecord>;
+  }
+
+  userRecord = await loadUserRecord(true).catch((error) => {
+    const message = String((error as { message?: string })?.message || "");
     studentStateUnavailable = /StudentState|relation .* does not exist|table .* does not exist/i.test(message);
     if (!studentStateUnavailable) {
       console.error("[Progress] Failed to load user progress state:", error);
-      return <StateMessage title="Your progress view is temporarily unavailable." body="The tutor couldn't load your recent progress signals right now. Try again in a moment." tone="error" />;
     }
+    return null;
+  });
 
-    userRecord = await prisma.user.findFirst({
-      where: { clerkUserId },
-      select: {
-        id: true,
-        xp: true,
-        studyStreak: true,
-        xpToday: true,
-        xpTodayDate: true,
-        dailyGoal: true,
-      },
-    }) as typeof userRecord;
+  if (!userRecord && !studentStateUnavailable) {
+    await prisma.user.create({
+      data: { clerkUserId },
+    }).catch((error) => {
+      console.error("[Progress] Database error creating user:", error);
+    });
+
+    userRecord = await loadUserRecord(true).catch((error) => {
+      const message = String((error as { message?: string })?.message || "");
+      studentStateUnavailable = /StudentState|relation .* does not exist|table .* does not exist/i.test(message);
+      if (!studentStateUnavailable) {
+        console.error("[Progress] Failed to reload user progress state:", error);
+      }
+      return null;
+    });
+  }
+
+  if (!userRecord && studentStateUnavailable) {
+    userRecord = await loadUserRecord(false).catch((error) => {
+      console.error("[Progress] Failed to load user progress state without StudentState:", error);
+      return null;
+    });
   }
 
   if (!userRecord) {
-    return <StateMessage title="Your progress view will appear soon." body="Start a guided session and this space will begin tracking your learning patterns, recovery moments, and next study focus." tone="empty" />;
+    return <StateMessage title="Your progress view is temporarily unavailable." body="Mate-E couldn't load your recent progress signals right now. Try again in a moment." tone="error" />;
+  }
+
+  if (!userRecord) {
+    return <StateMessage title="Your progress view will appear soon." body="Start using the workspace and this space will begin tracking your patterns, recovery moments, and next focus area." tone="empty" />;
   }
 
   try {
@@ -170,7 +189,7 @@ export default async function ProgressPage() {
     reasoningRunsUnavailable = /ReasoningRun|relation .* does not exist|table .* does not exist/i.test(message);
     if (!reasoningRunsUnavailable) {
       console.error("[Progress] Failed to load reasoning runs:", error);
-      return <StateMessage title="Your tutor read is temporarily unavailable." body="The progress view could not load your study analytics right now." tone="error" />;
+      return <StateMessage title="Your progress read is temporarily unavailable." body="The progress view could not load your workspace analytics right now." tone="error" />;
     }
   }
 
@@ -196,6 +215,7 @@ export default async function ProgressPage() {
 
   const studentState = studentStateUnavailable ? null : formatStudentState(userRecord.studentState ?? null);
   const analytics = reasoningRunsUnavailable ? null : summarizeReasoningRuns(recentRuns);
+  const persistedWorkspaceContext = (await getLatestPersistedWorkspaceContext(userRecord.id)).context;
   const xpToday = getXpToday(userRecord.xpToday, userRecord.xpTodayDate);
   const confidenceSeries = recentRuns
     .slice(0, 8)
@@ -204,14 +224,14 @@ export default async function ProgressPage() {
       label: `S${index + 1}`,
       value: clampUnit(run.confidence ?? 0),
     }));
-  const recommendedTopics = buildRecommendedTopics(studentState, analytics, decks);
+  const recommendedTopics = buildRecommendedTopics(studentState, analytics, decks, persistedWorkspaceContext);
   const misconceptionCards = buildMisconceptionCards(studentState, analytics);
   const strategyPatterns = analytics?.strategyWinsByMisconception.slice(0, 3) || [];
   const recentWins = studentState?.recentSuccesses.slice(0, 4) || [];
   const recentRecoveryNeeds = studentState?.recentFailures.slice(0, 4) || [];
   const recoveryTimeline = buildRecoveryTimeline(recentRuns);
   const recoverySummary = summarizeRecoveryTimeline(recoveryTimeline);
-  const tutorBrief = buildTutorBrief(studentState, analytics, recoverySummary);
+  const tutorBrief = buildTutorBrief(studentState, analytics, recoverySummary, persistedWorkspaceContext);
   const progressNarrative = buildProgressNarrative(studentState, analytics, recoverySummary, recommendedTopics);
   const progressResumeHref = progressNarrative.resumeHref
     ? replaceHrefReason(progressNarrative.resumeHref, progressNarrative.resumeReason)
@@ -221,15 +241,15 @@ export default async function ProgressPage() {
     <main className="mx-auto max-w-6xl space-y-8 px-6 py-8">
       <section className="flex flex-col gap-4 rounded-3xl border border-gray-200 bg-gradient-to-r from-sky-50 via-white to-emerald-50 p-8 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl space-y-3">
-          <p className="text-sm font-medium uppercase tracking-[0.18em] text-sky-700">Tutor progress read</p>
-          <h1 className="text-3xl font-semibold tracking-tight text-gray-950 sm:text-4xl">How your tutor reads your learning arc right now</h1>
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-sky-700">Workspace progress read</p>
+          <h1 className="text-3xl font-semibold tracking-tight text-gray-950 sm:text-4xl">How Mate-E reads your current momentum</h1>
           <p className="text-base leading-7 text-gray-600">
-            This space should feel like your tutor interpreting the last few study sessions, not a dashboard reporting numbers. The goal is to show what is settling, what still needs reinforcement, and where the next guided pass should begin.
+            This space should feel like a readable interpretation of your last few work blocks, not a dashboard reporting numbers. The goal is to show what is settling, what still needs reinforcement, and where the next focused pass should begin.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
           <Link href="/app" className="rounded-full border border-gray-300 bg-white px-5 py-3 text-sm font-medium text-gray-900 hover:bg-gray-50">
-            Back to study workspace
+            Back to workspace home
           </Link>
           <Link href="/how-adaptive-guidance-works" className="rounded-full bg-gray-950 px-5 py-3 text-sm font-medium text-white hover:bg-gray-800">
             Review adaptive guidance
@@ -240,13 +260,13 @@ export default async function ProgressPage() {
       {(studentStateUnavailable || reasoningRunsUnavailable) && (
         <section className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-900">
           {studentStateUnavailable && "Student-state history is not available yet in this environment. Apply the latest Prisma migration to unlock saved misconception and recovery state. "}
-          {reasoningRunsUnavailable && "Reasoning-run analytics are not available yet in this environment. Apply the latest Prisma migration to unlock recent study trends and guidance patterns."}
+          {reasoningRunsUnavailable && "Reasoning-run analytics are not available yet in this environment. Apply the latest Prisma migration to unlock recent workspace trends and guidance patterns."}
         </section>
       )}
 
       <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <div className="rounded-3xl border border-sky-200 bg-gradient-to-br from-sky-50 via-white to-cyan-50 p-6 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">Tutor read</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">Workspace read</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-gray-950">{tutorBrief.headline}</h2>
           <p className="mt-3 text-sm leading-7 text-gray-700">{tutorBrief.body}</p>
           <div className="mt-5 grid gap-3 md:grid-cols-3">
@@ -272,7 +292,7 @@ export default async function ProgressPage() {
               <p className="mt-2">{progressNarrative.stillUnstable}</p>
             </div>
             <div className="rounded-2xl border border-sky-100 bg-white/90 p-4 text-sm leading-6 text-gray-700">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-700">What should happen next</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-700">Suggested next pass</p>
               <p className="mt-2">{progressNarrative.nextStep}</p>
               {progressResumeHref ? (
                 <div className="mt-4">
@@ -290,10 +310,10 @@ export default async function ProgressPage() {
       </section>
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <MetricCard label="Current study streak" value={`${userRecord.studyStreak} day${userRecord.studyStreak === 1 ? "" : "s"}`} detail="Consistency matters more than raw session length." tone="sky" />
-        <MetricCard label="Today's study goal" value={`${xpToday}/${userRecord.dailyGoal} XP`} detail={xpToday >= userRecord.dailyGoal ? "Daily goal reached." : `${Math.max(0, userRecord.dailyGoal - xpToday)} XP to go today.`} tone="emerald" />
-        <MetricCard label="Verification success" value={`${Math.round((studentState?.retentionProfile.recentVerificationSuccessRate ?? 0) * 100)}%`} detail={`${studentState?.retentionProfile.successfulChecks ?? 0} successful checks across recent study history.`} tone="amber" />
-        <MetricCard label="Recent tutoring runs" value={String(analytics?.totalRuns ?? 0)} detail={`${analytics?.verificationRuns ?? 0} runs included verification support.`} tone="violet" />
+        <MetricCard label="Current focus streak" value={`${userRecord.studyStreak} day${userRecord.studyStreak === 1 ? "" : "s"}`} detail="Consistency matters more than raw session length." tone="sky" />
+        <MetricCard label="Today's focus goal" value={`${xpToday}/${userRecord.dailyGoal} XP`} detail={xpToday >= userRecord.dailyGoal ? "Daily goal reached." : `${Math.max(0, userRecord.dailyGoal - xpToday)} XP to go today.`} tone="emerald" />
+        <MetricCard label="Verification success" value={`${Math.round((studentState?.retentionProfile.recentVerificationSuccessRate ?? 0) * 100)}%`} detail={`${studentState?.retentionProfile.successfulChecks ?? 0} successful checks across recent workspace history.`} tone="amber" />
+        <MetricCard label="Recent guidance runs" value={String(analytics?.totalRuns ?? 0)} detail={`${analytics?.verificationRuns ?? 0} runs included verification support.`} tone="violet" />
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
@@ -302,7 +322,7 @@ export default async function ProgressPage() {
             <div>
               <h2 className="text-xl font-semibold text-gray-950">Confidence trend</h2>
               <p className="mt-2 text-sm leading-6 text-gray-600">
-                Recent tutoring and verification confidence over the last few sessions. This helps show whether understanding is stabilizing.
+                Recent guidance and verification confidence over the last few sessions. This helps show whether understanding is stabilizing.
               </p>
             </div>
             <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
@@ -332,11 +352,11 @@ export default async function ProgressPage() {
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
           <h2 className="text-xl font-semibold text-gray-950">Recommended next topics</h2>
           <p className="mt-2 text-sm leading-6 text-gray-600">
-            These recommendations are derived from your recent weak concepts, misconceptions, and study outcomes.
+            These are bounded, visible next-step suggestions based on your recent weak concepts, misconceptions, work outcomes, and active workspace thread. They preserve continuity without taking control of your flow.
           </p>
           <div className="mt-5 space-y-3">
             {recommendedTopics.length === 0 ? (
-              <EmptyInlineState body="Recommendations will appear once you have more tutoring or verification history." />
+              <EmptyInlineState body="Recommendations will appear once you have more guidance or verification history." />
             ) : (
               recommendedTopics.map((topic) => (
                 <div key={topic.title} className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
@@ -348,7 +368,7 @@ export default async function ProgressPage() {
                   {topic.href ? (
                     <div className="mt-4 flex items-center justify-between gap-3">
                       <p className="text-xs text-gray-500">
-                        {topic.actionLabel === "Resume this concept" ? "Focuses the study queue on the closest matching deck material." : "Returns you to a relevant study flow with the current recommendation context."}
+                        {topic.actionLabel === "Resume this concept" ? "Opens the closest matching deck material so you can continue that concept deliberately." : "Opens a relevant workspace flow with the current recommendation context so you can continue or redirect it."}
                       </p>
                       <Link
                         href={topic.href}
@@ -369,7 +389,7 @@ export default async function ProgressPage() {
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm xl:col-span-2">
           <h2 className="text-xl font-semibold text-gray-950">Misconception patterns</h2>
           <p className="mt-2 text-sm leading-6 text-gray-600">
-            These are the learning patterns the system is watching so tutoring can reinforce the right next step.
+            These are the learning patterns the system is watching so guidance can reinforce the right next step.
           </p>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             {misconceptionCards.length === 0 ? (
@@ -427,7 +447,7 @@ export default async function ProgressPage() {
               <h3 className="text-sm font-medium uppercase tracking-[0.16em] text-emerald-700">Recent wins</h3>
               <div className="mt-3 space-y-3">
                 {recentWins.length === 0 ? (
-                  <EmptyInlineState body="Successful recovery examples will appear here after more guided study sessions." compact />
+                  <EmptyInlineState body="Successful recovery examples will appear here after more guided workspace sessions." compact />
                 ) : (
                   recentWins.map((item) => (
                     <div key={item} className="rounded-2xl bg-emerald-50 p-3 text-sm leading-6 text-emerald-950">
@@ -441,7 +461,7 @@ export default async function ProgressPage() {
               <h3 className="text-sm font-medium uppercase tracking-[0.16em] text-amber-700">Needs reinforcement</h3>
               <div className="mt-3 space-y-3">
                 {recentRecoveryNeeds.length === 0 ? (
-                  <EmptyInlineState body="Topics that still need reinforcement will appear here as the system learns more about your study patterns." compact />
+                  <EmptyInlineState body="Topics that still need reinforcement will appear here as the system learns more about your work patterns." compact />
                 ) : (
                   recentRecoveryNeeds.map((item) => (
                     <div key={item} className="rounded-2xl bg-amber-50 p-3 text-sm leading-6 text-amber-950">
@@ -466,7 +486,7 @@ export default async function ProgressPage() {
           ) : null}
           <div className="mt-5 space-y-4">
             {recoveryTimeline.length === 0 ? (
-              <EmptyInlineState body="Recovery events will appear here after more coached study reviews are recorded." />
+              <EmptyInlineState body="Recovery events will appear here after more guided reviews are recorded." />
             ) : (
               recoveryTimeline.map((event) => (
                 <article key={event.id} className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
@@ -498,11 +518,11 @@ export default async function ProgressPage() {
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
           <h2 className="text-xl font-semibold text-gray-950">Helpful guidance patterns</h2>
           <p className="mt-2 text-sm leading-6 text-gray-600">
-            This summarizes which tutoring styles have been most helpful across your recent misconception categories.
+            This summarizes which guidance styles have been most helpful across your recent misconception categories.
           </p>
           <div className="mt-5 space-y-4">
             {strategyPatterns.length === 0 ? (
-              <EmptyInlineState body="Guidance patterns will appear once you have more tutoring guidance history." />
+              <EmptyInlineState body="Guidance patterns will appear once you have more workspace guidance history." />
             ) : (
               strategyPatterns.map((pattern) => (
                 <article key={pattern.category} className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
@@ -601,12 +621,13 @@ function clampUnit(value: number): number {
 function buildRecommendedTopics(
   studentState: ReturnType<typeof formatStudentState> | null,
   analytics: ReturnType<typeof summarizeReasoningRuns> | null,
-  decks: Array<{ id: string; title: string; cards: Array<{ question: string; answer: string }> }>
+  decks: Array<{ id: string; title: string; cards: Array<{ question: string; answer: string }> }>,
+  workspaceContext: WorkspaceContext | null
 ) {
   const topics = (studentState?.weakConcepts || []).slice(0, 3).map((concept) => ({
     title: titleCase(concept),
     badge: "Weak topic",
-    reason: "This concept has appeared in your recent weak-topic memory, so it is a good candidate for targeted review and short verification cycles.",
+    reason: buildHumanCenteredRecommendation("This concept has appeared in your recent weak-topic memory, so it is a good candidate for targeted review and short verification cycles."),
     recommendationKey: concept,
     actionLabel: "Resume this concept",
   }));
@@ -616,7 +637,7 @@ function buildRecommendedTopics(
     topics.push({
       title: humanizeMisconceptionCategory(misconception.category),
       badge: "Recovery focus",
-      reason: "This misconception pattern has appeared most often in recent study history, so extra worked examples and slower step-by-step tutoring are likely to help.",
+      reason: buildHumanCenteredRecommendation("This misconception pattern has appeared most often in recent workspace history, so extra worked examples and slower step-by-step guidance are likely to help."),
       recommendationKey: misconception.category,
       actionLabel: "Continue recovery",
     });
@@ -627,9 +648,25 @@ function buildRecommendedTopics(
     topics.push({
       title: "Recent difficult prompt",
       badge: "Revisit",
-      reason: trimText(recentFailure, 132),
+      reason: buildHumanCenteredRecommendation(trimText(recentFailure, 132)),
       recommendationKey: recentFailure,
       actionLabel: "Revisit this prompt",
+    });
+  }
+
+  const activeWorkspaceKey = workspaceContext?.activeStudySet?.focusConcept
+    || workspaceContext?.whiteboardReference?.workspaceGoal
+    || workspaceContext?.presentationReference?.objective
+    || workspaceContext?.presentationReference?.title
+    || null;
+
+  if (activeWorkspaceKey) {
+    topics.unshift({
+      title: "Active workspace thread",
+      badge: "Workspace carry-over",
+      reason: buildWorkspaceRecommendationReason(workspaceContext),
+      recommendationKey: activeWorkspaceKey,
+      actionLabel: "Resume this thread",
     });
   }
 
@@ -663,7 +700,8 @@ function buildMisconceptionCards(
 function buildTutorBrief(
   studentState: ReturnType<typeof formatStudentState> | null,
   analytics: ReturnType<typeof summarizeReasoningRuns> | null,
-  recoverySummary: string | null
+  recoverySummary: string | null,
+  workspaceContext: WorkspaceContext | null
 ) {
   const weakConcept = studentState?.weakConcepts[0];
   const misconception = analytics?.byMisconception[0]?.category || studentState?.misconceptionPatterns[0] || null;
@@ -675,26 +713,31 @@ function buildTutorBrief(
     ? `Let's reinforce ${titleCase(weakConcept)} before you move on.`
     : recentWin
       ? "You are building real recovery momentum."
-      : "Your tutor is watching for the next concept to stabilize.";
+      : "Mate-E is watching for the next concept to stabilize.";
 
   const body = recoverySummary
-    ? `${recoverySummary} ${weakConcept ? `Right now the biggest leverage point is ${titleCase(weakConcept)}, because it is still showing up in your recent learning memory.` : "The next step is to keep your study sessions short, targeted, and consistent so the system can refine what works best for you."}`
+    ? `${recoverySummary} ${weakConcept ? `Right now the biggest leverage point is ${titleCase(weakConcept)}, because it is still showing up in your recent learning memory.` : "The next step is to keep your work blocks short, targeted, and consistent so the system can refine what works best for you."}`
     : weakConcept
       ? `You have recent signals around ${titleCase(weakConcept)}, so the best session today is a short targeted review with quick checks rather than broad deck browsing.`
-      : "The tutor does not yet have enough recovery evidence to make a strong intervention call, so the next best move is another focused study session with answer-first coaching.";
+      : "Mate-E does not yet have enough recovery evidence to make a strong intervention call, so the next best move is another focused work block with answer-first coaching.";
 
   const cues = [
+    workspaceContext?.whiteboardReference?.boardName
+      ? `Current workspace anchor: ${workspaceContext.whiteboardReference.boardName}${workspaceContext.whiteboardReference.workspaceGoal ? ` is tracking ${workspaceContext.whiteboardReference.workspaceGoal}.` : "."}`
+      : workspaceContext?.presentationReference?.title
+        ? `Current workspace anchor: presentation draft ${workspaceContext.presentationReference.title} is still active in your workspace.`
+        : "No active workspace artifact is currently dominating your context.",
     misconception
       ? `Most common recent difficulty: ${humanizeMisconceptionCategory(misconception)}.`
-      : "No dominant misconception has taken over your recent study history yet.",
+      : "No dominant misconception has taken over your recent workspace history yet.",
     lowConfidenceStreak > 0
       ? `You are on a ${lowConfidenceStreak}-session low-confidence streak, so slower step-by-step support is likely to help.`
       : "Confidence has not shown a prolonged dip recently, so you can keep pushing with normal pacing.",
     preferredStyle
-      ? `The tutor is currently leaning toward ${preferredStyle.toLowerCase()} explanations because that style has matched your recent behavior best.`
+      ? `Mate-E is currently leaning toward ${preferredStyle.toLowerCase()} explanations because that style has matched your recent behavior best.`
       : recentWin
         ? `Recent recovery win: ${trimText(recentWin, 92)}`
-        : "As you complete more coached sessions, the tutor will personalize explanation style more aggressively.",
+        : "As you complete more guided sessions, Mate-E will personalize explanation style more aggressively.",
   ];
 
   return { headline, body, cues };
@@ -715,34 +758,34 @@ function buildProgressNarrative(
   const topicLabel = weakConcept ? titleCase(weakConcept) : nextTopic?.title || "your next guided review topic";
 
   return {
-    headline: weakConcept ? `${topicLabel} is still the concept to reinforce first.` : "The tutor can now point to one clear next reinforcement target.",
+    headline: weakConcept ? `${topicLabel} is still the concept to reinforce first.` : "Mate-E can now point to one clear next reinforcement target.",
     summary: recoverySummary
       ? `${recoverySummary} The progress page should keep that thread intact by showing how the recent sessions connect, not just what they measured.`
-      : nextTopic?.reason || "Your recent study history is starting to form a clearer learning narrative, so the next step should reinforce one concept rather than scatter attention across the whole library.",
+      : nextTopic?.reason || "Your recent workspace history is starting to form a clearer learning narrative, so the next step should reinforce one concept rather than scatter attention across the whole library.",
     whatChanged: recentSuccess
-      ? `A recent win suggests part of the material is becoming easier to retrieve, which means the tutor can now build on momentum instead of only reacting to struggle. ${trimText(recentSuccess, 120)}`
-      : `The strongest change is structural: the tutor has enough history to stop giving generic next steps and start anchoring guidance around ${topicLabel}.`,
+      ? `A recent win suggests part of the material is becoming easier to retrieve, which means Mate-E can now build on momentum instead of only reacting to struggle. ${trimText(recentSuccess, 120)}`
+      : `The strongest change is structural: there is now enough history to stop giving generic next steps and start anchoring guidance around ${topicLabel}.`,
     stillUnstable: recentFailure
-      ? `${trimText(recentFailure, 132)} still needs reinforcement, so the tutor should treat it as active learning work rather than a finished topic.`
+      ? `${trimText(recentFailure, 132)} still needs reinforcement, so Mate-E should treat it as active learning work rather than a finished topic.`
       : misconception
         ? `${humanizeMisconceptionCategory(misconception)} remains the clearest instability pattern in the recent history, so worked examples and slower explanations are still the right posture here.`
         : lowConfidenceStreak > 0
-          ? `There is still a low-confidence stretch in the recent study pattern, so pacing should stay calm and targeted until that stops repeating.`
-          : `${topicLabel} looks improved, but the tutor should still treat it as recently recovering rather than fully stable.`,
+          ? `There is still a low-confidence stretch in the recent pattern, so pacing should stay calm and targeted until that stops repeating.`
+          : `${topicLabel} looks improved, but Mate-E should still treat it as recently recovering rather than fully stable.`,
     nextStep: weakConcept
       ? `Start the next guided pass with ${topicLabel}, and if the explanation begins to slow down again, use coaching early instead of waiting until the end of the session.`
       : nextTopic
-        ? `Use the next guided session to resume ${nextTopic.title.toLowerCase()} directly so the current recovery thread is not lost between visits.`
+        ? `Use the next guided session to resume ${nextTopic.title.toLowerCase()} directly so the current recovery thread stays intact between visits.`
         : `Run one short guided session and stay with the first concept that feels shaky until the explanation becomes cleaner, not merely familiar.`,
     resumeHref: nextTopic?.href || null,
     resumeLabel: nextTopic?.actionLabel || "Resume the next weak point",
     resumeReason: recentFailure
-      ? `${trimText(recentFailure, 132)} is still unresolved, so the tutor is sending you back into that exact weak point instead of widening the session.`
+      ? `${trimText(recentFailure, 132)} is still unresolved, so the clearest next move is to revisit that exact weak point instead of widening the session.`
       : misconception
-        ? `${topicLabel} still destabilizes around ${humanizeMisconceptionCategory(misconception).toLowerCase()}, so the tutor wants a targeted revisit before treating the topic as secure.`
+        ? `${topicLabel} still destabilizes around ${humanizeMisconceptionCategory(misconception).toLowerCase()}, so the clearest next move is a targeted revisit before treating the topic as secure.`
         : lowConfidenceStreak > 0
-          ? `${topicLabel} is still inside a low-confidence stretch, so the tutor is reopening the same thread while the friction point is still identifiable.`
-          : `${topicLabel} looks close to stable, but one more focused revisit will tell the tutor whether the improvement is durable or only recent.`,
+          ? `${topicLabel} is still inside a low-confidence stretch, so the next pass should reopen the same thread while the friction point is still identifiable.`
+          : `${topicLabel} looks close to stable, but one more focused revisit will clarify whether the improvement is durable or only recent.`,
   };
 }
 
@@ -919,4 +962,24 @@ function rankConceptMatch(value: string, query: string): number {
     if (haystack.includes(token)) score += 1;
   }
   return score;
+}
+
+function buildWorkspaceRecommendationReason(workspaceContext: WorkspaceContext | null) {
+  if (!workspaceContext) {
+    return buildHumanCenteredRecommendation("Your current workspace thread is active, so the next study pass should pick up the same concept instead of starting a different topic.");
+  }
+
+  if (workspaceContext.activeStudySet?.focusConcept) {
+    return buildHumanCenteredRecommendation(`Your active guided session is already centered on ${titleCase(workspaceContext.activeStudySet.focusConcept)}, so the next recommendation should preserve that thread instead of resetting context.`);
+  }
+
+  if (workspaceContext.whiteboardReference?.workspaceGoal) {
+    return buildHumanCenteredRecommendation(`Your whiteboard is currently organized around ${workspaceContext.whiteboardReference.workspaceGoal}, so the next study pass should reconnect to that workspace goal while it is still active.`);
+  }
+
+  if (workspaceContext.presentationReference?.objective) {
+    return buildHumanCenteredRecommendation(`Your presentation draft is targeting ${workspaceContext.presentationReference.objective}, so the next recommendation should reinforce that same explanatory thread.`);
+  }
+
+  return buildHumanCenteredRecommendation("Your workspace still has an active thread, so the next recommendation should preserve it instead of widening focus.");
 }

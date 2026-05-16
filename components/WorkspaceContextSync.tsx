@@ -39,7 +39,7 @@ export default function WorkspaceContextSync() {
       try {
         const response = await fetch("/api/workspace/context", { cache: "no-store" });
         if (!response.ok) return;
-        const data = await response.json();
+        const data = await safeJson(response);
         const remoteContext = sanitizeWorkspaceContext(data?.context);
         const localContext = readWorkspaceContext();
 
@@ -96,6 +96,15 @@ export default function WorkspaceContextSync() {
   }, [context]);
 
   return null;
+}
+
+async function safeJson(response: Response): Promise<any | null> {
+  try {
+    const text = await response.text();
+    return text ? JSON.parse(text) : null;
+  } catch {
+    return null;
+  }
 }
 
 function serializeComparableContext(context: WorkspaceContext) {

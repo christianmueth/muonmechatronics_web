@@ -29,161 +29,175 @@ type TutorChatHistoryItem = {
 };
 
 export async function GET(req: Request) {
-  const { userId: clerkUserId } = await auth();
-  if (!clerkUserId) {
-    return NextResponse.json({ error: "Unauthorized", code: "UNAUTHORIZED" }, { status: 401 });
-  }
+  try {
+    const { userId: clerkUserId } = await auth();
+    if (!clerkUserId) {
+      return NextResponse.json({ error: "Unauthorized", code: "UNAUTHORIZED" }, { status: 401 });
+    }
 
-  const requestUrl = new URL(req.url);
-  const requestedDeckId = cleanQueryValue(requestUrl.searchParams.get("deckId"));
-  const user = await prisma.user.findUnique({
-    where: { clerkUserId },
-    select: {
-      id: true,
-      studentState: true,
-    },
-  });
+    const requestUrl = new URL(req.url);
+    const requestedDeckId = cleanQueryValue(requestUrl.searchParams.get("deckId"));
+    const user = await prisma.user.findUnique({
+      where: { clerkUserId },
+      select: {
+        id: true,
+        studentState: true,
+      },
+    });
 
-  if (!user) {
+    if (!user) {
+      return NextResponse.json({
+        ok: true,
+        messages: [],
+        context: buildEmptyContext(),
+      });
+    }
+
+    const deck = requestedDeckId ? await loadOwnedDeck(user.id, requestedDeckId) : null;
+    const studentState = formatStudentState(user.studentState);
+    const recentRuns = await prisma.reasoningRun.findMany({
+      where: {
+        userId: user.id,
+        mode: { in: ["tutor_chat", "tutor_guidance", "study_recovery", "verify_answer", "compare_explanations"] },
+        ...(deck ? { OR: [{ deckId: deck.id }, { deckId: null }] } : {}),
+      },
+      orderBy: { createdAt: "desc" },
+      take: 16,
+      select: {
+        id: true,
+        mode: true,
+        prompt: true,
+        finalAnswer: true,
+        title: true,
+        createdAt: true,
+      },
+    });
+
+    return NextResponse.json({
+      ok: true,
+      messages: toHistory(recentRuns),
+      context: buildContextSnapshot({ studentState, deck, recentRuns }),
+    });
+  } catch (error) {
+    console.error("[TutorChat] GET failed:", error);
     return NextResponse.json({
       ok: true,
       messages: [],
       context: buildEmptyContext(),
     });
   }
-
-  const deck = requestedDeckId ? await loadOwnedDeck(user.id, requestedDeckId) : null;
-  const studentState = formatStudentState(user.studentState);
-  const recentRuns = await prisma.reasoningRun.findMany({
-    where: {
-      userId: user.id,
-      mode: { in: ["tutor_chat", "tutor_guidance", "study_recovery", "verify_answer", "compare_explanations"] },
-      ...(deck ? { OR: [{ deckId: deck.id }, { deckId: null }] } : {}),
-    },
-    orderBy: { createdAt: "desc" },
-    take: 16,
-    select: {
-      id: true,
-      mode: true,
-      prompt: true,
-      finalAnswer: true,
-      title: true,
-      createdAt: true,
-    },
-  });
-
-  return NextResponse.json({
-    ok: true,
-    messages: toHistory(recentRuns),
-    context: buildContextSnapshot({ studentState, deck, recentRuns }),
-  });
 }
 
 export async function POST(req: Request) {
-  const { userId: clerkUserId } = await auth();
-  if (!clerkUserId) {
-    return NextResponse.json({ error: "Unauthorized", code: "UNAUTHORIZED" }, { status: 401 });
+  try {
+    const { userId: clerkUserId } = await auth();
+    if (!clerkUserId) {
+      return NextResponse.json({ error: "Unauthorized", code: "UNAUTHORIZED" }, { status: 401 });
+    }
+
+    const body = (await req.json()) as TutorChatRequest;
+    const message = cleanMessage(body.message);
+    const liveContext = sanitizeTutorChatSessionContext(body.liveContext);
+    const workspaceContext = sanitizeWorkspaceContext(body.workspaceContext);
+    if (!message) {
+      return NextResponse.json({ error: "Message is required", code: "BAD_REQUEST" }, { status: 400 });
+    }
+
+    const user = await prisma.user.upsert({
+      where: { clerkUserId },
+      update: {},
+      create: { clerkUserId },
+      select: {
+        id: true,
+        studentState: true,
+      },
+    });
+
+    const deck = body.deckId ? await loadOwnedDeck(user.id, body.deckId) : null;
+    const studentState = formatStudentState(user.studentState);
+    const recentRuns = await prisma.reasoningRun.findMany({
+      where: {
+        userId: user.id,
+        mode: { in: ["tutor_chat", "tutor_guidance", "study_recovery", "verify_answer", "compare_explanations"] },
+        ...(deck ? { OR: [{ deckId: deck.id }, { deckId: null }] } : {}),
+      },
+      orderBy: { createdAt: "desc" },
+      take: 12,
+      select: {
+        id: true,
+        mode: true,
+        prompt: true,
+        finalAnswer: true,
+        title: true,
+        createdAt: true,
+      },
+    });
+
+    const messages: ChatV1Message[] = [
+      {
+        role: "system",
+        content: buildSystemPrompt({
+          path: cleanQueryValue(body.path),
+          focusConcept: cleanQueryValue(body.focusConcept),
+          focusReason: cleanQueryValue(body.focusReason),
+          liveContext,
+          workspaceContext,
+          deck,
+          studentState,
+          recentRuns,
+        }),
+      },
+      ...toModelHistory(recentRuns),
+      { role: "user", content: message },
+    ];
+
+    const response = await chatV1({
+      messages,
+      temperature: 0.4,
+      max_output_tokens: 500,
+    });
+
+    const assistantMessage = sanitizeAssistantMessage(response.output_text);
+
+    const savedRun = await prisma.reasoningRun.create({
+      data: {
+        userId: user.id,
+        deckId: deck?.id ?? null,
+        mode: "tutor_chat",
+        origin: "persistent_tutor_panel",
+        title: deck?.title ?? "Workspace tutor chat",
+        prompt: message,
+        finalAnswer: assistantMessage,
+        metadata: {
+          path: cleanQueryValue(body.path),
+          focusConcept: cleanQueryValue(body.focusConcept),
+          focusReason: cleanQueryValue(body.focusReason),
+          weakConcepts: studentState.weakConcepts.slice(0, 3),
+          preferredExplanationStyle: studentState.preferredExplanationStyle,
+          liveContext,
+          workspaceContext,
+        } as Prisma.InputJsonValue,
+      },
+      select: {
+        id: true,
+        createdAt: true,
+      },
+    });
+
+    return NextResponse.json({
+      ok: true,
+      message: {
+        id: savedRun.id,
+        role: "assistant",
+        content: assistantMessage,
+        createdAt: savedRun.createdAt.toISOString(),
+      },
+      context: buildContextSnapshot({ studentState, deck, recentRuns }),
+    });
+  } catch (error) {
+    console.error("[TutorChat] POST failed:", error);
+    return NextResponse.json({ error: "We couldn't respond right now.", code: "CHAT_UNAVAILABLE" }, { status: 500 });
   }
-
-  const body = (await req.json()) as TutorChatRequest;
-  const message = cleanMessage(body.message);
-  const liveContext = sanitizeTutorChatSessionContext(body.liveContext);
-  const workspaceContext = sanitizeWorkspaceContext(body.workspaceContext);
-  if (!message) {
-    return NextResponse.json({ error: "Message is required", code: "BAD_REQUEST" }, { status: 400 });
-  }
-
-  const user = await prisma.user.upsert({
-    where: { clerkUserId },
-    update: {},
-    create: { clerkUserId },
-    select: {
-      id: true,
-      studentState: true,
-    },
-  });
-
-  const deck = body.deckId ? await loadOwnedDeck(user.id, body.deckId) : null;
-  const studentState = formatStudentState(user.studentState);
-  const recentRuns = await prisma.reasoningRun.findMany({
-    where: {
-      userId: user.id,
-      mode: { in: ["tutor_chat", "tutor_guidance", "study_recovery", "verify_answer", "compare_explanations"] },
-      ...(deck ? { OR: [{ deckId: deck.id }, { deckId: null }] } : {}),
-    },
-    orderBy: { createdAt: "desc" },
-    take: 12,
-    select: {
-      id: true,
-      mode: true,
-      prompt: true,
-      finalAnswer: true,
-      title: true,
-      createdAt: true,
-    },
-  });
-
-  const messages: ChatV1Message[] = [
-    {
-      role: "system",
-      content: buildSystemPrompt({
-        path: cleanQueryValue(body.path),
-        focusConcept: cleanQueryValue(body.focusConcept),
-        focusReason: cleanQueryValue(body.focusReason),
-        liveContext,
-        workspaceContext,
-        deck,
-        studentState,
-        recentRuns,
-      }),
-    },
-    ...toModelHistory(recentRuns),
-    { role: "user", content: message },
-  ];
-
-  const response = await chatV1({
-    messages,
-    temperature: 0.4,
-    max_output_tokens: 500,
-  });
-
-  const assistantMessage = sanitizeAssistantMessage(response.output_text);
-
-  const savedRun = await prisma.reasoningRun.create({
-    data: {
-      userId: user.id,
-      deckId: deck?.id ?? null,
-      mode: "tutor_chat",
-      origin: "persistent_tutor_panel",
-      title: deck?.title ?? "Workspace tutor chat",
-      prompt: message,
-      finalAnswer: assistantMessage,
-      metadata: {
-        path: cleanQueryValue(body.path),
-        focusConcept: cleanQueryValue(body.focusConcept),
-        focusReason: cleanQueryValue(body.focusReason),
-        weakConcepts: studentState.weakConcepts.slice(0, 3),
-        preferredExplanationStyle: studentState.preferredExplanationStyle,
-        liveContext,
-        workspaceContext,
-      } as Prisma.InputJsonValue,
-    },
-    select: {
-      id: true,
-      createdAt: true,
-    },
-  });
-
-  return NextResponse.json({
-    ok: true,
-    message: {
-      id: savedRun.id,
-      role: "assistant",
-      content: assistantMessage,
-      createdAt: savedRun.createdAt.toISOString(),
-    },
-    context: buildContextSnapshot({ studentState, deck, recentRuns }),
-  });
 }
 
 async function loadOwnedDeck(userId: string, deckId: string) {

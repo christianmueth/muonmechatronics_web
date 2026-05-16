@@ -21,9 +21,9 @@ export default async function AppPage() {
     return (
       <div className="max-w-2xl mx-auto p-6">
         <div className="border border-red-300 bg-red-50 p-4 rounded">
-          <h2 className="font-semibold text-red-900">We couldn't restore your study session.</h2>
+          <h2 className="font-semibold text-red-900">We couldn't restore your workspace session.</h2>
           <p className="text-sm text-red-700 mt-2">
-            Return to the home page and sign in again to continue your guided study. If this keeps happening, the auth setup likely needs attention.
+            Return to the home page and sign in again to continue your workspace. If this keeps happening, the auth setup likely needs attention.
           </p>
         </div>
       </div>
@@ -31,26 +31,6 @@ export default async function AppPage() {
   }
   
   if (!userId) redirect(`/?next=${encodeURIComponent("/app")}`);
-
-  try {
-    await prisma.user.upsert({ 
-      where: { clerkUserId: userId }, 
-      update: {}, 
-      create: { clerkUserId: userId } 
-    });
-  } catch (error) {
-    console.error("[App] Database error creating user:", error);
-    return (
-      <div className="max-w-2xl mx-auto p-6">
-        <div className="border border-red-300 bg-red-50 p-4 rounded">
-          <h2 className="font-semibold text-red-900">We couldn't load your learning spaces.</h2>
-          <p className="text-sm text-red-700 mt-2">
-            Your study workspace can't load until the data connection is available again.
-          </p>
-        </div>
-      </div>
-    );
-  }
 
   let decks: Array<{ id: string; title: string; createdAt: Date; _count: { cards: number } } > = [];
   let studentState: ReturnType<typeof formatStudentState> | null = null;
@@ -86,10 +66,23 @@ export default async function AppPage() {
     }>;
   }> = [];
 
-  const userRecord = await prisma.user.findFirst({
+  let userRecord = await prisma.user.findFirst({
     where: { clerkUserId: userId },
     select: { id: true, studentState: true },
-  }).catch(() => null);
+  }).catch((error) => {
+    console.error("[App] Database error loading user:", error);
+    return null;
+  });
+
+  if (!userRecord) {
+    userRecord = await prisma.user.create({
+      data: { clerkUserId: userId },
+      select: { id: true, studentState: true },
+    }).catch((error) => {
+      console.error("[App] Database error creating user:", error);
+      return null;
+    });
+  }
 
   if (userRecord?.studentState) {
     studentState = formatStudentState(userRecord.studentState);
@@ -159,7 +152,7 @@ export default async function AppPage() {
     <div className="max-w-6xl mx-auto p-6 space-y-8">
       <section className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
         <div className="rounded-3xl border border-sky-200 bg-gradient-to-br from-sky-50 via-white to-cyan-50 p-6 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">Tutor framing</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">Workspace focus</p>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">{workspaceTutorBrief.headline}</h1>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700">{workspaceTutorBrief.summary}</p>
           <div className="mt-5 grid gap-3 md:grid-cols-3">
@@ -180,8 +173,8 @@ export default async function AppPage() {
         </div>
 
         <div className="rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 via-white to-lime-50 p-6 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Tutor memory moments</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">What the tutor remembers right now</h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Workspace continuity</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">What the workspace remembers right now</h2>
           <div className="mt-5 space-y-3">
             {memoryMoments.map((moment) => (
               <div key={moment} className="rounded-2xl border border-emerald-100 bg-white/90 p-4 text-sm leading-6 text-slate-700">
@@ -192,13 +185,28 @@ export default async function AppPage() {
         </div>
       </section>
 
+      <section className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 via-white to-orange-50 p-6 shadow-sm">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">New workspace layer</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">Instructional chat is now a first-class productivity surface.</h2>
+            <p className="mt-3 text-sm leading-7 text-slate-700">
+              This is the first step toward a guided workspace for explanation, planning, sequencing, and continuity before whiteboard and presentation tools land.
+            </p>
+          </div>
+          <Link href="/app/workspace" className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800">
+            Open workspace
+          </Link>
+        </div>
+      </section>
+
       <DeckCarousel userId={userId} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <section className="space-y-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Study</p>
-          <h2 className="text-xl font-semibold">Build study material</h2>
-          <p className="text-sm text-gray-600">Paste text, upload PDF or slides, add a link, and turn it into a guided study set.</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Workspace input</p>
+          <h2 className="text-xl font-semibold">Build workspace material</h2>
+          <p className="text-sm text-gray-600">Paste text, upload PDF or slides, add a link, and turn it into a reusable workspace set.</p>
           <div className="rounded border p-4">
             <CreateForm />
           </div>
@@ -207,8 +215,8 @@ export default async function AppPage() {
         <section className="space-y-4">
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Study</p>
-              <h2 className="text-xl font-semibold">Study library</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Workspace library</p>
+              <h2 className="text-xl font-semibold">Workspace library</h2>
             </div>
             {decks.length > 0 && (
               <div>
@@ -217,7 +225,7 @@ export default async function AppPage() {
             )}
           </div>
           {decks.length === 0 ? (
-            <div className="rounded border p-6 text-sm text-gray-500">No study sets yet. Build one on the left to start a guided session.</div>
+            <div className="rounded border p-6 text-sm text-gray-500">No workspace sets yet. Build one on the left to start organizing your next work block.</div>
           ) : (
             <ul className="divide-y rounded border">
               {decks.map((d) => (
@@ -231,7 +239,7 @@ export default async function AppPage() {
                     </p>
                   </div>
                   <Link href={`/app/deck/${d.id}`} className="text-sm px-3 py-1.5 rounded border hover:bg-gray-50 whitespace-nowrap">
-                    Open session
+                    Open workspace set
                   </Link>
                 </li>
               ))}
@@ -257,24 +265,24 @@ function buildWorkspaceTutorBrief(
   const headline = weakConcept
     ? `Start with ${titleCase(weakConcept)} before browsing everything else.`
     : deckCount > 0
-      ? "Your workspace is ready for a guided study pass."
-      : "Create your first study set and the tutor will start building memory.";
+      ? "Your workspace is ready for a focused pass."
+      : "Create your first workspace set and Mate-E will start building continuity.";
 
   const summary = weakConcept
-    ? `The tutor is prioritizing ${titleCase(weakConcept)} because it still appears in your recent learning memory${misconception ? ` and is often paired with ${humanizeMisconceptionCategory(misconception).toLowerCase()}` : ""}. A short focused session will help more than jumping across multiple study sets.`
+    ? `Mate-E is prioritizing ${titleCase(weakConcept)} because it still appears in your recent workspace memory${misconception ? ` and is often paired with ${humanizeMisconceptionCategory(misconception).toLowerCase()}` : ""}. A short focused work block will help more than jumping across multiple sets.`
     : deckCount > 0
-      ? "You have enough material to start a structured session. As you complete more coached reviews, the workspace will get more specific about what to reinforce next and why."
-      : "Once you add material and complete a few coached checks, the tutor will start showing weak concepts, recovery patterns, and guided next steps here.";
+      ? "You have enough material to start a structured work block. As you complete more guided reviews, the workspace will get more specific about what to reinforce next and why."
+      : "Once you add material and complete a few guided checks, Mate-E will start surfacing weak concepts, recovery patterns, and practical next steps here.";
 
   const cues = [
     recentFailure
-      ? `Recent hesitation: ${trimText(recentFailure, 88)}`
+      ? `Recent friction: ${trimText(recentFailure, 88)}`
       : "No recent failure is dominating the workspace yet.",
     recentSuccess
       ? `Recent recovery win: ${trimText(recentSuccess, 88)}`
-      : "The tutor is still waiting for enough recovery evidence to highlight a recent win.",
+      : "Mate-E is still waiting for enough recovery evidence to highlight a recent win.",
     lowConfidenceStreak > 0
-      ? `You are on a ${lowConfidenceStreak}-session low-confidence streak, so slower example-first review is a good default.`
+      ? `You are on a ${lowConfidenceStreak}-session low-confidence streak, so a slower example-first work block is a good default.`
       : "Confidence has not shown a prolonged drop recently, so normal pacing is still appropriate.",
   ];
 
@@ -294,14 +302,14 @@ function buildTutorMemoryMoments(
     moments.push(`You recovered this more smoothly in a recent session: ${trimText(studentState.recentSuccesses[0], 92)}`);
   }
   if (studentState?.preferredExplanationStyle) {
-    moments.push(`The tutor currently sees ${studentState.preferredExplanationStyle.toLowerCase()} explanations as your best fit.`);
+    moments.push(`Mate-E currently sees ${studentState.preferredExplanationStyle.toLowerCase()} explanations as your best fit.`);
   }
   if (analytics?.dominantMisconception) {
     moments.push(`Most repeated recent friction point: ${humanizeMisconceptionCategory(analytics.dominantMisconception)}.`);
   }
 
   if (moments.length === 0) {
-    moments.push("As you study more, the tutor will start recalling hesitation patterns, stronger explanation styles, and faster recovery paths here.");
+    moments.push("As you use the workspace more, Mate-E will start recalling hesitation patterns, stronger explanation styles, and faster recovery paths here.");
   }
 
   return moments.slice(0, 4);
