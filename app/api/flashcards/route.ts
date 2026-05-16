@@ -1356,8 +1356,8 @@ async function generateCardsWithOpenAI(
       const qa = await runQaPass(m, cards);
       if (!qa.ok) {
         if (qa.reason === "TIMEOUT" && String(qa.lastStatus || "").toUpperCase() === "IN_QUEUE") {
-          const err: any = new Error("RunPod job is still in queue (no capacity). Try again in a minute.");
-          err.code = "RUNPOD_IN_QUEUE";
+          const err: any = new Error("AI generation is queued and did not start yet. Try again in a minute.");
+          err.code = "AI_IN_QUEUE";
           err.jobId = qa.jobId;
           err.lastStatus = qa.lastStatus;
           throw err;
@@ -1453,7 +1453,7 @@ async function generateCardsWithOpenAI(
       attempt++;
       if (Date.now() - startedAt > wallClockBudgetMs) {
         const err: any = new Error("AI generation took too long. Try fewer cards or retry.");
-        err.code = "RUNPOD_TIMEOUT";
+        err.code = "AI_TIMEOUT";
         throw err;
       }
 
@@ -1472,7 +1472,7 @@ async function generateCardsWithOpenAI(
       const perCallTimeoutMs = Math.max(8_000, Math.min(perCallCapMs, remainingBudgetMs - 1_500));
       if (perCallTimeoutMs < 8_000) {
         const err: any = new Error("AI generation took too long. Try fewer cards or retry.");
-        err.code = "RUNPOD_TIMEOUT";
+        err.code = "AI_TIMEOUT";
         throw err;
       }
       const avoid = cards.length
@@ -1515,20 +1515,20 @@ async function generateCardsWithOpenAI(
 
       if (!result.ok) {
         if (result.reason === "TIMEOUT" && String(result.lastStatus || "").toUpperCase() === "IN_QUEUE") {
-          const err: any = new Error("RunPod job is still in queue (no capacity). Try again in a minute.");
-          err.code = "RUNPOD_IN_QUEUE";
+          const err: any = new Error("AI generation is queued and did not start yet. Try again in a minute.");
+          err.code = "AI_IN_QUEUE";
           err.jobId = result.jobId;
           err.lastStatus = result.lastStatus;
           throw err;
         }
         if (result.reason === "TIMEOUT") {
           const err: any = new Error("AI generation took too long. Try fewer cards or retry.");
-          err.code = "RUNPOD_TIMEOUT";
+          err.code = "AI_TIMEOUT";
           throw err;
         }
 
-        const err: any = new Error("RunPod request failed.");
-        err.code = "RUNPOD_HTTP_ERROR";
+        const err: any = new Error("AI request failed.");
+        err.code = "AI_HTTP_ERROR";
         err.reason = result.reason;
         err.httpStatus = result.httpStatus;
         throw err;
@@ -1625,8 +1625,8 @@ async function generateCardsWithOpenAI(
             break;
           }
 
-          const err: any = new Error("RunPod returned an invalid format (expected JSON flashcards)");
-          err.code = "RUNPOD_BAD_OUTPUT";
+          const err: any = new Error("AI returned an invalid format (expected JSON flashcards)");
+          err.code = "AI_BAD_OUTPUT";
           err.preview = preview;
           err.tail = tail;
           err.outputLength = outputLength;
@@ -1684,7 +1684,7 @@ async function generateCardsWithOpenAI(
           }
           if (noProgressStreak >= 4) {
             const err: any = new Error("AI returned repetitive output and could not finish the requested deck.");
-            err.code = "RUNPOD_BAD_OUTPUT";
+            err.code = "AI_BAD_OUTPUT";
             err.preview = String(cleaned || "").slice(0, 220);
             err.tail = String(cleaned || "").slice(-220);
             err.outputLength = String(cleaned || "").length;
@@ -1726,15 +1726,15 @@ async function generateCardsWithOpenAI(
   });
   if (!result.ok) {
     if (result.reason === "TIMEOUT" && String(result.lastStatus || "").toUpperCase() === "IN_QUEUE") {
-      const err: any = new Error("RunPod job is still in queue (no capacity). Try again in a minute.");
-      err.code = "RUNPOD_IN_QUEUE";
+      const err: any = new Error("AI generation is queued and did not start yet. Try again in a minute.");
+      err.code = "AI_IN_QUEUE";
       err.jobId = result.jobId;
       err.lastStatus = result.lastStatus;
       throw err;
     }
     if (result.reason === "TIMEOUT") {
       const err: any = new Error("AI generation took too long. Try fewer cards or retry.");
-      err.code = "RUNPOD_TIMEOUT";
+      err.code = "AI_TIMEOUT";
       throw err;
     }
     console.warn("[Cards] Using fallback cards due to API failure");
@@ -2658,17 +2658,17 @@ export async function POST(req: Request) {
         return respondJson(
           {
             error:
-              "AI did not return parseable flashcards. Please retry. If this persists, the RunPod template/model likely isn't honoring guided JSON.",
+              "AI did not return parseable flashcards. Please retry. If this persists, the model may not be honoring guided JSON.",
             code: "AI_NO_FLASHCARDS",
           },
           { status: 502 }
         );
       }
-      if (e?.code === "RUNPOD_IN_QUEUE") {
+      if (e?.code === "AI_IN_QUEUE") {
         return respondJson(
           {
-            error: "AI generation is queued on RunPod and did not start within the request time limit. Please retry shortly.",
-            code: "RUNPOD_IN_QUEUE",
+            error: "AI generation did not start within the request time limit. Please retry shortly.",
+            code: "AI_IN_QUEUE",
             jobId: e?.jobId || null,
             lastStatus: e?.lastStatus || null,
           },
@@ -2676,29 +2676,41 @@ export async function POST(req: Request) {
         );
       }
 
-      if (e?.code === "RUNPOD_TIMEOUT") {
+      if (e?.code === "AI_TIMEOUT") {
         return respondJson(
           {
             error:
               "AI generation took too long and timed out. Try fewer cards (e.g. 10) or retry shortly.",
-            code: "RUNPOD_TIMEOUT",
+            code: "AI_TIMEOUT",
           },
           { status: 504 }
         );
       }
 
-      if (e?.code === "RUNPOD_BAD_OUTPUT") {
+      if (e?.code === "AI_BAD_OUTPUT") {
         return respondJson(
           {
             error:
-              "AI returned an invalid format (expected JSON flashcards). Please retry, or adjust the RunPod template/model to output strict JSON.",
-            code: "RUNPOD_BAD_OUTPUT",
+              "AI returned an invalid format (expected JSON flashcards). Please retry, or adjust the model/prompting to output strict JSON.",
+            code: "AI_BAD_OUTPUT",
             preview: e?.preview || null,
             tail: e?.tail || null,
             outputLength: typeof e?.outputLength === "number" ? e.outputLength : null,
             raw: isTestMode ? e?.raw || null : null,
             jobId: e?.jobId || null,
             repairJobId: e?.repairJobId || null,
+          },
+          { status: 502 }
+        );
+      }
+
+      if (e?.code === "AI_HTTP_ERROR") {
+        return respondJson(
+          {
+            error: "AI request failed. Please retry shortly.",
+            code: "AI_HTTP_ERROR",
+            httpStatus: typeof e?.httpStatus === "number" ? e.httpStatus : null,
+            reason: e?.reason || null,
           },
           { status: 502 }
         );

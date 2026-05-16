@@ -50,8 +50,8 @@ Make the notes comprehensive yet concise, suitable for review and exam prep.`;
     const result = await callLLMResult(messages, 4000);
     if (!result.ok) {
       if (result.reason === "TIMEOUT" && String(result.lastStatus || "").toUpperCase() === "IN_QUEUE") {
-        const err: any = new Error("OpenAI request is still queued. Try again in a minute.");
-        err.code = "RUNPOD_IN_QUEUE";
+        const err: any = new Error("AI generation is queued and did not start yet. Try again in a minute.");
+        err.code = "AI_IN_QUEUE";
         err.jobId = result.jobId;
         err.lastStatus = result.lastStatus;
         throw err;
@@ -248,11 +248,11 @@ export async function POST(req: Request) {
     try {
       notes = await generateStudyNotesWithOpenAI(text);
     } catch (e: any) {
-      if (e?.code === "RUNPOD_IN_QUEUE") {
+      if (e?.code === "AI_IN_QUEUE") {
         return NextResponse.json(
           {
             error: "AI generation did not start within the request time limit. Please retry shortly.",
-            code: "OPENAI_TIMEOUT",
+            code: "AI_IN_QUEUE",
             jobId: e?.jobId || null,
             lastStatus: e?.lastStatus || null,
           },
