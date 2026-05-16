@@ -4,6 +4,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { updateWorkspaceContext, upsertWorkspaceAsset } from "@/lib/workspaceContext";
 
+async function safeJson(res: Response) {
+  try {
+    const text = await res.text();
+    return text ? JSON.parse(text) : null;
+  } catch {
+    return null;
+  }
+}
+
 type WhiteboardAssistIntent = "clean-sketch" | "flowchart" | "relationships" | "visualize";
 type ToolMode = "select" | "draw" | "pan" | "rectangle" | "arrow" | "note";
 type ResizeHandle = "nw" | "ne" | "sw" | "se";
@@ -484,9 +493,9 @@ export default function WorkspaceWhiteboard() {
       setRemoteSyncLoading(true);
       try {
         const response = await fetch("/api/workspace/whiteboard-state", { cache: "no-store" });
-        const data = (await response.json()) as WhiteboardStateResponse;
+        const data = (await safeJson(response)) as WhiteboardStateResponse | null;
         if (!response.ok || !data.ok) {
-          throw new Error(data.error || "We couldn't reach your saved workspace boards.");
+          throw new Error(data?.error || "We couldn't reach your saved workspace boards.");
         }
         if (cancelled) return;
         setRemoteBoards(data.boards || []);
@@ -880,7 +889,7 @@ export default function WorkspaceWhiteboard() {
         }),
       });
 
-      const data = await response.json();
+      const data = await safeJson(response);
       if (!response.ok || !data?.ok || !data.suggestion) {
         throw new Error(data?.error || "Whiteboard assist is unavailable right now.");
       }
@@ -1172,9 +1181,9 @@ export default function WorkspaceWhiteboard() {
   async function refreshRemoteBoards(preferredBoardId?: string | null) {
     const query = preferredBoardId ? `?boardId=${encodeURIComponent(preferredBoardId)}` : "";
     const response = await fetch(`/api/workspace/whiteboard-state${query}`, { cache: "no-store" });
-    const data = (await response.json()) as WhiteboardStateResponse;
+    const data = (await safeJson(response)) as WhiteboardStateResponse | null;
     if (!response.ok || !data.ok) {
-      throw new Error(data.error || "We couldn't refresh your saved boards.");
+      throw new Error(data?.error || "We couldn't refresh your saved boards.");
     }
     setRemoteBoards(data.boards || []);
     return data;
@@ -1192,9 +1201,9 @@ export default function WorkspaceWhiteboard() {
           boardName,
         }),
       });
-      const data = (await response.json()) as WhiteboardStateResponse;
+      const data = (await safeJson(response)) as WhiteboardStateResponse | null;
       if (!response.ok || !data.ok) {
-        throw new Error(data.error || "We couldn't save your board to your account.");
+        throw new Error(data?.error || "We couldn't save your board to your account.");
       }
       setActiveBoardId(data.boardId || null);
       setBoardName(data.boardName || boardName || "Untitled board");
@@ -1214,9 +1223,9 @@ export default function WorkspaceWhiteboard() {
     try {
       const query = boardId ? `?boardId=${encodeURIComponent(boardId)}` : activeBoardId ? `?boardId=${encodeURIComponent(activeBoardId)}` : "";
       const response = await fetch(`/api/workspace/whiteboard-state${query}`, { cache: "no-store" });
-      const data = (await response.json()) as WhiteboardStateResponse;
+      const data = (await safeJson(response)) as WhiteboardStateResponse | null;
       if (!response.ok || !data.ok) {
-        throw new Error(data.error || "We couldn't load your board from your account.");
+        throw new Error(data?.error || "We couldn't load your board from your account.");
       }
       setRemoteBoards(data.boards || []);
       if (!data.snapshot) {
@@ -1243,9 +1252,9 @@ export default function WorkspaceWhiteboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ boardId }),
       });
-      const data = (await response.json()) as WhiteboardStateResponse;
+      const data = (await safeJson(response)) as WhiteboardStateResponse | null;
       if (!response.ok || !data.ok) {
-        throw new Error(data.error || "We couldn't delete that saved board.");
+        throw new Error(data?.error || "We couldn't delete that saved board.");
       }
       const refreshed = await refreshRemoteBoards(activeBoardId === boardId ? undefined : activeBoardId);
       setRemoteBoards(refreshed.boards || []);
@@ -1274,9 +1283,9 @@ export default function WorkspaceWhiteboard() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ boardId, boardName: trimmedName }),
       });
-      const data = (await response.json()) as WhiteboardStateResponse;
+      const data = (await safeJson(response)) as WhiteboardStateResponse | null;
       if (!response.ok || !data.ok) {
-        throw new Error(data.error || "We couldn't rename that saved board.");
+        throw new Error(data?.error || "We couldn't rename that saved board.");
       }
       const refreshed = await refreshRemoteBoards(boardId);
       setRemoteBoards(refreshed.boards || []);

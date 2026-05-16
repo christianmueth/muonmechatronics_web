@@ -3,6 +3,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { humanizeMisconceptionCategory } from "@/lib/reasoningEngine/contracts";
 
+async function safeJson(response: Response) {
+  try {
+    const text = await response.text();
+    return text ? JSON.parse(text) : null;
+  } catch {
+    return null;
+  }
+}
+
 type ReasoningCandidate = {
   id: string;
   rank: number;
@@ -34,6 +43,16 @@ type ReasoningRun = {
   metadata: {
     weakTopicMatches: string[];
     misconceptionSignals: string[];
+    worldModel?: {
+      version?: string;
+      source?: "bounded_heuristic" | "lightzero_artifact";
+      selectedPolicyLabel?: string | null;
+      selectedTransition?: {
+        projectedRecoveryProbability?: number;
+        projectedStabilityGain?: number;
+        projectedLowConfidenceRisk?: number;
+      };
+    } | null;
     verification: {
       final_answer: string;
       reasoning: string;
@@ -48,6 +67,8 @@ type ReasoningRun = {
       scorerKind: string;
       blendWeight: number;
       abstainThreshold: number;
+      worldModelBlendWeight?: number;
+      worldModelRiskPenalty?: number;
       heuristicSelectedStrategyId: string;
       adaptiveSelectedStrategyId: string;
       effectiveSelectedStrategyId: string;
@@ -59,8 +80,17 @@ type ReasoningRun = {
         heuristicScore: number;
         artifactValueScore: number;
         blendedScore: number;
+        worldModelScore?: number | null;
+        worldModelProjectedRecoveryProbability?: number | null;
+        worldModelProjectedStabilityGain?: number | null;
+        worldModelProjectedConfidenceDelta?: number | null;
+        worldModelProjectedLowConfidenceRisk?: number | null;
+        muonHelperScore?: number | null;
+        finalScore?: number | null;
+        helperSupport?: number | null;
         heuristicSelected: boolean;
         adaptiveSelected: boolean;
+        muonHelperSelected?: boolean;
       }>;
     } | null;
   };
@@ -213,7 +243,7 @@ const MODE_OPTIONS = [
   { label: "Flashcards", value: "flashcards" },
   { label: "Verify answer", value: "verify_answer" },
   { label: "Compare explanations", value: "compare_explanations" },
-  { label: "Tutor guidance", value: "tutor_guidance" },
+  { label: "Guidance", value: "tutor_guidance" },
 ];
 
 export default function ReasoningReplayConsole() {
@@ -245,7 +275,7 @@ export default function ReasoningReplayConsole() {
         if (misconception) params.set("misconception", misconception);
 
         const res = await fetch(`/api/reasoning-runs?${params.toString()}`, { cache: "no-store" });
-        const data = await res.json();
+        const data = await safeJson(res);
         if (!res.ok || !data?.ok) {
           throw new Error(data?.error || "Failed to load reasoning runs");
         }
@@ -281,7 +311,7 @@ export default function ReasoningReplayConsole() {
       setLoadingState(true);
       try {
         const res = await fetch("/api/student-state", { cache: "no-store" });
-        const data = await res.json();
+        const data = await safeJson(res);
         if (!cancelled) {
           setStudentState(res.ok && data?.ok ? data.studentState : null);
         }
@@ -303,7 +333,7 @@ export default function ReasoningReplayConsole() {
       setLoadingGovernance(true);
       try {
         const res = await fetch("/api/governance/latest", { cache: "no-store" });
-        const data = await res.json();
+        const data = await safeJson(res);
         if (!cancelled) {
           setGovernanceReport(res.ok && data?.ok ? data.report : null);
         }
@@ -334,9 +364,9 @@ export default function ReasoningReplayConsole() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-2">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">Reasoning Replay</p>
-            <h1 className="text-3xl font-semibold text-slate-900">Inspectable reasoning, not black-box tutoring</h1>
+            <h1 className="text-3xl font-semibold text-slate-900">Inspectable reasoning, not black-box guidance</h1>
             <p className="max-w-3xl text-sm text-slate-600">
-              Review selected and rejected trajectories, track confidence and pruning behavior, and inspect how student state is shaping tutoring strategy selection.
+              Review selected and rejected trajectories, track confidence and pruning behavior, and inspect how student state is shaping guidance strategy selection.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -466,9 +496,9 @@ export default function ReasoningReplayConsole() {
           <div className="flex items-center justify-between gap-3">
             <div>
               <h2 className="text-lg font-semibold text-slate-900">Adaptive policy telemetry</h2>
-              <p className="text-sm text-slate-500">Shadow and active disagreement behavior for the live tutoring reranker boundary.</p>
+              <p className="text-sm text-slate-500">Shadow and active disagreement behavior for the live guidance reranker boundary.</p>
             </div>
-            <span className="text-xs text-slate-500">{analytics.adaptivePolicy.loggedRuns} logged tutor-guidance runs</span>
+            <span className="text-xs text-slate-500">{analytics.adaptivePolicy.loggedRuns} logged guidance runs</span>
           </div>
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             <MiniStat label="Disagreement rate" value={formatScore(analytics.adaptivePolicy.disagreementRate)} />
@@ -557,7 +587,7 @@ export default function ReasoningReplayConsole() {
             <div className="flex items-center justify-between gap-3">
               <div>
                 <h2 className="text-lg font-semibold text-slate-900">Strategy wins by misconception</h2>
-                <p className="text-sm text-slate-500">Selected tutoring strategies that most often win reranking for each misconception category.</p>
+                <p className="text-sm text-slate-500">Selected guidance strategies that most often win reranking for each misconception category.</p>
               </div>
             </div>
             <div className="space-y-3">
@@ -566,7 +596,7 @@ export default function ReasoningReplayConsole() {
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-800">{humanizeMisconception(entry.category)}</p>
-                      <h3 className="mt-2 font-semibold text-emerald-950">{entry.topStrategy || "No tutoring win yet"}</h3>
+                      <h3 className="mt-2 font-semibold text-emerald-950">{entry.topStrategy || "No guidance win yet"}</h3>
                     </div>
                     <div className="text-right text-xs text-emerald-800">
                       <div>{entry.winCount} wins</div>
@@ -683,6 +713,12 @@ export default function ReasoningReplayConsole() {
                 <div className="flex flex-wrap gap-2 text-xs text-violet-900">
                   <Badge>blend {formatScore(selectedRun.metadata.adaptivePolicy.blendWeight)}</Badge>
                   <Badge>abstain {formatScore(selectedRun.metadata.adaptivePolicy.abstainThreshold)}</Badge>
+                  {typeof selectedRun.metadata.adaptivePolicy.worldModelBlendWeight === "number" ? (
+                    <Badge>wm blend {formatScore(selectedRun.metadata.adaptivePolicy.worldModelBlendWeight)}</Badge>
+                  ) : null}
+                  {selectedRun.metadata.worldModel?.source ? (
+                    <Badge>{selectedRun.metadata.worldModel.source === "lightzero_artifact" ? "wm LightZero" : "wm heuristic"}</Badge>
+                  ) : null}
                   <Badge>{selectedRun.metadata.adaptivePolicy.overrideApplied ? "override applied" : selectedRun.metadata.adaptivePolicy.disagreement ? "shadow disagreement" : "no disagreement"}</Badge>
                 </div>
               </div>
@@ -691,6 +727,23 @@ export default function ReasoningReplayConsole() {
                 <MiniStat label="Adaptive choice" value={selectedRun.metadata.adaptivePolicy.adaptiveSelectedStrategyId || "none"} />
                 <MiniStat label="Effective choice" value={selectedRun.metadata.adaptivePolicy.effectiveSelectedStrategyId || "none"} />
               </div>
+              {selectedRun.metadata.worldModel ? (
+                <div className="grid gap-3 md:grid-cols-3">
+                  <MiniStat label="World model" value={selectedRun.metadata.worldModel.selectedPolicyLabel || selectedRun.metadata.worldModel.version || "unknown"} />
+                  <MiniStat
+                    label="WM selected recovery"
+                    value={typeof selectedRun.metadata.worldModel.selectedTransition?.projectedRecoveryProbability === "number"
+                      ? formatPercent(selectedRun.metadata.worldModel.selectedTransition.projectedRecoveryProbability)
+                      : "n/a"}
+                  />
+                  <MiniStat
+                    label="WM selected risk"
+                    value={typeof selectedRun.metadata.worldModel.selectedTransition?.projectedLowConfidenceRisk === "number"
+                      ? formatPercent(selectedRun.metadata.worldModel.selectedTransition.projectedLowConfidenceRisk)
+                      : "n/a"}
+                  />
+                </div>
+              ) : null}
               <div className="space-y-3">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-900">Candidate score trace</p>
                 <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -700,11 +753,24 @@ export default function ReasoningReplayConsole() {
                         <Badge strong={candidate.heuristicSelected || candidate.adaptiveSelected}>{candidate.strategyId}</Badge>
                         {candidate.heuristicSelected ? <Badge>heuristic</Badge> : null}
                         {candidate.adaptiveSelected ? <Badge>adaptive</Badge> : null}
+                        {candidate.muonHelperSelected ? <Badge>muon</Badge> : null}
                       </div>
                       <div className="mt-3 space-y-1 text-sm text-violet-950">
                         <div>heuristic {formatScore(candidate.heuristicScore)}</div>
                         <div>artifact {formatScore(candidate.artifactValueScore)}</div>
                         <div>blended {formatScore(candidate.blendedScore)}</div>
+                        {typeof candidate.worldModelScore === "number" ? <div>world model {formatScore(candidate.worldModelScore)}</div> : null}
+                        {typeof candidate.muonHelperScore === "number" ? <div>muon {formatScore(candidate.muonHelperScore)}</div> : null}
+                        {typeof candidate.finalScore === "number" ? <div>final {formatScore(candidate.finalScore)}</div> : null}
+                        {typeof candidate.worldModelProjectedRecoveryProbability === "number" ? (
+                          <div>wm recovery {formatPercent(candidate.worldModelProjectedRecoveryProbability)}</div>
+                        ) : null}
+                        {typeof candidate.worldModelProjectedStabilityGain === "number" ? (
+                          <div>wm stability {formatPercent(candidate.worldModelProjectedStabilityGain)}</div>
+                        ) : null}
+                        {typeof candidate.worldModelProjectedLowConfidenceRisk === "number" ? (
+                          <div>wm low-confidence risk {formatPercent(candidate.worldModelProjectedLowConfidenceRisk)}</div>
+                        ) : null}
                       </div>
                     </div>
                   ))}
@@ -725,7 +791,7 @@ export default function ReasoningReplayConsole() {
             {loadingRuns ? (
               <PlaceholderBlock />
             ) : runs.length === 0 ? (
-              <EmptyState text="No reasoning runs yet. Generate flashcards, verify an answer, or use tutoring guidance to populate replay." />
+              <EmptyState text="No reasoning runs yet. Generate flashcards, verify an answer, or use guidance to populate replay." />
             ) : (
               runs.map((run) => {
                 const active = selectedRun?.id === run.id;
@@ -830,13 +896,13 @@ export default function ReasoningReplayConsole() {
         <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm space-y-4">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">Student state</h2>
-            <p className="text-sm text-slate-500">Persistent adaptation signals shaping tutoring and verification.</p>
+            <p className="text-sm text-slate-500">Persistent adaptation signals shaping guidance and verification.</p>
           </div>
 
           {loadingState ? (
             <PlaceholderBlock />
           ) : !studentState ? (
-            <EmptyState text="Student state becomes available after persisted verification or tutoring runs." />
+            <EmptyState text="Student state becomes available after persisted verification or guidance runs." />
           ) : (
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
@@ -987,14 +1053,14 @@ function labelForMode(mode: string) {
     case "compare_explanations":
       return "Compare explanations";
     case "tutor_guidance":
-      return "Tutor guidance";
+      return "Guidance";
     default:
       return mode.replace(/_/g, " ");
   }
 }
 
 function readableRunTitle(run: ReasoningRun) {
-  if (run.mode === "tutor_guidance") return "Adaptive tutoring strategy selection";
+  if (run.mode === "tutor_guidance") return "Adaptive guidance strategy selection";
   if (run.mode === "verify_answer") return "Answer verification pass";
   if (run.mode === "compare_explanations") return "Explanation comparison pass";
   return "Reasoning run";
@@ -1014,7 +1080,7 @@ function buildWhyWonReasons(run: ReasoningRun) {
     reasons.push(`The strategy was chosen to counter the misconception pattern ${humanizeMisconception(run.metadata.misconceptionSignals[0])}.`);
   }
   if (run.metadata.adaptivePolicy?.overrideApplied) {
-    reasons.push(`A low-authority adaptive override was applied after the heuristic and artifact scorer disagreed on the best tutoring action.`);
+    reasons.push(`A low-authority adaptive override was applied after the heuristic and artifact scorer disagreed on the best guidance action.`);
   } else if (run.metadata.adaptivePolicy?.disagreement) {
     reasons.push(`The adaptive scorer disagreed with the heuristic controller, but the abstention gate kept the heuristic selection in place.`);
   }
@@ -1043,7 +1109,7 @@ function buildCandidateReasons(run: ReasoningRun, candidate: ReasoningCandidate)
 
   const label = candidateLabel(run, candidate);
   if (label) {
-    reasons.push(`Labeled as ${label.toLowerCase()} based on the persistent tutoring and misconception signals attached to this run.`);
+    reasons.push(`Labeled as ${label.toLowerCase()} based on the persistent guidance and misconception signals attached to this run.`);
   }
 
   if (candidate.trajectoryDepth > 1) {
@@ -1122,7 +1188,7 @@ function evaluateShadowReadiness(
           ? "watch"
           : "hold",
       telemetryCoverage >= 0.95
-        ? `Adaptive telemetry is attached to ${adaptiveRuns.length}/${tutorGuidanceRuns.length || 0} tutor-guidance runs in the current slice.`
+        ? `Adaptive telemetry is attached to ${adaptiveRuns.length}/${tutorGuidanceRuns.length || 0} guidance runs in the current slice.`
         : `Coverage is ${formatPercent(telemetryCoverage)} in the current slice; verify persistence and route logging before granting authority.`
     ),
     buildGate(
@@ -1189,7 +1255,7 @@ function evaluateShadowReadiness(
         : topSelectedStrategyShare <= 0.7
           ? "watch"
           : "hold",
-      `The most common effective tutoring strategy currently accounts for ${formatPercent(topSelectedStrategyShare)} of adaptive-logged tutor-guidance runs.`
+      `The most common effective guidance strategy currently accounts for ${formatPercent(topSelectedStrategyShare)} of adaptive-logged guidance runs.`
     ),
     buildGate(
       "Replay inspection",
@@ -1221,7 +1287,7 @@ function evaluateShadowReadiness(
     recommendation: summaryStatus === "hold"
       ? "Keep adaptive authority disabled. The current shadow slice still shows at least one rollout gate that is too weak or too concentrated for a safe override trial."
       : summaryStatus === "watch"
-        ? "Stay in shadow mode and gather more tutor-guidance traffic. The current slice is directionally useful, but not yet strong enough to justify even sparse adaptive authority."
+        ? "Stay in shadow mode and gather more guidance traffic. The current slice is directionally useful, but not yet strong enough to justify even sparse adaptive authority."
         : "Automatic gates look healthy in the current slice, but manual replay review and synthetic-to-real drift inspection should still be signed off before enabling bounded overrides.",
     gates,
     stats: {

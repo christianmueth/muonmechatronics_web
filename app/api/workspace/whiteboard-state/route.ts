@@ -6,6 +6,11 @@ import { prisma } from "@/lib/db";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+function internalErrorResponse(message: string, error: unknown) {
+  console.error(message, error);
+  return NextResponse.json({ ok: false, error: "Whiteboard state is unavailable right now." }, { status: 500 });
+}
+
 type StrokePoint = { x: number; y: number };
 type Stroke = { id: string; color: string; width: number; points: StrokePoint[] };
 type BoardRectangle = { id: string; kind: "rectangle"; x: number; y: number; width: number; height: number; color: string };
@@ -43,195 +48,211 @@ type StoredBoardMetadata = {
 };
 
 export async function GET(req: Request) {
-  const { userId: clerkUserId } = await auth();
-  if (!clerkUserId) {
-    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
-  }
+  try {
+    const { userId: clerkUserId } = await auth();
+    if (!clerkUserId) {
+      return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+    }
 
-  const user = await prisma.user.findUnique({
-    where: { clerkUserId },
-    select: { id: true },
-  });
-
-  if (!user) {
-    return NextResponse.json({ ok: true, boards: [], snapshot: null, savedAt: null, boardId: null, boardName: null });
-  }
-
-  const requestUrl = new URL(req.url);
-  const requestedBoardId = cleanString(requestUrl.searchParams.get("boardId"));
-  const runs = await prisma.reasoningRun.findMany({
-    where: { userId: user.id, mode: "workspace_whiteboard_state", origin: "workspace_whiteboard" },
-    orderBy: { createdAt: "desc" },
-    select: { id: true, createdAt: true, metadata: true },
-    take: 200,
-  });
-
-  const latestByBoard = new Map<string, { boardId: string; boardName: string; snapshot: PersistedWhiteboardState | null; savedAt: string }>();
-  for (const run of runs) {
-    const metadata = (run.metadata as StoredBoardMetadata | null) ?? null;
-    const boardId = cleanString(metadata?.boardId) || `board-${run.id}`;
-    if (latestByBoard.has(boardId)) continue;
-    latestByBoard.set(boardId, {
-      boardId,
-      boardName: cleanString(metadata?.boardName) || "Untitled board",
-      snapshot: sanitizeSnapshot(metadata?.snapshot),
-      savedAt: run.createdAt.toISOString(),
+    const user = await prisma.user.findUnique({
+      where: { clerkUserId },
+      select: { id: true },
     });
+
+    if (!user) {
+      return NextResponse.json({ ok: true, boards: [], snapshot: null, savedAt: null, boardId: null, boardName: null });
+    }
+
+    const requestUrl = new URL(req.url);
+    const requestedBoardId = cleanString(requestUrl.searchParams.get("boardId"));
+    const runs = await prisma.reasoningRun.findMany({
+      where: { userId: user.id, mode: "workspace_whiteboard_state", origin: "workspace_whiteboard" },
+      orderBy: { createdAt: "desc" },
+      select: { id: true, createdAt: true, metadata: true },
+      take: 200,
+    });
+
+    const latestByBoard = new Map<string, { boardId: string; boardName: string; snapshot: PersistedWhiteboardState | null; savedAt: string }>();
+    for (const run of runs) {
+      const metadata = (run.metadata as StoredBoardMetadata | null) ?? null;
+      const boardId = cleanString(metadata?.boardId) || `board-${run.id}`;
+      if (latestByBoard.has(boardId)) continue;
+      latestByBoard.set(boardId, {
+        boardId,
+        boardName: cleanString(metadata?.boardName) || "Untitled board",
+        snapshot: sanitizeSnapshot(metadata?.snapshot),
+        savedAt: run.createdAt.toISOString(),
+      });
+    }
+
+    const boards = Array.from(latestByBoard.values()).map((board) => ({
+      boardId: board.boardId,
+      boardName: board.boardName,
+      savedAt: board.savedAt,
+    }));
+
+    const selected = requestedBoardId ? latestByBoard.get(requestedBoardId) ?? null : boards.length ? latestByBoard.get(boards[0].boardId) ?? null : null;
+
+    return NextResponse.json({
+      ok: true,
+      boards,
+      snapshot: selected?.snapshot ?? null,
+      savedAt: selected?.savedAt ?? null,
+      boardId: selected?.boardId ?? null,
+      boardName: selected?.boardName ?? null,
+    });
+  } catch (error) {
+    return internalErrorResponse("[WorkspaceWhiteboard] GET failed:", error);
   }
-
-  const boards = Array.from(latestByBoard.values()).map((board) => ({
-    boardId: board.boardId,
-    boardName: board.boardName,
-    savedAt: board.savedAt,
-  }));
-
-  const selected = requestedBoardId ? latestByBoard.get(requestedBoardId) ?? null : boards.length ? latestByBoard.get(boards[0].boardId) ?? null : null;
-
-  return NextResponse.json({
-    ok: true,
-    boards,
-    snapshot: selected?.snapshot ?? null,
-    savedAt: selected?.savedAt ?? null,
-    boardId: selected?.boardId ?? null,
-    boardName: selected?.boardName ?? null,
-  });
 }
 
 export async function POST(req: Request) {
-  const { userId: clerkUserId } = await auth();
-  if (!clerkUserId) {
-    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  try {
+    const { userId: clerkUserId } = await auth();
+    if (!clerkUserId) {
+      return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+    }
+
+    const body = (await req.json()) as WhiteboardStateRequest;
+    const snapshot = sanitizeSnapshot(body.snapshot);
+    if (!snapshot) {
+      return NextResponse.json({ ok: false, error: "A valid whiteboard snapshot is required." }, { status: 400 });
+    }
+
+    const user = await prisma.user.upsert({
+      where: { clerkUserId },
+      update: {},
+      create: { clerkUserId },
+      select: { id: true },
+    });
+
+    const boardId = cleanString(body.boardId) || `board-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    const boardName = (cleanString(body.boardName) || snapshot.workspaceGoal || "Untitled board").slice(0, 120);
+
+    const saved = await prisma.reasoningRun.create({
+      data: {
+        userId: user.id,
+        mode: "workspace_whiteboard_state",
+        origin: "workspace_whiteboard",
+        title: boardName,
+        metadata: {
+          boardId,
+          boardName,
+          snapshot,
+        } as Prisma.InputJsonValue,
+      },
+      select: { createdAt: true },
+    });
+
+    return NextResponse.json({ ok: true, boardId, boardName, savedAt: saved.createdAt.toISOString() });
+  } catch (error) {
+    return internalErrorResponse("[WorkspaceWhiteboard] POST failed:", error);
   }
-
-  const body = (await req.json()) as WhiteboardStateRequest;
-  const snapshot = sanitizeSnapshot(body.snapshot);
-  if (!snapshot) {
-    return NextResponse.json({ ok: false, error: "A valid whiteboard snapshot is required." }, { status: 400 });
-  }
-
-  const user = await prisma.user.upsert({
-    where: { clerkUserId },
-    update: {},
-    create: { clerkUserId },
-    select: { id: true },
-  });
-
-  const boardId = cleanString(body.boardId) || `board-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-  const boardName = (cleanString(body.boardName) || snapshot.workspaceGoal || "Untitled board").slice(0, 120);
-
-  const saved = await prisma.reasoningRun.create({
-    data: {
-      userId: user.id,
-      mode: "workspace_whiteboard_state",
-      origin: "workspace_whiteboard",
-      title: boardName,
-      metadata: {
-        boardId,
-        boardName,
-        snapshot,
-      } as Prisma.InputJsonValue,
-    },
-    select: { createdAt: true },
-  });
-
-  return NextResponse.json({ ok: true, boardId, boardName, savedAt: saved.createdAt.toISOString() });
 }
 
 export async function DELETE(req: Request) {
-  const { userId: clerkUserId } = await auth();
-  if (!clerkUserId) {
-    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  try {
+    const { userId: clerkUserId } = await auth();
+    if (!clerkUserId) {
+      return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+    }
+
+    const body = (await req.json()) as { boardId?: string };
+    const requestedBoardId = cleanString(body.boardId);
+    if (!requestedBoardId) {
+      return NextResponse.json({ ok: false, error: "Board id is required." }, { status: 400 });
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { clerkUserId },
+      select: { id: true },
+    });
+    if (!user) {
+      return NextResponse.json({ ok: true, deletedCount: 0 });
+    }
+
+    const runs = await prisma.reasoningRun.findMany({
+      where: { userId: user.id, mode: "workspace_whiteboard_state", origin: "workspace_whiteboard" },
+      select: { id: true, metadata: true },
+      take: 500,
+    });
+
+    const matchingIds = runs
+      .filter((run) => cleanString((run.metadata as StoredBoardMetadata | null)?.boardId) === requestedBoardId)
+      .map((run) => run.id);
+
+    if (!matchingIds.length) {
+      return NextResponse.json({ ok: true, deletedCount: 0 });
+    }
+
+    const result = await prisma.reasoningRun.deleteMany({
+      where: { id: { in: matchingIds } },
+    });
+
+    return NextResponse.json({ ok: true, deletedCount: result.count });
+  } catch (error) {
+    return internalErrorResponse("[WorkspaceWhiteboard] DELETE failed:", error);
   }
-
-  const body = (await req.json()) as { boardId?: string };
-  const requestedBoardId = cleanString(body.boardId);
-  if (!requestedBoardId) {
-    return NextResponse.json({ ok: false, error: "Board id is required." }, { status: 400 });
-  }
-
-  const user = await prisma.user.findUnique({
-    where: { clerkUserId },
-    select: { id: true },
-  });
-  if (!user) {
-    return NextResponse.json({ ok: true, deletedCount: 0 });
-  }
-
-  const runs = await prisma.reasoningRun.findMany({
-    where: { userId: user.id, mode: "workspace_whiteboard_state", origin: "workspace_whiteboard" },
-    select: { id: true, metadata: true },
-    take: 500,
-  });
-
-  const matchingIds = runs
-    .filter((run) => cleanString((run.metadata as StoredBoardMetadata | null)?.boardId) === requestedBoardId)
-    .map((run) => run.id);
-
-  if (!matchingIds.length) {
-    return NextResponse.json({ ok: true, deletedCount: 0 });
-  }
-
-  const result = await prisma.reasoningRun.deleteMany({
-    where: { id: { in: matchingIds } },
-  });
-
-  return NextResponse.json({ ok: true, deletedCount: result.count });
 }
 
 export async function PATCH(req: Request) {
-  const { userId: clerkUserId } = await auth();
-  if (!clerkUserId) {
-    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
-  }
+  try {
+    const { userId: clerkUserId } = await auth();
+    if (!clerkUserId) {
+      return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+    }
 
-  const body = (await req.json()) as WhiteboardRenameRequest;
-  const requestedBoardId = cleanString(body.boardId);
-  const requestedBoardName = cleanString(body.boardName).slice(0, 120);
+    const body = (await req.json()) as WhiteboardRenameRequest;
+    const requestedBoardId = cleanString(body.boardId);
+    const requestedBoardName = cleanString(body.boardName).slice(0, 120);
 
-  if (!requestedBoardId) {
-    return NextResponse.json({ ok: false, error: "Board id is required." }, { status: 400 });
-  }
+    if (!requestedBoardId) {
+      return NextResponse.json({ ok: false, error: "Board id is required." }, { status: 400 });
+    }
 
-  if (!requestedBoardName) {
-    return NextResponse.json({ ok: false, error: "Board name is required." }, { status: 400 });
-  }
+    if (!requestedBoardName) {
+      return NextResponse.json({ ok: false, error: "Board name is required." }, { status: 400 });
+    }
 
-  const user = await prisma.user.findUnique({
-    where: { clerkUserId },
-    select: { id: true },
-  });
-  if (!user) {
-    return NextResponse.json({ ok: false, error: "Board not found." }, { status: 404 });
-  }
-
-  const runs = await prisma.reasoningRun.findMany({
-    where: { userId: user.id, mode: "workspace_whiteboard_state", origin: "workspace_whiteboard" },
-    select: { id: true, metadata: true },
-    take: 500,
-  });
-
-  const matchingRuns = runs.filter((run) => cleanString((run.metadata as StoredBoardMetadata | null)?.boardId) === requestedBoardId);
-  if (!matchingRuns.length) {
-    return NextResponse.json({ ok: false, error: "Board not found." }, { status: 404 });
-  }
-
-  await Promise.all(matchingRuns.map((run) => {
-    const metadata = ((run.metadata as StoredBoardMetadata | null) ?? {}) as StoredBoardMetadata;
-    return prisma.reasoningRun.update({
-      where: { id: run.id },
-      data: {
-        title: requestedBoardName,
-        metadata: {
-          ...metadata,
-          boardId: requestedBoardId,
-          boardName: requestedBoardName,
-        } as Prisma.InputJsonValue,
-      },
+    const user = await prisma.user.findUnique({
+      where: { clerkUserId },
       select: { id: true },
     });
-  }));
+    if (!user) {
+      return NextResponse.json({ ok: false, error: "Board not found." }, { status: 404 });
+    }
 
-  return NextResponse.json({ ok: true, boardId: requestedBoardId, boardName: requestedBoardName });
+    const runs = await prisma.reasoningRun.findMany({
+      where: { userId: user.id, mode: "workspace_whiteboard_state", origin: "workspace_whiteboard" },
+      select: { id: true, metadata: true },
+      take: 500,
+    });
+
+    const matchingRuns = runs.filter((run) => cleanString((run.metadata as StoredBoardMetadata | null)?.boardId) === requestedBoardId);
+    if (!matchingRuns.length) {
+      return NextResponse.json({ ok: false, error: "Board not found." }, { status: 404 });
+    }
+
+    await Promise.all(matchingRuns.map((run) => {
+      const metadata = ((run.metadata as StoredBoardMetadata | null) ?? {}) as StoredBoardMetadata;
+      return prisma.reasoningRun.update({
+        where: { id: run.id },
+        data: {
+          title: requestedBoardName,
+          metadata: {
+            ...metadata,
+            boardId: requestedBoardId,
+            boardName: requestedBoardName,
+          } as Prisma.InputJsonValue,
+        },
+        select: { id: true },
+      });
+    }));
+
+    return NextResponse.json({ ok: true, boardId: requestedBoardId, boardName: requestedBoardName });
+  } catch (error) {
+    return internalErrorResponse("[WorkspaceWhiteboard] PATCH failed:", error);
+  }
 }
 
 function sanitizeSnapshot(value: unknown): PersistedWhiteboardState | null {

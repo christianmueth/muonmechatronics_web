@@ -4,6 +4,15 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { readWorkspaceContext, updateWorkspaceContext, upsertWorkspaceAsset } from "@/lib/workspaceContext";
 
+async function safeJson(response: Response) {
+  try {
+    const text = await response.text();
+    return text ? JSON.parse(text) : null;
+  } catch {
+    return null;
+  }
+}
+
 type PresentationPlan = {
   title: string;
   audience: string;
@@ -88,7 +97,7 @@ export default function WorkspacePresentationPlanner() {
         }),
       });
 
-      const data = await response.json();
+      const data = await safeJson(response);
       if (!response.ok || !data?.ok || !data.plan) {
         throw new Error(data?.error || "Presentation planning is unavailable right now.");
       }
@@ -140,7 +149,7 @@ export default function WorkspacePresentationPlanner() {
         body: JSON.stringify({ plan }),
       });
       if (!response.ok) {
-        const data = await response.json().catch(() => null);
+        const data = await safeJson(response);
         throw new Error(data?.error || "PPTX export is unavailable right now.");
       }
 
