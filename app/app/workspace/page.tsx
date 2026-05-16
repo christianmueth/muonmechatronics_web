@@ -1,6 +1,8 @@
 import Link from "next/link";
 import WorkspaceSectionNav from "@/components/WorkspaceSectionNav";
 
+export const dynamic = "force-dynamic";
+
 const instructionalChatLaunchers = [
   {
     title: "Understand A Concept",

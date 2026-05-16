@@ -2,6 +2,8 @@ import Link from "next/link";
 import WorkspaceSectionNav from "@/components/WorkspaceSectionNav";
 import WorkspaceWhiteboard from "@/components/WorkspaceWhiteboard";
 
+export const dynamic = "force-dynamic";
+
 const whiteboardCapabilities = [
   "Freehand sketching and annotations for ideas you are still forming.",
   "Diagram and concept-map space for relationships, systems, and processes.",

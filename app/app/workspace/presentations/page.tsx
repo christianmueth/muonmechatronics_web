@@ -2,6 +2,8 @@ import Link from "next/link";
 import WorkspaceSectionNav from "@/components/WorkspaceSectionNav";
 import WorkspacePresentationPlanner from "@/components/WorkspacePresentationPlanner";
 
+export const dynamic = "force-dynamic";
+
 const presentationOutputs = [
   "Editable outline instead of locked slide automation.",
   "Slide sequence with the learning arc made explicit.",

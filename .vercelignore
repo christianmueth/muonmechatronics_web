@@ -1,0 +1,10 @@
+LightZero_MachineLearning_experiments/
+node_modules/
+.venv/
+.git/
+.github/
+governance_reports/
+.pytest_cache/
+.mypy_cache/
+tmp/
+*.log
