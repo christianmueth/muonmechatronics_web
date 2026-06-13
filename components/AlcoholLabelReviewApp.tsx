@@ -262,6 +262,14 @@ export default function AlcoholLabelReviewApp() {
         })
       );
 
+      if (options?.extractOnly && selectedFiles.length === 1) {
+        const extractedApplication = buildApplicationFromReview(nextResults[0]?.review);
+        if (extractedApplication) {
+          setManualApplication(extractedApplication);
+          setApplicationJson(JSON.stringify(extractedApplication, null, 2));
+        }
+      }
+
       setResults(nextResults);
     } catch (analysisError) {
       setError(analysisError instanceof Error ? analysisError.message : "Review failed.");
@@ -675,4 +683,18 @@ function hasRequiredApplicationData(value: string) {
   } catch {
     return false;
   }
+}
+
+function buildApplicationFromReview(review?: ReviewResult): ManualApplicationData | null {
+  if (!review) {
+    return null;
+  }
+
+  return {
+    brand_name: review.extracted.fields.brand_name || "",
+    class_type: review.extracted.fields.class_type || "",
+    abv: review.extracted.fields.abv || "",
+    proof: review.extracted.fields.proof || "",
+    net_contents: review.extracted.fields.net_contents || "",
+  };
 }
