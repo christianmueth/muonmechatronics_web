@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Current Product Focus
+
+SmartMove Studio is now configured as an AI-enabled video production web app.
+
+- The home route is a public production studio for transcript ingestion, narrative planning, scene sequencing, and export.
+- You can import a YouTube transcript, paste a brief or script, generate a scene-by-scene production plan, and export the result as markdown or PPTX.
+- The older alcohol label review prototype still exists at `/label-review` as a secondary legacy route instead of the primary product surface.
+
 ## Product Architecture
 
 Mate-E is a reasoning-time search/planning system, not a single-pass chatbot wrapper.

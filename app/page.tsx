@@ -1,5 +1,5 @@
-import AlcoholLabelReviewApp from "@/components/AlcoholLabelReviewApp";
+import VideoProductionStudio from "@/components/VideoProductionStudio";
 
 export default function Home() {
-  return <AlcoholLabelReviewApp />;
+  return <VideoProductionStudio />;
 }

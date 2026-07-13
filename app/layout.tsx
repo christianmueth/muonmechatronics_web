@@ -4,8 +4,8 @@ import { Toaster } from "sonner";
 import NavBar from "@/components/NavBar";
 
 export const metadata = {
-  title: "Alcohol Label Review Prototype",
-  description: "Standalone proof-of-concept for AI-assisted alcohol label verification.",
+  title: "SmartMove Studio",
+  description: "AI-enabled video production workspace for transcript ingestion, planning, and export.",
   icons: {
     icon: "/logo.ico",
     shortcut: "/logo.ico",
