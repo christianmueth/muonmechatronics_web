@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
 
@@ -185,13 +186,12 @@ export default function VideoProductionStudio() {
           </div>
 
           <div className="grid gap-3 rounded-[1.75rem] border border-white/15 bg-white/10 p-5 backdrop-blur">
+            <div className="overflow-hidden rounded-[1.5rem] border border-white/20 bg-white/90 p-3 shadow-[0_20px_60px_rgba(15,23,42,0.24)]">
+              <Image src="/smartmove-e_logo.png" alt="SmartMove-e video production logo" width={900} height={900} className="h-auto w-full rounded-[1.1rem] object-contain" priority />
+            </div>
             <div className="rounded-2xl border border-cyan-200/30 bg-slate-950/30 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">What it builds</p>
               <p className="mt-2 text-sm leading-6 text-slate-100">Hooks, narrative beats, visual treatment, editor cues, repurposing assets, and a concrete production checklist.</p>
-            </div>
-            <div className="rounded-2xl border border-amber-200/30 bg-amber-100/10 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-100">Best inputs</p>
-              <p className="mt-2 text-sm leading-6 text-slate-100">YouTube transcripts, webinar notes, launch briefs, lesson notes, interview summaries, or rough story outlines.</p>
             </div>
           </div>
         </div>
