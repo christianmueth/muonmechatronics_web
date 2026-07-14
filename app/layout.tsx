@@ -7,8 +7,8 @@ export const metadata = {
   title: "SmartMove Studio",
   description: "AI-enabled video production workspace for transcript ingestion, planning, and export.",
   icons: {
-    icon: "/smartmove-e_logo.png",
-    shortcut: "/smartmove-e_logo.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
 };
