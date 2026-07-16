@@ -23,6 +23,15 @@ const engagements = [
   "Rapid product prototypes that can harden into production deployments",
 ];
 
+const siblingSites = [
+  { name: "Currents-E", href: "https://currents-e.com" },
+  { name: "SmartArts-E", href: "https://smartarts-e.com" },
+  { name: "SmartMove-E", href: "https://smartmove-e.com" },
+  { name: "QuickStud-E", href: "https://quickstud-e.com" },
+  { name: "Mate-E", href: "https://mate-e.com" },
+  { name: "SingSong-E", href: "https://singsong-e.com" },
+];
+
 const deliveryPoints = [
   "Strategy grounded in software reality, not slideware",
   "Interfaces designed for operators, clients, and engineering teams",
@@ -112,6 +121,28 @@ export default function Home() {
               <span className="bullet-glow" />
               <p>{item}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block">
+        <div className="section-heading compact">
+          <p className="eyebrow">Sibling websites</p>
+          <h2>Explore related software brands across the Muon network.</h2>
+        </div>
+
+        <div className="card-grid sibling-grid">
+          {siblingSites.map((site) => (
+            <a
+              key={site.href}
+              href={site.href}
+              className="info-card sibling-card"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <h3>{site.name}</h3>
+              <p>{site.href.replace("https://", "")}</p>
+            </a>
           ))}
         </div>
       </section>

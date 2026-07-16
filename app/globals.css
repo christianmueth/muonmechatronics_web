@@ -278,6 +278,22 @@ a {
   border-radius: 26px;
 }
 
+.sibling-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sibling-card {
+  display: block;
+  transition: transform 180ms ease, border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.sibling-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 178, 74, 0.42);
+  background: var(--panel-strong);
+}
+
 .info-card h3 {
   margin: 0 0 12px;
   font-size: 1.3rem;
