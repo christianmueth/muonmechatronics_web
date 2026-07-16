@@ -1,27 +1,60 @@
-import { Suspense } from "react";
+import type { Metadata } from "next";
+import { Orbitron, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "sonner";
-import NavBar from "@/components/NavBar";
 
-export const metadata = {
-  title: "SmartMove Studio",
-  description: "AI-enabled video production workspace for transcript ingestion, planning, and export.",
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://muonmechatronics.com"),
+  title: "Muon Mechatronics | AI Software Solutions",
+  description:
+    "Muon Mechatronics designs AI software systems for operations, industrial workflows, and high-leverage automation.",
+  applicationName: "Muon Mechatronics",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
+  keywords: [
+    "Muon Mechatronics",
+    "AI software solutions",
+    "industrial AI",
+    "automation systems",
+    "machine intelligence",
+  ],
+  openGraph: {
+    title: "Muon Mechatronics",
+    description:
+      "AI software solutions for industrial workflows, operations intelligence, and deployable automation.",
+    url: "https://muonmechatronics.com",
+    siteName: "Muon Mechatronics",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Muon Mechatronics",
+    description:
+      "AI software solutions for industrial workflows, operations intelligence, and deployable automation.",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white text-gray-900">
-        <Suspense fallback={null}>
-          <NavBar />
-        </Suspense>
+      <body className={`${orbitron.variable} ${spaceGrotesk.variable}`}>
         {children}
-        <Toaster richColors closeButton position="top-right" />
       </body>
     </html>
   );

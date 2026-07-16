@@ -5,8 +5,41 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 SmartMove Studio is now configured as an AI-enabled video production web app.
 
 - The home route is a public production studio for transcript ingestion, narrative planning, scene sequencing, and export.
+- AI video planning, shot prompts, thumbnail concepts, title variants, post-production notes, and export handoff are now gated behind a Stripe-backed Premium subscription.
 - You can import a YouTube transcript, paste a brief or script, generate a scene-by-scene production plan, and export the result as markdown or PPTX.
 - The older alcohol label review prototype still exists at `/label-review` as a secondary legacy route instead of the primary product surface.
+
+## Stripe Premium Video Setup
+
+Premium video planning is powered by Stripe Checkout, the Stripe billing portal, and a webhook that synchronizes subscription status into the Prisma `User` record.
+
+Required environment variables:
+
+```env
+STRIPE_SECRET_KEY=sk_live_xxxxxxxxx
+STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxx
+STRIPE_PREMIUM_PRICE_ID=price_xxxxxxxxx
+NEXT_PUBLIC_APP_URL=https://YOUR-DOMAIN.com
+```
+
+Deployment steps:
+
+1. Run `npm install` and `npx prisma migrate deploy` so the new Stripe billing fields exist on `User`.
+2. In Stripe, create a recurring Premium price and set `STRIPE_PREMIUM_PRICE_ID` to that live price id.
+3. Configure a webhook endpoint at `/api/stripe/webhook` on your deployed domain.
+4. Subscribe the webhook to these events:
+	- `checkout.session.completed`
+	- `customer.subscription.created`
+	- `customer.subscription.updated`
+	- `customer.subscription.deleted`
+5. Sign in on the homepage, start checkout, complete the Stripe flow, confirm the app returns to `/?checkout=success`, and verify the homepage now shows Premium as active.
+
+Premium behavior:
+
+- signed-out visitors can still paste or import source material
+- generating an AI video plan requires a signed-in Premium account
+- Premium users can open the Stripe billing portal from the homepage
+- subscription state is enforced server-side in `/api/video/production-plan`
 
 ## Product Architecture
 
