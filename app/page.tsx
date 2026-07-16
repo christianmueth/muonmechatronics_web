@@ -126,8 +126,8 @@ export default function Home() {
           </p>
         </div>
 
-        <a className="primary-cta large" href="mailto:hello@muonmechatronics.com">
-          hello@muonmechatronics.com
+        <a className="primary-cta large" href="mailto:muonmechatronics@gmail.com">
+          muonmechatronics@gmail.com
         </a>
       </section>
     </main>
