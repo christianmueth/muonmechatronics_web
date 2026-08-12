@@ -7,6 +7,7 @@
     "dev:3001": "next dev -p 3001",
     "lego:import": "node scripts/import-lego-comics.mjs",
     "writings:import": "node scripts/import-writings.mjs",
+    "creative-writings:import": "node scripts/import-creative-writings.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",

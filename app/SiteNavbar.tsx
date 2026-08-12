@@ -16,6 +16,7 @@ export default function SiteNavbar() {
       </Link>
       <nav className="nav-links" aria-label="Primary navigation">
         <Link href="/writing" className="nav-link">Science and Tech Articles</Link>
+        <Link href="/creative-writings" className="nav-link">Creative Writings</Link>
         <Link href="/lego-comics" className="nav-link">Old Lego Comics</Link>
       </nav>
     </header>
