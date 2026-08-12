@@ -382,7 +382,7 @@
   },
   {
     "slug": "the-science-behind-quantum-computers",
-    "title": "The Science Behind Quantum ComputersIBM is aiming for 'frictionless' quantum computing by 2025 - Compsmag",
+    "title": "The Science Behind Quantum Computers",
     "date": "2021-02-13",
     "paragraphs": [
       "Our world is dominated by computers small enough to fit in a pocket. Though, a new form of computing called “quantum computing” is on the rise. Moore’s law (an annual doubling of computing density) is beginning to wane, as humanity reaches the physical limits of classical computing. Quantum computing stands to reaccelerate computing advancement. It will bring a major shift in how computing works and technological capabilities never seen before.",
@@ -547,11 +547,9 @@
   },
   {
     "slug": "putting-the-microwave-under-a-microscope",
-    "title": "By: Christian Mueth",
+    "title": "Putting the Microwave Under a Microscope",
     "date": "2020-09-13",
     "paragraphs": [
-      "Date: 9/12/2020",
-      "Putting the Microwave Under a Microscope",
       "The microwave oven represents a small part of our lives, when it’s part of it at all. It’s the ten second transformation from cold, stale leftovers, to warmer, soggier leftovers. That said, it provides convenience; comfort. Moreover, the story behind the microwave oven is larger than life. There is deep meaning behind its quick-fix pizza rolls. Let’s get rolling, shall we?",
       "Stack of Microwave Ovens: https://www.popularmechanics.com/technology/gadgets/a19567/how-the-microwave-was-invented-by-accident/#:~:text=The%20microwave%20is%20beloved%20for%20its%20speed%20and,magnetron%20and%20suddenly%20realized%20his%20snack%20had%20melted.",
       "The microwave oven was invented by an engineer by the name of Percy Spencer. As one may guess of an inventor, Percy Spencer a bit of a genius. During WWII, Percy Spencer worked for Raytheon, designing improved fuses, detonators, and radar magnetrons (for radar sets). It was in 1946, when working on one of his radar magnetrons, which was particularly significant. By chance, Percy Spencer went to grab peanut cluster bar from his pocket, for snack — however, he found that it was melted. Naturally curious, Spencer knew he needed to do more testing. An egg was placed under the magnetron, only to explode in his face. There was another test with popcorn; it was no less catastrophic.",
@@ -574,22 +572,22 @@
       "The future of flight is in a complicated place right now. Spaceflight? Even more so.",
       "Currently, a 35-million-mile trip to Mars will take between six to nine months. It is often wondered who the first person will be to walk on Mars. Though a better question is whether anybody will be able to walk at all, after a trip like that. Worse, once Mars’ first earthling tourists arrive, they’ll still have a six to nine-month trip back to look forward to.",
       "If we want to make repeat trips to Mars and throughout our solar system, six-month trips from chemical rockets will be prohibitive. The need for a faster form of spaceflight is unavoidable. Thus, I am going to discuss several propulsion systems that may dominate the future.",
-      "Photon Propulsion",
+      "Photon Propulsion:",
       "Photon propulsion works by bouncing photons off a solar sail. The resulting force then accelerates the spacecraft. Methods of photon propulsion have been proven successful several times before. Perhaps the most notable is JAXA’S IKAROS. It was the first successful solar sail in space. (JAXA)",
       "Robert Lubin, a professor from the University of California, proposed accelerating a light sail via a laser. With this method, he ambitiously predicted being able to send “a 100 kg craft to Mars in just three days” (Hall).",
       "One difficulty is that it would be difficult to maneuver such crafts around debris. Moreover, it is best suited for probes, and unlikely that such a propulsion system could be used for large loads.",
-      "Plasma Propulsion",
+      "Plasma Propulsion:",
       "The Variable Specific Impulse Magnetoplasma Rocket (VASIMIR for short) is a  plasma-based propulsion system, developed by Ad Astro. The big headline for this technology is that it could get us to Mars in “39 days” (Skocik).",
       "The VASIMIR heats up noble gases argon and pushes them through magnetic inductors. Following this, electrons are knocked from the noble gases, and they’re turned to a plasma. Finally, it uses magnetic inductors to generate a magnetic field, accelerating the plasma — thus, accelerating the rocket. (NASA)",
       "One of the biggest problems with the VASIMIR is its power requirements. According to Robert Zubrin, “a nuclear reactor system with a power of 200,000 kilowatts and a power-to-mass ratio of 1,000 watts per kilogram. In fact, the largest space nuclear reactor ever […] had a power of 10 kilowatts and a power-to-mass ratio of 10 watts per kilogram.”  (Skocik)",
       "Their last update had them on course for a 100 hour test in 2018. Since then, little news has come from it. Nonetheless, the technology is one that might become prevalent in the distant future. (Wang)",
-      "Ion Propulsion",
+      "Ion Propulsion:",
       "Ion propulsion is a compelling form of future propulsion, due to the high speeds it can reach. It can achieve 90% efficiency, whereas chemical propulsion systems can only reach 30% efficiency. They can achieve top speeds of 200,000 mph. They work by bombarding a noble gas (commonly xenon) with electrons, which creates positive ions. These ions are then sent through a metal grid, giving acceleration.",
       "There are many ion propulsion systems that have been introduced over the years, the most prominent being the Hall thruster. The technology is constantly being evolved. A problem faced by Ion propulsion is that it has extremely low acceleration. Thus, it works best for long trips where a minimum amount of fuel usage is desired. X3 thruster. It is currently exceeding all its tests. 105 kW power, 5.4 Newtons of thrust. (Nowakowski) The biggest advantage of the X3 engine is that it’s a three-channel nested system. Its biggest problem: it is extremely bulky, compared to its counterparts.",
-      "Nuclear Thermal Propulsion",
+      "Nuclear Thermal Propulsion:",
       "NTP uses a fission reactor to super-heat hydrogen gas which then escapes through a small nozzle to generate thrust. This technology spans back to 1942, from Enrico Fermi experiments. Out of all the listed propulsion systems, NTP is most likely to overtake chemical rockets soon. NASA has stated, “NTP is a viable and powerful option to explore Mars and other destinations.”(NASA)",
       "The U.S Government recently poured 100 million in researching NTP. NASA has partnered with BWXT and is projecting a launch in 2024 (Wang). Proposed rockets would be 107 times more energy dense than chemical rockets, and half as heavy (Tarantola). It is estimated that they could reduce travel time to Mars by 20-25%. Another advantage is that a Nuclear engine could abort a mission two months in, if needed (Bennett). The biggest drawback is radiation caused by its nuclear power source, similar to the VASIMIR.",
-      "Conclusion",
+      "Conclusion:",
       "Based on history, predicting the future rarely works out. This is especially true when it comes to technology. It is quite possible that none of these propulsion systems will be used for trips to Mars, and something entirely different will dominate the future.",
       "Even if one of these propulsion systems do find dominance, chemical rockets will still have a role in spaceflight. With Ion propulsion and VASIMIR, for example, chemical rocketry is necessary for launch.",
       "Nevertheless, it is intriguing to think about what alternatives to chemical propulsion humans might use to travel the solar system. As humanity reaches higher and higher velocities with its propulsion systems, we will edge ever closer to becoming a star faring civilization.",
@@ -605,15 +603,15 @@
       "Tarantola, Andrew. Gizmodo. (2013) How NASA's Nuclear Rockets Will Take Us Way Beyond Mars. https://gizmodo.com/how-nasas-nuclear-rockets-will-take-us-way-beyond-mars-5992441",
       "Wang, Brian. Next Big Future. (2017)  Vasimir Plasma Rocket Targeting 100. https://www.nextbigfuture.com/2017/02/vasimr-plasma-rocket-targeting-100.html"
     ],
-    "images": []
+    "images": [
+      "/writings/the-future-of-space-propulsion/01.jpeg"
+    ]
   },
   {
     "slug": "a-look-into-the-james-webb-space-telescope",
-    "title": "By: Christian Mueth",
+    "title": "A Look Into the James Webb Space Telescope",
     "date": "2020-08-28",
     "paragraphs": [
-      "Date: 8/28/2020aa",
-      "A Look Into the James Webb Space Telescope",
       "A successor to the Hubble Telescope is about to join the scene. Originally announced in 1996 and scheduled for a 2007 launch, the James Webb telescope was finally completed this on August 28th, of 2019. Just slightly off schedule. Nonetheless, the James Webb telescope is a true feat of engineering. It’s an infrared telescope, set to orbit 1.5 million kilometers above Earth. It will be 100 times more powerful than the Hubble. More impressively: it’s about to become the most powerful telescope in the sky. With this title, it’s going bring forth numerous new discoveries, challenging the limits of what we know.",
       "Image: NASA",
       "So, what sort of discoveries might we expect? Well, sky’s the limit. As stated earlier, the James Webb Telescope is an infrared telescope, meaning it’s excellent at picking up long wavelengths. Scientists will study the atmospheres of planets for signs of life – specifically, for planets with carbon dioxide and methane. It will be able to study the origins of our universe, dating back to just 200 million years after the Big Bang. It’ll be used to study the formations of galaxies. It will study formation of planets. It will chart sections of the universe, faster than ever before. An interesting study has also been announced on how dark matter may affect gravitation between Draco and Sculptor dwarf galaxies.",
@@ -641,6 +639,8 @@
       "Nevertheless, how big can image quality get? In 2019, Sony produced a 16k tv. While it’s difficult to say where our technological limit is, it would not surprise me if a 32k TV is on the horizon. That said, there are drawbacks to massive increases in HD quality. Namely, bigger screens are required to truly appreciate the effect of bigger resolutions. To the human eye, there is little difference between a 1080p and 4k phone screen; much less a 16k screen. Moreover, higher numbers of pixels also place strain on the refresh rates of video cards, causing choppier video. Finally, there are few cameras that can produce images to the quality of 16k. Thus, without significant technological advances on multiple fronts, the point of producing screens with 16k or 32k capability is pretty useless.",
       "As stated before, there is an extent to which image quality truly doesn’t matter. A 16k television won’t sell if our vision can’t tell the difference. Yet, it’s because of this that it’s so important to be informed about the discrepancies between types of HD, and the way in which HD operates. Big terms like “Ultra HD” might elicit feelings of magic or pixie dust; but behind the marketing smokescreen, one’s phone or TV screen is still just pixels."
     ],
-    "images": []
+    "images": [
+      "/writings/how-does-hd-work/01.jpeg"
+    ]
   }
 ]

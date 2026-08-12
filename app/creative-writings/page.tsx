@@ -12,7 +12,7 @@ export default async function CreativeWritingsPage({
   searchParams: Promise<{ category?: string }>;
 }) {
   const { category } = await searchParams;
-  const activeCategory: Category = category === "short-fiction" ? "short fiction" : "novels";
+  const activeCategory: Category = category === "novels" ? "novels" : "short fiction";
   const categoryWritings = writings.filter((writing) => writing.category === activeCategory);
 
   return (
