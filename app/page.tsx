@@ -26,7 +26,7 @@ export default function Home() {
           />
           <h1>Christian Mueth&apos;s Blog</h1>
           <p className="lede">
-            Notes on technology, learning, and making things.
+            Content on technology, learning, creative writing, and making things.
           </p>
         </div>
 
