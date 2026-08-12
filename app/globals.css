@@ -132,7 +132,7 @@ a {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(160px, 200px) minmax(220px, 280px);
+  grid-template-columns: minmax(0, 1fr) minmax(192px, 240px) minmax(220px, 280px);
   gap: 36px;
   align-items: end;
 }
@@ -154,9 +154,10 @@ a {
 }
 
 .profile-bubble {
-  width: min(100%, 200px);
+  width: min(100%, 240px);
   aspect-ratio: 1;
-  justify-self: center;
+  justify-self: start;
+  transform: translate(-20px, -56px);
   overflow: hidden;
   border: 5px solid rgba(255, 255, 255, 0.78);
   border-radius: 50%;
@@ -583,6 +584,11 @@ a {
   .hero-layout {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  .profile-bubble {
+    justify-self: center;
+    transform: none;
   }
 
   .social-links {
