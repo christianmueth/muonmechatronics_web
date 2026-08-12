@@ -16,6 +16,7 @@ export default function Home() {
         </a>
         <nav className="nav-links" aria-label="Primary navigation">
           <a href="/writing" className="nav-link">Science and Tech Articles</a>
+          <a href="/lego-comics" className="nav-link">Old Lego Comics</a>
         </nav>
       </header>
 

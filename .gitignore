@@ -27,6 +27,7 @@ LightZero_MachineLearning_experiments/
 .DS_Store
 *.pem
 ~$*.docx
+lego_humor/
 
 # debug
 npm-debug.log*
