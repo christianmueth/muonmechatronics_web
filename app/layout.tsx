@@ -1,16 +1,5 @@
 import type { Metadata } from "next";
-import { Orbitron, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-
-const orbitron = Orbitron({
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-body",
-});
 
 export const metadata: Metadata = {
   title: "Christian Mueth's Blog",
@@ -45,9 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${orbitron.variable} ${spaceGrotesk.variable}`}>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
