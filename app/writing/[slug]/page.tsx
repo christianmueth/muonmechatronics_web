@@ -27,10 +27,10 @@ export default async function WritingPage({
   }
 
   return (
-    <main className="shell article-shell">
+    <main className="shell">
       <SiteNavbar />
 
-      <article className="article">
+      <article className="article article-shell">
         <time dateTime={writing.date} className="article-date">
           {dateFormatter.format(new Date(`${writing.date}T00:00:00Z`))}
         </time>

@@ -470,6 +470,7 @@ a {
 
 .article-shell {
   width: min(860px, calc(100% - 40px));
+  margin: 0 auto;
 }
 
 .article {

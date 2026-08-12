@@ -20,9 +20,9 @@ export default async function CreativeWritingPage({
   }
 
   return (
-    <main className="shell article-shell">
+    <main className="shell">
       <SiteNavbar />
-      <article className="article">
+      <article className="article article-shell">
         <p className="article-category">{writing.category === "novels" ? "Novel" : "Short Fiction"}</p>
         <h1>{writing.title}</h1>
         {writing.paragraphs.map((paragraph, index) => <p key={`${writing.slug}-${index}`}>{paragraph}</p>)}
