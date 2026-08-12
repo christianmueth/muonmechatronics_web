@@ -1,130 +1,66 @@
-import Image from "next/image";
-import logo from "../muon_logo.png";
-import { navigationLinks, platformProof, products } from "./siteContent";
-
 export default function Home() {
   return (
     <main className="shell">
-      <section className="hero">
-        <nav className="topbar">
-          <span className="brand-mark">Muon Mechatronics</span>
-          <div className="nav-links" aria-label="Primary navigation">
-            {navigationLinks.map((item) => (
-              <a key={item.href} href={item.href} className="nav-link">
-                {item.label}
-              </a>
-            ))}
-          </div>
+      <header className="topbar">
+        <a href="#top" className="brand-mark">Christian Mueth&apos;s Blog</a>
+        <nav className="nav-links" aria-label="Primary navigation">
+          <a href="#writing" className="nav-link">Writing</a>
+          <a href="#notes" className="nav-link">Notes</a>
         </nav>
+      </header>
 
-        <div className="hero-grid">
-          <div className="hero-copy">
-            <p className="eyebrow">AI product company</p>
-            <h1>AI products for the robotics era.</h1>
-            <p className="lede">
-              Muon Mechatronics builds AI software that helps people learn,
-              organize, create, and make better decisions. We design practical
-              digital companions with a robotics-era sensibility: clear,
-              capable, and built to do useful work.
+      <section id="top" className="blog-hero">
+        <p className="eyebrow">Personal essays and working notes</p>
+        <h1>Christian Mueth&apos;s Blog</h1>
+        <p className="lede">
+          A place for clear thinking about technology, learning, creativity,
+          and the work of making useful things.
+        </p>
+      </section>
+
+      <section id="writing" className="section-block">
+        <div className="section-heading blog-heading">
+          <p className="eyebrow">Latest writing</p>
+          <h2>Ideas worth returning to.</h2>
+        </div>
+
+        <div className="post-list">
+          <article className="post-card featured-post">
+            <p className="post-meta">Field notes</p>
+            <h3>Building a practice of thoughtful work</h3>
+            <p>
+              The most durable systems begin with attention: a willingness to
+              notice what matters, keep the useful parts, and revise the rest.
             </p>
-
-            <div className="cta-row">
-              <a href="#products" className="primary-cta">
-                View products
-              </a>
-              <a href="mailto:christianmueth@muonmechatronics.com" className="secondary-cta">
-                Contact Muon
-              </a>
-            </div>
-
-            <ul className="signal-list" aria-label="Platform highlights">
-              {platformProof.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="hero-card">
-            <div className="logo-wrap">
-              <Image
-                src={logo}
-                alt="Muon Mechatronics logo"
-                priority
-                className="hero-logo"
-              />
-            </div>
-            <div className="status-panel">
-              <span>Focus</span>
-              <strong>AI companions for learning, work, creativity, and life</strong>
-            </div>
-          </div>
+          </article>
+          <article className="post-card">
+            <p className="post-meta">Technology</p>
+            <h3>Tools should make room for better questions</h3>
+            <p>
+              A useful tool does more than move work along. It helps us see
+              the problem with greater precision.
+            </p>
+          </article>
+          <article className="post-card">
+            <p className="post-meta">Learning</p>
+            <h3>Small, repeated acts of curiosity</h3>
+            <p>
+              Progress is often less about intensity than a steady habit of
+              returning to the things we want to understand.
+            </p>
+          </article>
         </div>
       </section>
 
-      <section id="products" className="section-block">
-        <div className="section-heading">
-          <p className="eyebrow">Products</p>
-          <h2>Six products. One focus: useful AI software.</h2>
-        </div>
-
-        <div className="product-grid">
-          {products.map((item) => (
-            <a
-              key={item.title}
-              href={item.href}
-              className={`info-card product-card accent-${item.accent}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className="product-topline">
-                <span className="product-badge">{item.tagline}</span>
-                <span className="product-open">Open</span>
-              </div>
-              <div className="product-image-wrap">
-                <Image
-                  src={item.image}
-                  alt={`${item.title} brand artwork`}
-                  width={320}
-                  height={320}
-                  className="product-art"
-                />
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-block">
-        <div className="section-heading compact">
-          <p className="eyebrow">What we do</p>
-          <h2>We ship AI products with real software underneath them.</h2>
-        </div>
-
-        <div className="stack-grid">
-          {platformProof.map((item) => (
-            <div key={item} className="bullet-item stack-item">
-              <span className="bullet-glow" />
-              <p>{item}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="contact" className="contact-panel">
+      <section id="notes" className="notes-band">
         <div>
-          <p className="eyebrow">Contact</p>
-          <h2>Build with an AI product company shaped by software and robotics.</h2>
-          <p>
-            Reach out for product partnerships, applied AI collaboration, or
-            serious conversations about software that helps people do more.
-          </p>
+          <p className="eyebrow">From the notebook</p>
+          <h2>Observations, experiments, and unfinished thoughts.</h2>
         </div>
-
-        <a className="primary-cta large" href="mailto:christianmueth@muonmechatronics.com">
-          christianmueth@muonmechatronics.com
-        </a>
+        <p>
+          This is an evolving collection of writing about the ideas that make
+          a life in technology more deliberate, humane, and interesting.
+        </p>
       </section>
     </main>
   );

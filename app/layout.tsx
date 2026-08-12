@@ -13,39 +13,28 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://muonmechatronics.com"),
-  title: "Muon Mechatronics | AI Product Ecosystem",
+  title: "Christian Mueth's Blog",
   description:
-    "Muon Mechatronics builds AI products for learning, organization, creativity, and everyday decision-making.",
-  applicationName: "Muon Mechatronics",
+    "Personal essays and working notes by Christian Mueth on technology, learning, and creativity.",
+  applicationName: "Christian Mueth's Blog",
   icons: {
     icon: "/icon.png",
     shortcut: "/icon.png",
     apple: "/icon.png",
   },
-  keywords: [
-    "Muon Mechatronics",
-    "AI products",
-    "QuickStud-E",
-    "Mate-E",
-    "SingSong-E",
-    "SmartArts-E",
-    "SmartMove-E",
-    "Currents-E",
-  ],
+  keywords: ["Christian Mueth", "blog", "technology", "learning", "creativity"],
   openGraph: {
-    title: "Muon Mechatronics",
+    title: "Christian Mueth's Blog",
     description:
-      "A family of AI products designed to help people learn, think, create, and accomplish more.",
-    url: "https://muonmechatronics.com",
-    siteName: "Muon Mechatronics",
+      "Personal essays and working notes by Christian Mueth.",
+    siteName: "Christian Mueth's Blog",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muon Mechatronics",
+    title: "Christian Mueth's Blog",
     description:
-      "A family of AI products designed to help people learn, think, create, and accomplish more.",
+      "Personal essays and working notes by Christian Mueth.",
   },
 };
 
