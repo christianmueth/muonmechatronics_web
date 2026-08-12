@@ -3,7 +3,7 @@ import path from "node:path";
 import JSZip from "jszip";
 
 const rootDirectory = process.cwd();
-const sourceDirectory = path.join(rootDirectory, "ChristianMueth_writings");
+const sourceDirectory = path.join(rootDirectory, "ChristianMueth_Science_and_tech");
 const publicDirectory = path.join(rootDirectory, "public", "writings");
 const outputFile = path.join(rootDirectory, "app", "writing", "content.json");
 

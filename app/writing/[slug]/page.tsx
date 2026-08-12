@@ -30,7 +30,7 @@ export default async function WritingPage({
     <main className="shell article-shell">
       <header className="topbar">
         <Link href="/" className="brand-mark">Christian Mueth&apos;s Blog</Link>
-        <Link href="/writing" className="nav-link">Writing</Link>
+        <Link href="/writing" className="nav-link">Science and Tech Articles</Link>
       </header>
 
       <article className="article">

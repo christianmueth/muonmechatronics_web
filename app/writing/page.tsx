@@ -14,14 +14,14 @@ export default function WritingIndex() {
     <main className="shell">
       <header className="topbar">
         <Link href="/" className="brand-mark">Christian Mueth&apos;s Blog</Link>
-        <span className="nav-link">Writing</span>
+        <span className="nav-link">Science and Tech Articles</span>
       </header>
 
       <section className="writing-hero">
-        <h1>Writing</h1>
+        <h1>Science and Tech Articles</h1>
       </section>
 
-      <section className="writing-grid" aria-label="Writing">
+      <section className="writing-grid" aria-label="Science and Tech Articles">
         {writings.map((writing) => (
           <Link key={writing.slug} href={`/writing/${writing.slug}`} className="writing-card">
             {writing.images[0] ? (

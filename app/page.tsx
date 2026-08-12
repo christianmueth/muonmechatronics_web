@@ -15,7 +15,7 @@ export default function Home() {
           <span>Christian Mueth&apos;s Blog</span>
         </a>
         <nav className="nav-links" aria-label="Primary navigation">
-          <a href="/writing" className="nav-link">Writing</a>
+          <a href="/writing" className="nav-link">Science and Tech Articles</a>
         </nav>
       </header>
 
