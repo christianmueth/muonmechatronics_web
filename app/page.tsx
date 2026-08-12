@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteNavbar from "./SiteNavbar";
 import blogLogo from "../christianmuethblog_logo.png";
+import profilePicture from "../AI_profile_pic.png";
 import writings from "./writing/content.json";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -28,6 +29,15 @@ export default function Home() {
           <p className="lede">
             Content on technology, learning, creative writing, and making things.
           </p>
+        </div>
+
+        <div className="profile-bubble">
+          <Image
+            src={profilePicture}
+            alt="Christian Mueth"
+            className="profile-picture"
+            priority
+          />
         </div>
 
         <nav className="social-links" aria-label="Christian Mueth links">
