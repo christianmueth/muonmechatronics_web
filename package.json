@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "dev:3001": "next dev -p 3001",
+    "writings:import": "node scripts/import-writings.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",

@@ -1,0 +1,900 @@
+[
+  {
+    "slug": "the-mysterious-matter-of-antimatter",
+    "title": "The Mysterious Matter of Antimatter",
+    "date": "2022-08-22",
+    "paragraphs": [
+      "The world that humans commonly interact with is comprised of ordinary matter. Such matter consists of atomic particles like protons, electrons, neutrons, and (presumably) neutrinos. A common debate in science surrounds the question of dark matter, which is observed to influence gravitational behavior at galactic scales. It is often questioned whether dark matter should be considered “matter” at all. Though, a mystery that often goes overlooked concerns a different type of matter: antimatter. Antimatter has been proven to exist via various experiments with particle colliders. Based upon current models, ordinary matter should exist in a universe with an equal amount of antimatter. Yet, current astronomical tools detect much less antimatter throughout the universe than current models predict.",
+      "The Universe's Dark Secret: Where Did All the Antimatter Go? | Space",
+      "Antimatter is an incredibly interesting phenomenon. The mass of an antimatter particle is identical to its normal matter counterpart. Though, the charge is often equal and opposite (1). For example, positrons have the same mass as electrons, but the charges are different. Electrons have a negative charge, whereas antielectrons have a positive charge. Additionally, a lepton or baryon number is assigned to antimatter particle that is opposite to that of a matter particle. Positrons are given a lepton number of -1, whereas electrons are given the lepton number of +1. In the case of a neutron, which always has a neutral charge, an antineutron has the same “charge” and merely carries an opposite baryon number. Interestingly, antimatter also exists among all known fundamental particles, including exotic particles like a muon or a tau (1). When matter and antimatter interact, it is explosive and often results in photonic energy being emitted. Going back to the electron and antielectron, they tend to emit two photons when they collide. Granted, higher energy collisions can yield different particles than just photons.",
+      "Despite much being known about antimatter behavior, the observed amount of antimatter defies expectation. Due to interactions between matter and antimatter being highly energetic, astronomical activity is of a much lower energy than expectation (2). This immense asymmetry defies what many might expect. Several explanations have been proposed. One possibility is that antimatter dominates a distant and unobservable portion of space, which is essentially lost to the portion of the universe that consists of matter (3). If the force of gravity can be described on quantum scales, it could also be that antimatter dominated regions of space follow different rules of gravity, in the form of “antigravity” (3). This could facilitate the matter/antimatter disconnect.",
+      "The leading explanation for matter and antimatter disparity comes from CERN. There was an observed 1% difference in the decay of muons vs antimuons from mesons. Such a difference in decay rates could have led matter to dominate at the inception of the universe. Therefore, the observable matter in the universe could very well just be the 1% of matter that remains from antiparticle and particle interactions. While this explanation is satisfying, there is still skepticism to be had. Antimatter and matter interactions outlined by the standard model and the simplest Feynman diagram models could lead one to believe that there should be no difference in percentages. A 1% difference can also be accounted for by an overlooked experimental error in the particle accelerator. Furthermore, only so many experiments have been carried out. That said, when one considers that there are always quantum probabilities involved in particle/antiparticle interactions (Feynman diagrams even acknowledge this), a random cosmic coin flip could in fact explain the mystery.",
+      "The universe contains countless secrets, which are still yet to be uncovered. While questions of our universe’s antimatter and matter is still up in the air, there are at least very real and reproducible explanations. Here is hoping that an explanation is cemented over the coming years.",
+      "Sources:",
+      "The Universe's Dark Secret: Where Did All the Antimatter Go? | Space",
+      "The matter-antimatter asymmetry problem | CERN (home.cern)",
+      "Where’s All The Antimatter? - Universe Today",
+      "Matter vs. antimatter: particle accelerator experiment says matter wins - CSMonitor.com"
+    ],
+    "images": [
+      "/writings/the-mysterious-matter-of-antimatter/01.jpeg"
+    ]
+  },
+  {
+    "slug": "a-new-phase-of-matter-the-power-of-quantum-computing",
+    "title": "A New Phase of Matter: The Power of Quantum Computing",
+    "date": "2022-08-01",
+    "paragraphs": [
+      "Matter is commonly understood to exist in three phases: liquid, gas, and solid. However, there are many unique phases of matter that can be distinguished beyond these three. Among these are plasmas, Bose-Einstein Condensates, and mesophases. The processes of quantum computing have enabled computer scientists to identify a new phase of matter. More precisely, they have discovered a new kind of “topological phase” (1). Additionally, their phase is claimed to feature symmetry across an extra time dimension (1).",
+      "A topological phase is a bit different from the conventional phases of matter. Namely, it is not defined by interatomic structure or atomic arrangement. Instead, topological phases are defined by the interatomic interactions and motions (1). Distinct phases are usually created by inducing a synchronicity, or “symmetry”, in atomic motions (2). These are induced via electromagnetically, such as through laser pulses. Interestingly, when inducing repetitive motions among vast quantities of atoms, they do not need to be symmetrical through physical space (1). Rather, their physics only need to be symmetrical across two time dimensions.",
+      "The method of using laser pulses was the choice of research physicists at the Flatiron Institute. They were experimenting with pulses toward charged ions in a quantum computer. The breakthrough for the researchers occurred when trying to create a laser pulse sequence that did not repeat any numbers, but still had an internal order. The goal was to imbue their material with the features of quasicrystals, due to them being able to retain shape when pushed through “higher dimensions” (2). This was important for creating symmetry through time. Thus, their choice was to utilize the Fibonacci sequence (3). They replicated this sequence by sending two laser pulses at different frequencies, with the pattern of “A, AB, ABA, ABAAB, ABAABABA…” (1).",
+      "The hope of the researchers is to use their new discovery to insulate quantum computers from seeing errors. This application is especially important for quantum computers, as they do not operate on the binary logic of classical computing. Rather, they rely on quantum electron spin of qubits. This can exist in the three states of up, down, or a superposition of both. The quantum nature of quantum computers makes them especially susceptible to failures from electromagnetic noise (3). According to the researchers though, “In a quantum computer that exploits topology, information is not encoded locally in the state of each qubit but is woven across the material globally” (1). Such a method would insulate from any simple noise errors. Due to rapid development in quantum computing research, researchers on this quantum structuring will hopefully find success. Error-free quantum computing would allow for massive strides throughout a variety of fields. Furthermore, the field of quantum computing itself continues to yield exciting prospects.",
+      "Sources:",
+      "New Phase of Matter Opens Portal to Extra Time Dimension - Scientific American",
+      "Strange new phase of matter created in quantum computer acts like it has two time dimensions (phys.org)",
+      "Quantum computing breakthrough: a phase of matter that exists in two time dimensions (interestingengineering.com)",
+      "Dynamical topological phase realized in a trapped-ion quantum simulator | Nature"
+    ],
+    "images": [
+      "/writings/a-new-phase-of-matter-the-power-of-quantum-computing/01.png"
+    ]
+  },
+  {
+    "slug": "nasa-space-probe-touches-the-sun",
+    "title": "NASA Space Probe Touches the Sun",
+    "date": "2022-01-17",
+    "paragraphs": [
+      "Space probes proliferate the Solar System, exploring various incredible areas. However, an area of the Solar System that has gone largely untapped is the Solar System’s own namesake — the Sun. That is, up until recently. A new NASA space probe, dubbed the “Parker Probe”, has just touched the Sun’s corona. This is truly a feat of science and engineering.",
+      "How did NASA's probe touch the Sun without melting? NASA answers | TweakTown",
+      "The reason that the Parker Probe can withstand the Sun’s heat has everything to do with its design. On the most fundamental levels, the Parker Probe’s technology is engineered for the task. It is retrofitted with white, reflective solar shields, which reorient themselves to redirect the Sun’s heat (1). The orientation of the solar shield is monitored by an on-board solar sensor, which can detect the direction of the Sun’s energy. It accomplishes this by measuring photon wavelengths — the intensity of light (2).",
+      "In addition to its solar shielding, the probe has a water-cooling system and radiator (1). These do a lot of heavy lifting in terms of keeping the system from overheating. Nevertheless, the conditions that the Parker Probe must endure are quite extreme. Its sensors, which have minimal shielding, endure temperatures of 1,000 degrees Celsius (2). To reduce damage of the machine, it is constructed of high-grade materials with high melting points: “tungsten, niobium, molybdenum, and sapphire” (2).",
+      "The mission of the Parker Probe is to gather new data on the behavior within the Sun’s corona. This area of the Sun is dominated by magnetic fields and solar winds, which can impact our electronics on Earth. Thus far, the probe has been able to determine patterns in solar winds, and where they originate (3). However, another thing the probe is trying to uncover is why the Sun’s atmosphere is so much hotter than its surface (2). It has been studying the boundary between the solar atmosphere and solar winds and found them to be “wrinkled rather than smooth” (3). NASA appears to be happy with their results, reporting, “We see evidence of being in the corona in magnetic field data, solar wind data, and visually in images. We can actually see the spacecraft flying through coronal structures that can be observed during a total solar eclipse” (2).",
+      "The Parker Probe is yet another feat of NASA innovation that stands as a reminder of what can be achieved through technology. The science it is uncovering is helping massively in the construction of better scientific models for star behavior. Hopefully the Parker Probe will continue to make new findings and give us a clearer picture of our universe.",
+      "Sources:",
+      "How did NASA's probe touch the Sun without melting? NASA answers | TweakTown",
+      "Spacecraft Enters the Sun’s Blistering Hot Corona for the First Time in History (scitechdaily.com)",
+      "NASA Probe 'Touches the Sun', Realizing a 63-Year Ambition (ign.com)"
+    ],
+    "images": [
+      "/writings/nasa-space-probe-touches-the-sun/01.png"
+    ]
+  },
+  {
+    "slug": "what-are-semiconductors",
+    "title": "What Are Semiconductors?",
+    "date": "2022-01-15",
+    "paragraphs": [
+      "The world of the 21st century has been defined by rapid advances in software and computing technology. Much credit is given to Moore’s Law, where we see a doubling in transistor density among new computers each year. However, a critical component that is often overlooked is the advancement in material science that brought us modern computing: semiconductors. Semiconductors are a special material that enables our computer circuits to function. Without the key advancement of semiconductors, much of our electronic technology would not be able to exist.",
+      "How Semiconductors Work (lifewire.com)",
+      "Usage of semiconductor materials are widespread, being built into, “integrated circuits, microchips, transistors, and many sensors” (1). The materials used to create semiconductors are also quite varied: silicon, germanium, gallium arsenide, and silicon carbide are just a few of the materials used (1). Silicon is the most common semiconductor, due to it being quite abundant. If you go to a beach that is covered with sand, you are looking at a wealth of silicon. Regardless of semiconductor material, the appeal of semiconductors is that their electrical conductivity polarity can easily be manipulated. The variation in semiconductor electric current is core to creating any kind of logic-processing system.",
+      "The reason why elements like silicon, carbon, and germanium are ideal semiconductors is due to their electron orbitals. Each of these materials have 4 electrons, which make them great at forming covalent bonds with crystal structures (2). Unlike the free electron clouds of metallic bonds, the electrons in crystal covalent bonds are practically locked in place (2). They act as insulators that do not conduct electric current. However, these insulative materials can be “doped” with structural impurities by other materials, to be able to conduct some electrons (2). This is how these nonconductive insulators can become semiconductors.",
+      "When an insulator like silicon is doped with phosphorous or arsenic, which have five electrons, a free electron becomes present in silicon’s crystal lattices (3). Thus, silicon becomes negatively charged when conducting electricity, and is known as an “N-type” semiconductor (3). If silicon is doped with boron or gallium, which have three electrons, there is a gap of an electron in the silicon lattices. Thus, the lattices become positively charged when conducting electricity, and are known as a “P-type” semiconductor (3).  Combining these types of semiconductors in various ways allows for unique circuit behavior.",
+      "How Semiconductors Work | HowStuffWorks",
+      "The simplest example of a semiconductor circuit is a diode, such as in the image above. When a P-type and N-type semiconductor are combined in sequence, electricity from a battery will only flow in one direction — from positive to negative (3). This is due to the polarity of the charges in the semiconductor materials. If a battery is reversed in its placement, with positive-to-positive and negative-to-negative? Electricity will not be able to flow, due to the electron charges repelling one another. Such a device is incredibly useful and can protect devices from being damaged by something like a misplaced battery (3).",
+      "In addition to diodes, semiconductors can also be used to create transistors. These are formed via NPN and PNP semiconductor sandwiches (3). While a large current cannot normally flow straight through a semiconductor sandwich, due to the opposing polarities? If a small current is pushed through the center of the semiconductor sandwich, the polarity of the sandwich can be changed to PPP or NNN — thus, allowing a large current to flow (3). This allows for switching functions — otherwise known as binary “1s and 0s” — which is a fundamental concept to designing machines that can process logic. Without it, computers would not exist.",
+      "Electronic technologies today are heavily dependent upon the science of semiconductors. Over the years semiconductor chemistries have been refined, allowing for electronic devices that can hold thousands upon thousands of logic transistors within their circuits.  Moreover, simpler technologies like LED lights or microwaves are also reliant upon semiconductors. The science of semiconductors is incredibly interesting, and the world they have provided us is even more so.",
+      "Sources:",
+      "How Semiconductors Work (lifewire.com)",
+      "How Semiconductor Works | Properties, Types & Uses of Semiconductor (electronicsandyou.com)",
+      "How Semiconductors Work | HowStuffWorks"
+    ],
+    "images": [
+      "/writings/what-are-semiconductors/01.png",
+      "/writings/what-are-semiconductors/02.png"
+    ]
+  },
+  {
+    "slug": "east-fusion-reactor-five-times-hotter-than-the-sun",
+    "title": "EAST Fusion Reactor: Five Times Hotter than the Sun",
+    "date": "2022-01-09",
+    "paragraphs": [
+      "The race for fusion energy is heating up. Literally. China has successfully begun experiments on its fusion reactor, the Experimental Advanced Superconducting Tokomak (EAST). The results have been reaffirming to the initiative of fusion. Should they continue to see these promising results, fusion may have a viable future that is nearer than many have thought.",
+      "China switched on its nuclear fusion device that’s 5 times hotter than the Sun (yahoo.com)",
+      "Fusion involves fusing two atoms together, to release energy. It is the process that stars undergo in their cores, to generate plasma. Down here on Earth, fusion involves fusing two hydrogen atoms together into helium plasma (1), via reactors that can generate high heats and pressures. This form of energy is especially appealing, due to its lack of harmful waste, lack of risk for meltdown, and the abundance of hydrogen fuel. It has the potential to become the cleanest and most energy dense form of energy production (for a more detailed look into fusion reactor science, see here: Fusion and its Future).",
+      "The EAST has been a long and hard effort, having taken a trillion dollars and years to build. During the EAST’s recent tests, it became clear that the investment paid off. The EAST shattered previous fusion records, running for a full 17 minutes at 70 million degrees Celsius (2). For perspective, these temperatures were at five times hotter than the Sun (2). Data retrieved from this experiment and EAST’s subsequent experiments, will give key insight into future reactor designs. The hope is for scientists to develop fusion reactors that can achieve ignition and truly withstand the intense plasma conditions, over extensive periods of time.",
+      "EAST only marks the beginning of potential in fusion development. The teams that worked on EAST are also working on the ITER, in France (1). The ITER is to be the biggest and most powerful fusion reactor ever built (1). This global effort toward fusion is inspiring, on all fronts. Should the sustainable energy resource of fusion be achieved, it would be a massive gamechanger on a global scale.",
+      "Sources:",
+      "China switched on its nuclear fusion device that’s 5 times hotter than the Sun (yahoo.com)",
+      "China's $1 trillion 'artificial sun' fusion reactor just got five times hotter than the sun (msn.com)"
+    ],
+    "images": [
+      "/writings/east-fusion-reactor-five-times-hotter-than-the-sun/01.png"
+    ]
+  },
+  {
+    "slug": "how-does-radio-work",
+    "title": "Radio Transmission: How Does it Work?",
+    "date": "2022-01-07",
+    "paragraphs": [
+      "Radio waves permeate our universe, and radio technology is used all throughout our daily lives. Moreover, radio technologies were essential in the developmental stages of our current communication technologies. Nevertheless, the science behind the transmission of radio waves often goes untouched. Let’s look a bit into what radio waves are, and how radio transmission operates.",
+      "Radio Waves | Science Mission Directorate (nasa.gov)",
+      "Radio waves are a form of electromagnetic energy along the electromagnetic spectrum. Specifically, they are among the longest wavelengths of electromagnetic energy. The radio wave was first discovered in the 1880s by Heinrich Hertz. He was doing an experiment with a high-voltage spark gap connected to an induction coil, and a second spark gap connected to a wire antenna (1).  When he sent electricity through his first spark gap and induction coil, Hertz saw something interesting. A second spark occurred a bit away, within the second spark gap that was connected to his antenna (1).",
+      "Since Hertz’s discovery, subsequent experiments modeled out the behavior of radio waves (1). It was realized that radio waves’ long electromagnetic wavelength allows them to transmit low amounts of energy over long distances. Furthermore, such energy could be used as a way of transmitting information and data. It is for this reason that the “frequency” of radio waves — the number of wave cycles per second (2) — bear the name “hertz”.",
+      "Bandwidth, Frequency and Data Rate | Home (ad-net.com.tw)",
+      "Radio waves are produced any time that a flow of electrons, or electric current, is formed. They can be generated by something as simple as intermittently shorting the terminals of a 9-volt battery with a piece of metal (2). These quick changes in electric current, or “pulse modulations”, will induce a magnetic field in the air. This causes the formation of electromagnetic radio waves (2).  While such a simple signal can only be read as random static by a wire antenna, more advanced circuitry turns radio waves into a very useful tool.",
+      "In commercial radio transmitters, several electric components are used to enhance and modulate electric radio wave signals. These components include capacitors, resistors, inductors, transistors, and antenna wires (2). Capacitors store and release large capacities of electric charge, via storing large amounts of electrons between a dielectric material. Resistors use resistive metals, to slow down electric currents. Inductors use magnetic fields to induce stronger electric currents. Transistors allow for quick transitions in “voltage”, otherwise known as electric potential energy difference. Transistors are what help produce organized radio waveforms. Antenna wires provide terminals between a radio transmitter and radio receiver (2). Out of all these components, the transistor may be the most important. The organized waveforms created by transistors allow radio waves to be translated and amplified into logical signals by radio receivers (2), such as sound.",
+      "Simple and Quick FM Transmitter - DIY (circuits-diy.com)",
+      "Radio waves are transformed in a variety of ways while being transmitted and received. This is so that many waves can travel long distances, without getting tangled with one another (4). The two most common ways of radio transformation are frequency modulation (FM) and amplitude modulation (AM). In frequency modulation, the frequency of a radio wave is shifted (2). Shifting frequency involves changing the rate of a radio wave’s cycles per second. Amplitude modulation involves shifting the amplitude. Amplitude modulation changes the peak voltage of a radio wave signal. Radio transmitters are often where the modulation of radio waves is performed (5). Radio receivers are then tuned to the desired FM or AM channel, where they will convert a modulated radio signal back into their original forms (5).",
+      "How Radio Works | HowStuffWorks",
+      "Radio technologies are visibly present in our day-to-day activities, but the underlying theories to them remain quite invisible to the naked eye. Even in this article, we have only scratched the surface of the subject. Simply put, radios are complex. Despite this, they are well worth learning about. The depth of science involved in the innocuous radio serves as a reminder: never stop being curious about the technologies encompassing the world around us.",
+      "Sources:",
+      "Radio Waves | Science Mission Directorate (nasa.gov)",
+      "How Radio Works | HowStuffWorks",
+      "Bandwidth, Frequency and Data Rate | Home (ad-net.com.tw)",
+      "Simple and Quick FM Transmitter - DIY (circuits-diy.com)",
+      "Radio and digital radio | How it works | AM and FM compared (explainthatstuff.com)"
+    ],
+    "images": [
+      "/writings/how-does-radio-work/01.png",
+      "/writings/how-does-radio-work/02.jpeg",
+      "/writings/how-does-radio-work/03.png",
+      "/writings/how-does-radio-work/04.png",
+      "/writings/how-does-radio-work/05.png"
+    ]
+  },
+  {
+    "slug": "the-devop-engineer",
+    "title": "DevOp Engineer: The Most In-Demand Software Developmental Team Role",
+    "date": "2022-01-04",
+    "paragraphs": [
+      "While system administration, programmers, and developers can all work on the same project under the same roof, there is not necessarily a seamless flow of communication and work between these parties. This division of labor is painful and can harm the effectiveness of the product. Users of the 21st century expect applications that are constantly getting better and more efficient. A DevOp is the clear and modern solution, for organizations with 20/20 vision. In this article, we will go over the fundamentals of what a DevOp is, how a DevOp can benefit your product, and the qualities of DevOps.",
+      "What is DevOps? DevOps Explained | Microsoft Azure",
+      "People often wonder: what Is a DevOp? A DevOp is the merging of development and operations. It ultimately makes software development, upgrading, and release as seamless as possible (1). DevOps reduce the complexity of these processes, closing the gap between new application development and current application reliability. These talented individuals are constantly adding to their skill sets on top of previous experience to offer a broader hand to the project.",
+      "A good DevOp will be able to combine application development aspects like library updates or data organization with foundational communication and coordination skills. This cultivates a beautiful, holistic flow within software development. You might call a DevOp the glue that binds the software engineering and IT of a project together. Continuous integration, as well as continuous delivery, make the DevOp a unique role. While traditional software engineering works in linear stages, DevOp engineering runs an ongoing feedback loop to maintain flawless flow (1). Through automation, this loop of unification is made up of development life processes like coding and deployment maintenance.",
+      "The introduction of new tools and methods makes a DevOp the ultimate integrative engineer, combining management, application stability, and code. An especially valuable skill that DevOps bring to the Software Development Team is improving and redesigning IT infrastructure (1). Sluggishness in a team’s core infrastructure might obstruct a software’s full potential. The improvements and redesigns a of a DevOp improve collaboration, allowing releases to come out quicker.",
+      "DevOps automate crucial, yet repetitive and time consuming tasks. A DevOp can create software plugins that lighten the software team’s workload, so they can spend energy on bigger things (2). They also manage IT Projects. This allows DevOps to designate the when, where, how, who and what of IT projects, crucial to your software.  In this way, DevOps determine the reliability of current software developments.",
+      "What Is DevOps? The Ultimate Guide (techtarget.com)",
+      "Another DevOp ability is evaluating system and software reliability, through performance testing and benchmark efforts. This is indispensable. Adding to this valuable ability is their creation of SecDevOps. SecDevOps are security processes, crucial to DevOp organized processes (2). These include schedules, automation, and infrastructure design. Another way SecDevOps help is by monitoring and providing feedback on TTD and TTM TTD (time to detect errors), and TTM (time to minimize errors). This removes hidden drains in the software release process.",
+      "A DevOp optimizes release cycles, so new releases can get to the market faster. One of the main tools a DevOp uses to do this is automation. As a result of their work, releasing frequently is easy. DevOps deploy releases many times a day, without users ever noticing. Thus, your software development and IT teams have more time and energy to focus on creativity, modification, upgrades, and groundbreaking improvements or changes. Various IT Functions and developmental strands can also work coherently with a DevOp. Each new and unique bit of development will build on top of the other, to create a coherent experience for the user.",
+      "A good DevOp is fluent and extremely efficient in tools of all different areas. For automation, tools like Jenkins and Bamboo are a must (3). All DevOps should exercise extensive knowledge in source code management tools, like Git. Software like Github and Bitbucket is important for a DevOp to sufficiently perform tasks with repository hosting. For containerization, a DevOp is expected to know Docker and Kubernetes well, just as they should know Puppet, Enterprise, Ansible, and Chef for configuration management (3). Tools to monitor software efficiently include Nagios and Raygun, and for project management your DevOp should be familiar with software solutions like Jira and Trello (3).",
+      "What Is DevOps? The Ultimate Guide (techtarget.com)",
+      "While DevOps will optimize and automate most if not all software testing, this is not their only function. DeVops are especially key, in their ability to software test (2). When running into a problem or needing to troubleshoot, the ability to manually test software is extremely handy. They have thorough understanding of diction and methodology, in the flow of software development. Successful DevOps know the importance of always looking for new ways to refine the development life cycle.",
+      "There’s a motivating philosophy, behind DevOp work. It walks a fine balance between two skills, expanding upon software development and IT operations. Additionally, the field of DeVops is always open to new players. Previous software engineers and IT staff who develop their skillset and cultivate a deep knowledge make excellent DevOps. Growing a multifaceted skillset is a foundational tenet for potential DevOps. They embrace opportunities to learn and continue fine-tuning themselves. Over the course of their careers, they develop good management, organization, and communication skills.",
+      "A DevOp is often the ultimate head manager of development projects, release dates, and sustainability within product updates. It is absolutely crucial they are efficient in management and organization. Schedules and team coordination will be primary concerns for a DevOp. Thus, they must also be friendly and well-versed communicators. The most efficient and organized manager cannot improve coordination within a team, if they are not an excellent communicator themselves. In a world growing faster in pace by the second, the contributions of a DevOp are not merely a luxury. They are an absolute requirement. By merging a developer's need to introduce new features and an IT operator's need to preserve stability, DevOps create seamlessness within any software project.",
+      "Sources:",
+      "What is DevOps? DevOps Explained | Microsoft Azure",
+      "What Is DevOps? The Ultimate Guide (techtarget.com)",
+      "20 Best DevOps Tools for 2022: Git, Docker, Jenkins & More | Simplilearn"
+    ],
+    "images": [
+      "/writings/the-devop-engineer/01.png",
+      "/writings/the-devop-engineer/02.png",
+      "/writings/the-devop-engineer/03.png"
+    ]
+  },
+  {
+    "slug": "to-the-moon-and-back-the-handyman-dealt-a-bad-hand",
+    "title": "For all our triumphs, the Moon is shattered in two. The heart is shattered, too.",
+    "date": "2021-12-27",
+    "paragraphs": [
+      "“You sure that you can put it back together?” she asks me.",
+      "The cuts and callouses along the palm of her hand orbit the heart-shaped locket. At least, the fragments of the locket that remain. It has seen better days. Yet, who hasn’t?",
+      "Fractured beams of moonlight creep through cracks in the walls, and the lamp above us flickers. Mariam’s eyes gleam softly as our gazes lock. The world is on fire in there. I can see the sparks.",
+      "“Sure,” I say.",
+      "I am a handyman. I fix things.",
+      "“There is nothing I can’t fix,” I say. “You know that. Like, when does anything I fix ever go wrong?”",
+      "My chuckle echoes.",
+      "Perhaps I spoke out of turn.",
+      "Spokes on the wheels turn, as handy-bot whirs to life. Leaping from his fingertips are bits of lightning, and he shifts his boxy body forward ever so slightly.",
+      "The ground quakes when I put pieces of the locket onto handy-bot’s work plate. At first, I worry that yet another meteor has hit the Earth. Then, a laser scans over the locket fragments with precision, and I realize that the quaking is merely my vertigo coming back with a vengeance.",
+      "My head aches. So does my soul. Why is it that the things that come back strong are indiscernible from the things that come back with a vengeance?",
+      "I clear my throat. “You know, now that it’s all over… Maybe we can try to get back to what we were building.”",
+      "Her face is blank, but her hand lands on the crook of my neck.",
+      "“We can always try.”",
+      "I smirk. “Well, these are trying times.”",
+      "There is a screech. Handy-bot’s gears gnash together and he vibrates with a fury. Stumbling over myself, I steady him and tighten a few of his screws. The screws are rusted and groan as I put them back in their place. Nevertheless, they must go back to how they were.",
+      "“Remember that night, ages ago, when I first showed you him?” I say. “I — I was so scared you were going to think he was just another dumb trinket, like you usually do.”",
+      "Handy-bot’s body steadies back into rhythm. His hands return to hover over the locket, spinning metal and electricity into an elegant tapestry. Already, I can see the bits of crushed locket reforming into its former glory. Though, Mariam doesn’t see this. Her footsteps shift away from me.",
+      "“Oh, he definitely is,” she says, teasingly.",
+      "Her hands flit along the old bookshelves. The bindings move in and out, as keys in a piano concerto that only she can hear.",
+      "She pulls a book out and inspects it. “Your machines — they’re cute. But they’re not why we’re still here.”",
+      "Handy-bot is operating smoothly now, his mechanisms now tightened into clockwork. I brush some moondust off my tattered coat, and stride toward her.",
+      "“Is this the part where you point at me as the reason?” I say. “And then, I have to be modest and tell you that it was us? All of us…”",
+      "I flash a grin.",
+      "The book falls out of her hand, and she stoops to pick it up.",
+      "Déjà vu. My hand moves toward the book. I am back in a library. A dream. The pilot episode is on rerun.",
+      "I can go back to the line of dialogue that is tried and tested. “Here, let me hel—.”",
+      "“No.” Her voice is hard. Calculated. “You’re already helping. It’s fine. It’s my book, anyway.”",
+      "I squint at the title. I want to tell her that I have read the book a million times, from cover to cover. Yet, I do not recognize it.",
+      "“That’s what I do,” I say. “Help. I’ll never give up on that.”",
+      "Her eyes shine as pearls; perfect stars.",
+      "The stars break, and tears come pouring. It is a rushing stream. It won’t stop.",
+      "My face burns.",
+      "“What about Lana, huh Jack?” Her voice is brittle steel. “Or my father?”",
+      "I force my lungs to keep giving me breaths. Time stops, and I suddenly wish time would start turning back.",
+      "“That was never supposed to happen,” I say. “You know that. The group broke from the plan.”",
+      "She shakes her head. “Yeah, because you always have it all figured out…”",
+      "“I mean, I usually do.”",
+      "She stares into me, cutting to my core. A hatred closes around her that I haven’t seen before. The walls feel like they’re collapsing around me.",
+      "I need space. “They were hit by chunks of the goddamn Moon! How can any of us be expected to beat that?”",
+      "I step away and pause to catch my breath. The adrenaline and sheer terror is rushing back, but I must cool down.",
+      "“I said we needed to stay in the bunker.” I pace my words to the tune of my chipped watch, keeping a slow monotone. “We were supposed to wait to loot food replicators until after we were sure meteors weren’t going to hit. We weren’t even supposed to be in that town.”",
+      "Mariam’s book is open. She peers at it, closes it, and puts it back on the shelf.",
+      "“Were we supposed to just go another week without food?” she asks.",
+      "I have no answers.",
+      "My eyes rove around the room. I want to grab something and smash it. I need to leave this place. I need to cool my head, before I lose it.",
+      "“We could’ve flown a mag-lev car and tried to get them back to safety in time,” Mariam continues. “We at least could’ve tried to call them, to warn them about what your sensor said...”",
+      "“Mariam, we would’ve died, no question. Besides, that sensor I built gives false alarms. It always does.”",
+      "Even as I say this, I know it isn’t completely true. Infinite possible solutions existed, all unexplored. There was so much more that could’ve been done.",
+      "“Why did you stop me?” she says.",
+      "I want to speak, but I will just choke on the words.",
+      "“You tried to stop so many of us, Jack…” she says. “And, there used to be three hundred in our group. I remember when the Moon first split, and the meteors first started coming down… You said you would protect us. All of us.”",
+      "Phantom faces haunt the room. My spirit curdling and chest tightening, I let out a sigh.",
+      "“I did everything I could,” I mutter to myself. “I didn’t know. How could I?”",
+      "“I know, how could you?” she says. She is looking at the ground. “I don’t want to blame you. But this is just so hard, Jack. Twenty… Those are all who made it from our group.”",
+      "My eyes sting, and I turn from Mariam. She can’t see me. This stuff never touched me. I am stronger than this.",
+      "The locket is nearly reforged, all holes and cracks filled and welded with new bits of steel. Handy-bot starts on a chrome outer coating. It is terribly beautiful. Though, has the locket truly been repaired? Or is it merely a faded facsimile of its true self?",
+      "Mariam’s arms wrap around from behind me and give a squeeze, just the way that they used to.",
+      "She manages an “I love you.”",
+      "I manage an “I love you too.”",
+      "I look up to the ceiling. There is a hole there.",
+      "“It wasn’t supposed to be this way, Mariam… We were supposed to own this house outright, by now. Maybe we would have a kid.”",
+      "Mariam rests her chin on my shoulder, and I can tell she is looking through the hole in the ceiling too.",
+      "Flares of light move through the night. The Moon hangs above it all, a trench of darkness slit through its center.",
+      "“The universe had different plans for us,” she says.",
+      "I lean into my desk, and stare at handy-bot. It is nothing short of a miracle that the electricity is running to power him again.",
+      "“The meteors aren’t coming down anymore, I swear,” I say. “And, we’re building a new world here now. There might only be a few of our group left, but we’re scrappy. We can put together anything. There are also more people migrating here, with other groups… I think we still have a chance to bring back a normal world. To start over.”",
+      "Mariam holds my jaw and draws our faces together.",
+      "“I can’t stay here,” she says. “This town was home. It hurts. Look at us. We’re different now.”",
+      "I see the lines of stress and exhaustion mapped across her face. She is not wrong. Though, it seems wrong.",
+      "“I don’t feel different…” I lie.",
+      "Her hand moves to a deep scar on my forearm. I don’t remember where the scar came from.",
+      "“You feel different,” she says.",
+      "Handy-bot gives a loud chirp. I pull the locket off the work plate and inspect it. Its chrome finish isn’t quite the same as it used to be, but it is spotless. The screws, hinges, etchings, and curves are shaped back into perfection.",
+      "“I did it,” I say. “I told you I was going to fix it. You can’t even tell the difference.”",
+      "Mariam gives one of her diamond smiles. It is the kind of smile that puts you on another planet, in a distant galaxy.",
+      "“It is gorgeous,” she says. She looks at it, but her eyes pull away. “Thank you for fixing it. It’s yours now. Keep it.”",
+      "It is a blow to the gut.",
+      "I place the locket in my pocket without a word. I did everything I could to fix it, but it wasn’t enough. What is there to say?",
+      "We stand in this room for a few minutes, inspecting what it has become over the years. Much of the wood and plaster has peeled away from the foundations, fleeing for the wind. I wish I could do the same from my own skin.",
+      "Something was still alive when we first entered this room. It is dead now. We only wait to find the right goodbye.",
+      "“Mariam, a few months ago, that meteor hit us. Even though our bunker was reinforced and made of iron, it still crumpled in on most of the group… It nearly killed all of us. And, you said that the only thing that saved us was fate.”",
+      "She brushes a strand of hair out of her face. “I did.”",
+      "“And, don’t you think that might mean something?”",
+      "Her eyes narrow in thought. I know that she’s wondered this.",
+      "“Fate was strong enough to save us…” she says. “But Jack, it isn’t enough to save us. This wasn’t — it isn’t meant to be.”",
+      "She walks to the door.",
+      "“Mariam, please don’t leave.” I open the locket’s heart, to reveal the words etched inside. “I — I love you to the Moon and back.”",
+      "She nods. There is pain in her face, but she gives me a warm smile. “I wish you the best. You’re going to do great. I’ll see you when I see you.”",
+      "End"
+    ],
+    "images": []
+  },
+  {
+    "slug": "looking-into-the-future",
+    "title": "Looking into the Future: Bionic Eyes",
+    "date": "2021-10-23",
+    "paragraphs": [
+      "Human biology is a finicky thing to maintain. However, emerging biotechnologies will hopefully help improve quality of life. The field of bionics looks promising, keeping technology and humanity closely intertwined. An exciting recent development in biotech surrounds bionic vision.",
+      "New Brain Implant Lets Blind Patient See Without Eyes (futurism.com)",
+      "Spanish researchers from Miguel Hernández University developed a brain implant to enhance vision in the visually impaired (1). At a length of 1.5 mm and a width of 4 mm, the current device consists of a “three-dimensional matrix of 96 micro-electrodes” (1). The implant is also connected to a camera, allowing it to process light signals and send them as feedback to the electrodes. Finally, these electrodes interact with neurons within the brain tissue. The device was first tested on primates, to strong success. The researchers then conducted studies with the help of a 57-year-old woman, who had been blind for 16 years (1). The implant was carefully placed along the visual cortex of her brain.",
+      "Despite the system containing several components, the researchers reported a low power draw on their device when compared to similar systems (2). Furthermore, studies showed that the only neurons affected by the electrodes were the target neurons, with neurons outside of the visual cortex being unresponsive to the electrical signals (2). However, the most reassuring data from the research was that the visual apparatus allowed the woman to identify letters, and various other “shape boundaries” (2) . More volunteers for the technology are currently being recruited, and outlook on its development is promising.",
+      "Seeing where technology is going can be a difficult task. Bionic vision technology may very well be a next step in biomedical technology. That said, depending on how the research develops, it just as easily may be a dead end. In either case, the research is bound to provide us knowledge that is of value. New technologies and innovations allow us to make the lives of others better. Thus, when this goal is at the forefront of scientific efforts, it is always a good sign.",
+      "Sources:",
+      "Brain implant bypasses the eyes to help blind users \"see\" images (newatlas.com)",
+      "New Brain Implant Lets Blind Patient See Without Eyes (futurism.com)"
+    ],
+    "images": [
+      "/writings/looking-into-the-future/01.jpeg"
+    ]
+  },
+  {
+    "slug": "restaurant-robots-computerized-chefs",
+    "title": "Restaurant Robots: Computerized Chefs",
+    "date": "2021-10-23",
+    "paragraphs": [
+      "The Age of Robotics is upon us. While this leaves a sour taste in the mouths of many, corporations and roboticists are working as hard as they can to change this. Literally. Several corporations are rolling out restaurant robots, that can both cook food and serve the customer. Despite the mixed feelings that will undoubtedly surround this topic, this change is hopefully a sign of great things to come for automation.",
+      "Restaurants looking for labor and speed turn to robots (cnbc.com)",
+      "Labor shortages are becoming widespread, particularly for minimum wage jobs. 4 out of 5 restaurants are reported as being understaffed (1). In the wake of this, several companies are looking to automation to resolve their woes. Recently, Miso Robotics introduced a restaurant robot known as “Flippy” (1). It is a high-precision robotic arm, capable of producing and cooking various foods. While it is currently at the high price-point of $20,000 (1), several large chains have already adopted it for testing. Once fully integrated, it will likely be worth the price. It has been reported that the robots allow workers to better interact with customers and provide good customer service.",
+      "A Florida restaurant chain says staff got bigger tips after it hired a $1,000-a-month robot to carry plates (yahoo.com)",
+      "Following suit, the company Softbank released a robot called the “Servi Robot”. It has already undergone testing and data analysis at the Sergio chain. They report an increase in tips for their waiters, and an increase of 25-30% for waiter efficiency. What makes the Servi Robot particularly unique is that it can handle the labor-intensive aspects of a waiter, allowing a waiter to focus more on maintaining the customer experience. Retrofitted with cameras, laser sensors, and a touchscreen, it can cleanly navigate a restaurant space. Thus, the server bot is capable of carrying out transactions, serving meals, and carrying back dirty dishes. Furthermore, it is extremely cost effective, only coming at a cost of $1,000 a month if a restaurant wants to rent it out.",
+      "Robots are the pinnacle of current human technology, combining electronics, computer science, and mechanics into a machine that can mimic life itself. Thus, in some ways, the decision to use robots to make fast food is disappointing. Nevertheless, big things always start small. Robotic waiters are a business model that is beginning to prove itself, and makes sense all-around. This is a strong sign that large shifts are about to occur for human society as a whole.",
+      "Sources:",
+      "Restaurants looking for labor and speed turn to robots (cnbc.com)",
+      "A Florida restaurant chain says staff got bigger tips after it hired a $1,000-a-month robot to carry plates (yahoo.com)"
+    ],
+    "images": [
+      "/writings/restaurant-robots-computerized-chefs/01.jpeg",
+      "/writings/restaurant-robots-computerized-chefs/02.png"
+    ]
+  },
+  {
+    "slug": "a-bit-on-the-tesla-bot",
+    "title": "A Bit on the Tesla Bot",
+    "date": "2021-08-21",
+    "paragraphs": [
+      "Elon Musk is infamous for his flashy announcements, on new tech. The recent announcement of Tesla Bot at Elon Musk’s AI day is no exception. In many ways, the announcement was gimmicky, and more flash than substance. Nevertheless, if the Tesla Bot can be delivered to the specifications that were promised, it has a ton of potential. It is truly a sign of how far innovation has come.",
+      "Tesla Bot - Tesla Bot: Elon Musk Reveals Humanoid Tesla Robot Which Is Apparently Not A Joke (forbes.com)",
+      "The Tesla Bot announcement was primarily concepts, with no prototype to be shown. The concept art featured a sleek, humanoid design, unlike more mechanized robots from companies like Boston Dynamics. Much of this is due to the proposed motor systems that the Tesla Bot will be using. Rather than relying on pneumatics, like Boston Dynamics, it will purely rely on electromechanical actuators (1). 40 electromechanical actuators have been announced, in total, according to Forbes: “12 in the arms, two each in the neck and torso, 12 in the legs, and 12 in the hands” (1). Due to the Tesla Bot’s proposed purpose being industrial (2), rather than for military use, it can also afford the reduction in power that electromechanical motors may create.",
+      "While Tesla Bot’s power source remains undisclosed, its proposed raw power is still nothing to scoff at. Supposedly, the robot will be able to lift 45lbs, and deadlift 150lbs (2). Moreover, it will hold this power in a small package, weighing only 125lbs and having a height of 5’8” (2).",
+      "Intimidating as the Tesla Bot may sound, the design intent is for it to be friendly to interact with. It will feature a touch screen for its face, allowing for smooth user input and interaction (1). Additionally, it will only be able to achieve speeds of 5 mph, and should be able to easily be overpowered (1). As Elon Musk put it, “We’re setting it such that it is at a mechanical level, a physical level, that you can run away from it, and most likely overpower it” (1).",
+      "When it comes to Elon Musk, it pays to take his announcements with a healthy dose of skepticism. In the same announcement panel, a person dressed in a pajama jumpsuit was used as an example of how the Tesla Bot may perform movement. Oftentimes, the products Musk winds up delivering pale in comparison to the products that he initially announced. Nevertheless, humanoid robots like the proposed Tesla Bot are technologies that have potential to become world changing. Whether Musk or another company are the first to deliver on such robots remains to be seen. In any case, humanoid robots are likely to become commonplace in the not-so-distant future. One can only hope that the people at Tesla can manage to pull their vision off.",
+      "Sources:",
+      "Tesla Bot: Elon Musk Reveals Humanoid Tesla Robot Which Is Apparently Not A Joke (forbes.com)",
+      "Humanoid ‘Tesla Bot’ likely to launch next year, says Elon Musk | Tesla | The Guardian"
+    ],
+    "images": [
+      "/writings/a-bit-on-the-tesla-bot/01.jpeg"
+    ]
+  },
+  {
+    "slug": "terraforming-earth-with-sulfur",
+    "title": "Terraforming Earth with Sulfur",
+    "date": "2021-08-21",
+    "paragraphs": [
+      "Humanity has been operating something of an experiment over the past few decades, with its wild emissions of carbon dioxide into the atmosphere. The globe has been rising in temperature levels at an exponential rate, and the trends are only expected to continue. Terraforming the earth via stratospheric sulfur injections is a proposed solution, to cool the Earth as carbon emissions heat it up. We may be able to stop global warming in a similar process that we used to create it.",
+      "While clean energy solutions have been proposed to stave off carbon emissions, they have thus far not reached the scale required to so. Carbon emissions show little sign of slowing down. If clean energy initiatives fail to overcome carbon emissions, sulfur injection may be the necessary next step. Sulfur aerosols would be pumped into the stratosphere, scattering radiation so that less radiation reaches the troposphere. Since the troposphere is where the bulk of the Earth’s weather phenomena occurs, this would mean a cooler Earth (1). The benefits of sulfur injections would be widespread. Polar ice caps would cease to melt. Plants would take in more CO2, causing stronger growth.",
+      "While methods of sulfur injections have not been tested on mass scale, an example of this concept was the eruption of Mount Pinatubo in 1991, which cooled the Earth by half a degree over several years (1). Furthermore, some scientists and inventors have tried and failed at patents and small scale experiments. The most notable attempt was from 2009, where a group of Russian scientists sprayed aerosols from a helicopter 200 meters up and reported reduced sunlight on the surface (3). While sulfur injections have potential, it is important to be skeptical toward proposed methods of implementation.",
+      "There are flaws to the idea of using sulfur geoengineering to solve the climate crisis. Sulfur being in the stratosphere would leave the sky a dull gray, removing the blue sky (2). There is also potential for satellite signal interference, ozone depletion, and reduction in efficiency of solar energy production (2). Sulfur would also only enable humanity to accelerate carbon production. Due to increasingly excess carbon in the atmosphere, halting sulfur emissions into the stratosphere would cause a catastrophic acceleration in the rate of global warming, 5-10 times what we currently see (2). Furthermore, while sulfur might work to cool down the Earth, it would do little to address the issues of deforestation, pollution, and damage to ocean life.",
+      "There are no clean answers to the climate crisis, and all possible solutions must be taken into account. While there is likelihood that clean energy solutions may be the way of escape, it is possible that a drastic measure like sulfur injection may be necessary in the coming future. While not an ideal solution, it is still solution that is able to cool the Earth down. It should be pursued, especially for an eventuality in which all other options have been exhausted.",
+      "Sources:",
+      "Stratospheric sulfur injection | geoengineering | Britannica",
+      "Stratospheric Sulfur Geoengineering - Benefits and Risks · Weather Modification History",
+      "What is geoengineering—and why should you care? | MIT Technology Review"
+    ],
+    "images": [
+      "/writings/terraforming-earth-with-sulfur/01.jpeg"
+    ]
+  },
+  {
+    "slug": "to-the-moon-and-back",
+    "title": "To the Moon and Back",
+    "date": "2021-06-29",
+    "paragraphs": [
+      "For all our triumphs, the Moon is shattered in two. The heart is shattered, too.",
+      "“You sure that you can put it back together?” she asks me.",
+      "The cuts and callouses along the palm of her hand orbit the heart-shaped locket. At least, the fragments of the locket that remain. It has seen better days. Yet, who hasn’t?",
+      "Fractured beams of moonlight creep through cracks in the walls, and the lamp above us flickers. Mariam’s eyes gleam softly as our gazes lock. The world is on fire in there. I can see the sparks.",
+      "“Sure,” I say.",
+      "I am a handyman. I fix things.",
+      "“There is nothing I can’t fix,” I say. “You know that. Like, when does anything I fix ever go wrong?”",
+      "My chuckle echoes.",
+      "Perhaps I spoke out of turn.",
+      "Spokes on the wheels turn, as handy-bot whirs to life. Leaping from his fingertips are bits of lightning, and he shifts his boxy body forward ever so slightly.",
+      "The ground quakes when I put pieces of the locket in front of handy-bot’s work plate. At first, I worry that yet another meteor has hit the Earth. Then, a laser scans over the locket fragments with precision, and I realize that the quaking is merely my vertigo coming back with a vengeance.",
+      "My head aches. So does my soul. Why is it that the things that come back strong are indiscernible from the things that come back with a vengeance?",
+      "I clear my throat. “You know, now that it’s all over… Maybe we can try to get back to what we were building.”",
+      "Her face is blank, but her hand lands on the crook of my neck.",
+      "“We can always try.”",
+      "I smirk. “Well, these are trying times.”",
+      "There is a screech. Handy-bot’s gears gnash together and he vibrates with a fury. Stumbling over myself, I steady him and tighten a few of his screws. The screws are rusted and groan as I put them back in their place. Nevertheless, they must go back to how they were.",
+      "“Remember that night, ages ago, when I first showed you him?” I say. “I — I was so scared you were going to think he was just another dumb trinket, like you usually do.”",
+      "Handy-bot’s body steadies back into rhythm. His hands return to hover over the locket, spinning metal and electricity into an elegant tapestry. Already, I can see the bits of crushed locket reforming into its former glory. Though, Mariam doesn’t see this. Her footsteps shift away from me.",
+      "“Oh, he definitely is,” she says, teasingly.",
+      "Her hands flit along the old bookshelves. The bindings move in and out, as keys in a piano concerto that only she can hear.",
+      "She pulls a book out and inspects it. “Your machines — they’re cute. But they’re not why we’re still here.”",
+      "Handy-bot is operating smoothly now, his mechanisms now tightened into clockwork. I brush some moondust off my tattered coat, and stride toward her.",
+      "“Is this the part where you point at me as the reason?” I say. “And then, I have to be modest and tell you that it was us? All of us…”",
+      "I flash a grin.",
+      "The book falls out of her hand, and she stoops to pick it up.",
+      "Déjà vu. My hand moves toward the book. I am back in a library. A dream. The pilot episode is on rerun.",
+      "I can go back to the line of dialogue that is tried and tested. “Here, let me hel—.”",
+      "“No.” Her voice is hard. Calculated. “You’re already helping. It’s fine. It’s my book, anyway.”",
+      "I squint at the title. I want to tell her that I have read the book a million times, from cover to cover. Yet, I do not recognize it.",
+      "“That’s what I do,” I say.  “Help. I’ll never give up on that.”",
+      "Her eyes shine as pearls; perfect stars.",
+      "The stars break, and tears come pouring. It is a rushing stream. It won’t stop.",
+      "My face burns.",
+      "“What about Lana, huh Jack?” Her voice is brittle steel. “Or my father?”",
+      "I force my lungs to keep giving me breaths. Time stops, and I suddenly wish time would start turning back.",
+      "“That was never supposed to happen,” I say. “You know that. The group broke from the plan.”",
+      "She shakes her head. “Yeah, because you always have it all figured out…”",
+      "“I mean, I usually do.”",
+      "She stares into me, cutting to my core. A hatred closes around her that I haven’t seen before. The walls feel like they’re collapsing around me.",
+      "I need space. “They were hit by chunks of the goddamn Moon! How can any of us be expected to beat that?”",
+      "I step away and pause to catch my breath. The adrenaline and sheer terror is rushing back, but I must cool down.",
+      "“I said we needed to stay in the bunker.” I pace my words to the tune of my chipped watch, keeping a slow monotone. “We were supposed to wait to loot food replicators until after we were sure meteors weren’t going to hit. We weren’t even supposed to be in that town.”",
+      "Mariam’s book is open. She peers at it, closes it, and puts it back on the shelf.",
+      "“Were we supposed to just go another week without food?” she asks.",
+      "I have no answers.",
+      "My eyes rove around the room. I want to grab something and smash it. I need to leave this place. I need to cool my head, before I lose it.",
+      "“We could’ve flown a mag-lev car and tried to get them back to safety in time,” Mariam continues. “We at least could’ve tried to call them, to warn them about what your sensor said...”",
+      "“Mariam, we would’ve died, no question. Besides, that sensor I built gives false alarms. It always does.”",
+      "Even as I say this, I know it isn’t completely true. Infinite possible solutions existed, all unexplored. There was so much more that could’ve been done.",
+      "“Why did you stop me?” she says.",
+      "I want to speak, but I will just choke on the words.",
+      "“You tried to stop so many of us, Jack…” she says. “And, there used to be three hundred in our group. I remember when the Moon first split, and the meteors first started coming down… You said you would protect us. All of us.”",
+      "Phantom faces haunt the room. My spirit curdling and chest tightening, I let out a sigh.",
+      "“I did everything I could,” I mutter to myself. “I didn’t know. How could I?”",
+      "“I know, how could you?” she says. She is looking at the ground. “I don’t want to blame you. But this is just so hard, Jack. Twenty… Those are all who made it from our group.”",
+      "My eyes sting, and I turn from Mariam. She can’t see me. This stuff never touched me. I am stronger than this.",
+      "The locket is nearly reforged, all holes and cracks filled and welded with new bits of steel. Handy-bot starts on a chrome outer coating. It is terribly beautiful. Though, has the locket truly been repaired? Or is it merely a faded facsimile of its true self?",
+      "Mariam’s arms wrap around from behind me and give a squeeze, just the way that they used to.",
+      "She manages an “I love you.”",
+      "I manage an “I love you too.”",
+      "I look up to the ceiling. There is a hole there.",
+      "“It wasn’t supposed to be this way, Mariam… We were supposed to own this house outright, by now. Maybe we would have a kid.”",
+      "Mariam rests her chin on my shoulder, and I can tell she is looking through the hole in the ceiling too.",
+      "Flares of light move through the night. The Moon hangs above it all, a trench of darkness split through its center.",
+      "“The universe had different plans for us,” she says.",
+      "I lean into my desk, and stare at handy-bot. It is nothing short of a miracle that the electricity is running to power him again.",
+      "“The meteors aren’t coming down anymore, I swear,” I say. “And, we’re building a new world here now. There might only be a few of our group left, but we’re scrappy. We can put together anything. And, there are more people migrating here, with other groups… I think we still have a chance to bring back a normal world. To start over.”",
+      "Mariam grabs my jaw and draws my face toward hers.",
+      "“I can’t stay here,” she says. “This town was home. It hurts. Look at us. We’re different now.”",
+      "I see the lines of stress an exhaustion mapped across her face. She is not wrong. Though, it seems wrong.",
+      "“I don’t feel different…” I lie.",
+      "Her hand moves to a deep scar on my forearm. I don’t remember where the scar came from.",
+      "“You feel different,” she says.",
+      "Handy-bot gives a loud chirp. I pull the locket off the work plate and inspect it. Its chrome finish isn’t quite the same as it used to be, but it is spotless. The screws, hinges, etchings, and curves are shaped back into perfection.",
+      "“I did it,” I say. “I told you I was going to fix it. You can’t even tell the difference.”",
+      "Mariam gives one of her diamond smiles. It is the kind of smile that puts you on another planet, in a distant galaxy.",
+      "“It is gorgeous,” she says. She looks at it, but her eyes pull away. “Thank you for fixing it. It’s yours now. Keep it.”",
+      "It is a blow to the gut.",
+      "I place the locket in my pocket without a word. I did everything I could to fix it, but it wasn’t enough. What is there to say?",
+      "We stand in this room for a few minutes, inspecting what it has become over the years. Much of the wood and plaster has peeled away from the foundations, fleeing for the wind. I wish I could do the same from my own skin.",
+      "Something was still alive when we first entered this room. It is dead now. We only wait to find the right goodbye.",
+      "“Mariam, a few months ago, that meteor hit us. Even though our bunker was reinforced and made of iron, it still crumpled in on most of the group… It nearly killed all of us. And, you said that the only thing that saved us was fate.”",
+      "She brushes a strand of hair out of her face. “I did.”",
+      "“And, don’t you think that might mean something?”",
+      "Her eyes narrow in thought. I know that she’s wondered this.",
+      "“Fate was strong enough to save us…” she says. “But Jack, it isn’t enough to save us. This wasn’t — it isn’t meant to be.”",
+      "She walks to the door.",
+      "“Mariam, please don’t leave.” I open the locket’s heart, to reveal the words etched inside. “I — I love you to the Moon and back.”",
+      "She nods. There is pain in her face, but she gives me a warm smile. “I wish you the best. You’re going to do great.”"
+    ],
+    "images": []
+  },
+  {
+    "slug": "fusion-is-it-the-future",
+    "title": "Fusion and its Future",
+    "date": "2021-05-18",
+    "paragraphs": [
+      "Renewable energy is one of the most important causes that is being worked on. However, a form of renewable energy sources that has yet to pan out is fusion energy. While fusion makes sense theoretically, there are practical challenges with fusion that have yet to be solved.",
+      "HL-2M Reactor - Nuclear Fusion At 100: The Hidden Race For Energy Supremacy | Hackaday",
+      "The way that fusion works is by harnessing the energy produced in the fusing of two atoms to form one (1). A massive benefit of fusion is that, unlike the radioactive products of nuclear fission, fusion does not produce radioactive waste as a product of the reaction. Rather, in addition to its energy output, it produces the useful element of helium. The general reactions being researched are between tritium (a hydrogen isotope with two neutrons and one proton) and deuterium (a hydrogen isotope with one proton and one neutron), due to reactions like deuterium-deuterium being untenable with current technology (1). Fusion limitations derive from the absence of a starlike gravity to compress atoms together. The temperatures required to overcome the atomic repulsion in fusion reactions are about 100 million Kelvin; this is six times hotter than the Sun’s core. In addition to extreme temperatures, atoms must be bombarded with ion particles, magnetic fields, lasers, and microwaves (1). All this energy input is what causes difficulty in getting a positive energy output.",
+      "There are several designs that have been tested for fusion, such as z-pinch reactors and stellarator reactors. However, the primary design that is widely being funded by world governments is the tokamak. The tokamak is a donut of magnets, cryo-pumps, and energy redirection systems known as “diverters”, surrounding a reactor core. With the help of Lorentz force, they contort a magnetic field to a helix, with the intent of directing fusion plasma into a steady flow (2). The two fusion reactors of this breed that are currently being tested are China’s HL-2M tokomak and Germany’s W-X7 tokomak, which were put into operation in 2020. Further tests on these reactors throughout the 2020s will hopefully reveal new information on how to optimize the fusion process, and bring us closer to fusion with net energy gain.",
+      "Tokomak Magnet Design - Nuclear Fusion At 100: The Hidden Race For Energy Supremacy | Hackaday",
+      "In addition to massive fusion reactors, several other types of fusion have been theorized. These include cold fusion, and compact fusion reactors. Though, a common thread through all fusion reactors is that they have experimentally only achieved a net zero output of energy. One of the most famous examples of this is the ITER. This fusion reactor is claimed to produce ten times its energy input but, in practical application, it operates quite different. The design is projected to convert 150 megawatts from the electrical grid to 50 megawatts of power to start the reactor. It will then convert 50 megawatts of reactor start power into 500 megawatts of plasma power, and convert 500 megawatts of plasma power into 150 megawatts of power to go back into the electrical grid (3). More simply put, the reactor will take 150 megawatts in, and spit 150 megawatts out. A net zero output is quite a bit less than an output that is “ten times the input”.",
+      "Complex and entrancing as the fusion process is, current fusion reactors are functionally no different from a metal wire.  While mere speculation, it is possible that there is a fundamental flaw on a thermodynamic level with trying to reproduce fusion at small scales. Perhaps a net energy gain from the reaction is unachievable, without the advantage of a starlike gravitational pull to motivate it.",
+      "The concept of clean reactors producing energy for the world is a beautiful one, and difficult to let go of. Fundamentally, the science is sound; fusion from stars in the sky are constant proof that fusion does work, and on mass scale. If there is a way to make fusion reactors become successful, it is worth it to continue trying. Thus, some of the brightest minds in science are chipping away at the problem, with the hopes of cracking it. Though, whether their intellectual challenge to make fusion successful has potential, or is merely the modern equivalent of Isaac Newton chasing the “philosopher’s stone”, remains to be seen.",
+      "Sources:",
+      "Conditions for Nuclear Fusion - How Nuclear Fusion Reactors Work | HowStuffWorks",
+      "Nuclear Fusion At 100: The Hidden Race For Energy Supremacy | Hackaday",
+      "How close are scientists to developing fusion energy? — WHYY"
+    ],
+    "images": [
+      "/writings/fusion-is-it-the-future/01.png",
+      "/writings/fusion-is-it-the-future/02.png"
+    ]
+  },
+  {
+    "slug": "unpacking-jet-packs",
+    "title": "Unpacking Jet-Packs",
+    "date": "2021-05-15",
+    "paragraphs": [
+      "Flight technology is one of the greatest achievements of humanity. Nevertheless, no technology is ever finished. Jetpacks that allow people to journey through the sky have long been a dream of inventors. Thus, jetpack technologies are in constant development. It is quite possible that jetpacks will one day be used by emergency response teams and military personnel. Though, there are fundamental issues with jetpack technologies, which have yet to be overcome.",
+      "The fundamental way in which most jetpacks work is by using fuel to generate thrust, via jet engines. This requires implementation of heavy-duty jet fuel and jet engines, which are also compact (for more about how jet engines work, see here). They also have on-board engine computers, which are used to optimize flight control and stabilization. Unfortunately, due to the limited energy density of jet fuel, jetpacks are generally optimized between a half a minute and a minute of flight time (1). Jet-packs are excellent at achieving massive heights, in short spans of time, but they are unable to sustain their heights.",
+      "The Martin Jetpack (newatlas.com)",
+      "Despite the limitations of conventional jetpack technologies, ducted fan technologies have been tested and have proven more viable. Martin Aircraft, which has since gone under, produced a flight pack from a petrol engine and ducted fans. It was capable of 30 minutes of flight time and achieving a height of over 8,000 feet (2). The primary flaw in the company was that they initially claimed they would sell their technology to private consumers, at a cost of $86,000. It is likely that, if they had been consistent in their business model and sought investment from military contractors, they would still be around today.",
+      "Outside of using petrol engines to power ducted fans, there are theoretical also talks of using electric brushless motors. In simple terms, these would be ducted drone propellers that could be worn around the human body. Currently, there is a limitation from doing this, due to power constraints caused by the density of lithium-ion batteries.  Though, advancements in battery technology would quickly change this. Thankfully, the military and private industry alike are desperate to find such a miracle battery.",
+      "Concerning the future of conventional jetpack, advancements are still being made. Companies like Gravity Industries and JetPack Aviation are each private companies that also are currently pushing the edges of jetpack technology.",
+      "Due humans being inherently flightless, the challenge of producing an efficient jetpack is immense. Despite this, jetpacks do exist, and they are becoming better by the year. It is quite likely that, in the not-too-distant future, we will see battery technology give rise to jetpacks in much the same way that battery advancements gave rise to the electric car. Just, don’t expect to ever see your neighbor flying one of them.",
+      "Sources:",
+      "The world’s top jetpack concepts (aerospace-technology.com)",
+      "The Martin Jetpack (newatlas.com)"
+    ],
+    "images": [
+      "/writings/unpacking-jet-packs/01.jpeg"
+    ]
+  },
+  {
+    "slug": "the-generation-of-regeneration",
+    "title": "Solar Panels: The Generation of Regeneration",
+    "date": "2021-04-10",
+    "paragraphs": [
+      "One of the greatest threats to our civilization is ourselves. More specifically, it is the carbon emissions that we generate. In all fairness to ourselves, immense carbon generation is only to expected from a society of carbon-based lifeforms. Nevertheless, regenerative technologies are the way of the future, with the potential of bringing us to carbon neutrality. Solar energy, in the form of solar panels, is an essential piece of this.",
+      "The function of solar panels is to harness energy from the Sun. Specifically, it harnesses photonic energy by having photons knock electrons from its solar cells. This knocking of electrons creates an electric polarization; more precisely, electric charge in the form of electricity. The material used in solar cells to accomplish this is generally a thin film of silicon atoms, due to its accessibility (1). Though, there are rarer metals that could give a better performance than silicon (namely, tungsten). The solar cell film is placed between polarized material meshes to encourage a buildup of charge. These materials are boron for a positive charge and phosphorous for a negative charge (1). There are also conductive metal wires along the solar cells, to transmit resulting electricity. Finally, there is glass plating overtop solar panels, to contain photonic energy and protect the solar cells.",
+      "Advances in solar cells are continual. Currently, researchers have achieved silicon films that are as thin as 1.3 microns. Other forms of solar power technology are also being developed, such as concentrated solar power and thermal solar power, which stand to have higher energy efficiency (1). Due to the silicon being second to oxygen as the Earth’s most abundant molecule, and solar panels having relatively minimal issues on the environment, these advancements are unlikely to stop any time soon.",
+      "Solar Panels - How Do Solar Panels Work? (gizmodo.com.au)",
+      "Solar energy is spreading throughout the world as a wildfire. They are being installed five times faster than coal power stations, and twenty times faster than nuclear power stations. In Australia, new power production facilities are exclusively solar or wind farms. Australia’s new initiative also comes with good reason, as sunlight from the Sun on their land potentially has 20,000 times the energy as the USA is able to produce from gas, oil, and coal (2). Due to technological advancements and government regulations, solar cells have gotten cheaper to produce by 99% since the 1980s (3).",
+      "While work is still to be done to make solar cells more effective at energy production, solar technology has already come a long way from where it was during its inception. Renewable energy only stands to grow, as the globe becomes more heated from immense carbon emissions. Solar panels are not the entire solution to the energy question, but they are an integral part of it.",
+      "Sources:",
+      "How Do Solar Panels Work? | Photovoltaic Cells | Live Science",
+      "How Do Solar Panels Work? (gizmodo.com.au)",
+      "Solar panels now cost less. Thank government policy. - Vox"
+    ],
+    "images": [
+      "/writings/the-generation-of-regeneration/01.png"
+    ]
+  },
+  {
+    "slug": "shedding-a-light-on-lightbulbs",
+    "title": "LEDS vs. Incandescent Lightbulbs: Shedding a Light on the Difference",
+    "date": "2021-04-02",
+    "paragraphs": [
+      "The lightbulb is a crown jewel of invention, commonly credited to Edison and his company of General Electric. However, the lightbulbs that we use today are quite different than the lightbulbs of yesteryear. GE’s original lightbulb was of the incandescent variety. Though, the lightbulbs mostly used today are actually LED lightbulbs.",
+      "LED Lightbulbs - Difference Between LED and Incandescent | Difference Between",
+      "The way that incandescent lightbulbs work is by flowing electricity through a tungsten filament, causing the filament to give off a warm glow. Generally, lightbulbs are filled with an inert gas (oxygen would enflame) and heated to up 2200 degrees centigrade (1). Meanwhile, Light Emitting Diodes (LEDs) work from an electric circuit, which sends charged electrons between a cathode and anode through a semiconductor. The semiconductor is generally made of aluminum-gallium-arsenide. This electrical circuit concentrates electrical energy and gives off the electroluminescent glow needed to light up a room.",
+      "While there is a certain charm and nostalgia about the concept of incandescent lightbulbs, LED lights are vastly superior. Firstly, incandescent lights have the shortest lifespans of any lighting system. Standard incandescent lights only last for 1,000 to 2,000 hours. Meanwhile, LED lights are estimated to have 25,000 to 30,000 hours of lifespan (1). A more important factor is energy efficiency. Incandescent bulbs waste 90% of the energy they use as heat, whereas LED lighting systems use 35 to 80% of their energy for lighting (1). While LED lightbulbs tend to cost a bit more than incandescent bulbs, the investment is more than worth it. In the long run, this amounts to massive energy savings.",
+      "The advantages of LEDs don’t stop here, however. LEDs are also mercury free, unlike incandescent bulbs (2). Incandescent bulbs have continuous flickering as well, due to gas movement, while LEDs produce a continuous flow of light (2). Finally, LEDs have far more control than incandescent bulbs. Depending on the lightbulb, one can easily alter the directionality, color, and brightness of the light.",
+      "Plenty of homes still have incandescent lights. Though, it is worth considering making the transition to LEDs. Their clever design will help improve the environment, one’s living space, and one’s wallet. In every respect, LEDs are the superior technology.",
+      "Sources:",
+      "Difference Between LED and Incandescent | Difference Between",
+      "LED Light Bulbs VS Incandescent Lamps: 10 Hard True Facts - 12Vmonster Lighting and More!"
+    ],
+    "images": [
+      "/writings/shedding-a-light-on-lightbulbs/01.png"
+    ]
+  },
+  {
+    "slug": "breaking-down-regenerative-braking",
+    "title": "Breaking Down Regenerative Braking",
+    "date": "2021-03-20",
+    "paragraphs": [
+      "Carbon emissions are a hot button topic, due to the accelerating pace of global warming. One of the places we need to reverse carbon emissions from is cars. New automotive technologies have been introduced, such as hybrid and electric engines, to combat emissions. Within hybrid and electric cars, there is also a prominent form of braking: regenerative braking. It is an incredibly useful technology, which will be around for years to come.",
+      "What Is Regenerative Braking? | News | Cars.com",
+      "Regenerative braking takes advantage of kinetic energy, rather than solely relying on the friction braking of mechanical systems. Specifically, as an electric or hybrid car brakes, regenerative braking sends the car wheels’ rotational motion into its electrical motors. The electrical motors are reversed, thus acting as a miniature electrical generator and adding energy back into the car. Mechanical braking rotors are not used in these systems until the very last moments of braking.",
+      "While its surge in usage is new, regenerative braking is a concept that has been around for over a hundred years, in things like trolleys, trains, and electric cars (1). These systems make up a good portion of the energy efficiency of electric and hybrid cars, by saving the heat energy that a mechanical braking system would otherwise take. It is estimated that 70% of a car’s kinetic energy is recaptured from regenerative braking. In hybrid cars, this can lead to a 25-45% reduction in fuel usage. As time has progressed, regenerative braking systems have also become smoother than mechanical braking systems. The electrical motors of hybrid and electric cars are controlled by a series of circuits, which monitor a car’s rotational motion to bring it to a smooth stop (3). A final advantage of regenerative braking systems is that they do not wear out as quickly. This is since, rather than relying on the brute friction of brake rotors for stopping, regenerative brakes are redirecting motion into stopping energy.",
+      "Ingenious as classical mechanical braking systems are, regenerative braking systems are a step above. Their large energy savings, smoothness of use, and enhanced durability make them vastly superior to pure mechanical systems. While mechanical braking systems will remain a common component to gasoline cars, electrical and hybrid cars are becoming more commonplace. As this trend continues, regenerative braking is likely to become an industry standard.",
+      "By: Christian Mueth",
+      "Sources:",
+      "What Is Regenerative Braking? | U.S. News & World Report",
+      "What Is Regenerative Braking? | News | Cars.com",
+      "How Regenerative Braking Works | HowStuffWorks"
+    ],
+    "images": [
+      "/writings/breaking-down-regenerative-braking/01.jpeg"
+    ]
+  },
+  {
+    "slug": "the-facts-on-vaccination",
+    "title": "The Facts on Vaccination",
+    "date": "2021-03-17",
+    "paragraphs": [
+      "Vaccines are a miracle of medical technology, allowing humanity to combat diseases that would otherwise be devastating. New COVID-19 vaccines are especially valuable, offering a chance to end the COVID-19 pandemic. These vaccines are the product of tireless work from scientists and researchers. Yet, with the recent vaccine breakthroughs, there is also backlash. According to a poll from Pew Research Center, 39% of people say they will not be receiving the vaccine (2). An unfounded undercurrent of fear regarding COVID-19 vaccines has emerged, and it is important to be informed on the facts of COVID-19 vaccines’ importance.",
+      "How do mRNA vaccines work – and why do you need a second dose? 5 essential reads (yahoo.com)",
+      "The first misconception to address is the idea that the COVID-19 vaccines are untested. While it is true that COVID-19 vaccines are being rolled out faster than usual, they have also undergone intense scrutiny to make sure they meet safety standards. This includes a four-stage approval process from the FDA, an approval from the EUA, and an approval from the CDC (1). Currently, the CDC is monitoring for any potentially serious risks and side effects, but none have been found thus far (1). Many have already received the vaccine, such as those in emergency and medical fields.",
+      "The way that the Pfizer and Moderna vaccines work is via a unique technique. They send mRNA into the body, which tells the cells to produce some of the proteins produced by the COVID-19 virus. The immune system recognizes these proteins as foreign and develops an immune response to them (2). Essentially, this means that only a small portion of the COVID-19 virus’ DNA needed to be used in vaccines, rather than the entire pathogen. However, this also means that the vaccine has to be given in two doses. The first dose primes the body’s immune system, and the second dose is what grants true immunity (3). New data collection processes were used, and world governments collaborated, for the expedient development of these vaccines (1).",
+      "While the vaccines are safe to use, there are some minor side effects that are to be made known. 70% of those who have taken the vaccine report pain in their arm, according to a survey of 2 million people from the CDC (1). Less than a third of people also have reports of tiredness, headaches, and nausea (1). These symptoms are minor, but noteworthy all the same. The larger difficulty facing the COVID-19 vaccines has to do with means of delivery. They must be stored in subzero temperatures, to prevent spoiling of the mRNA material (3). Thus, there is a vast supply chain being developed, to properly preserve the vaccines.",
+      "COVID-19 is an advent in history that will never be forgotten. How we choose to move forward will forever set the precedent for how pandemics like this will be handled in the future. While the idea of getting a shot is never comfortable, in times like these we need to put aside what is comfortable and trust in the broader scientific process.",
+      "Sources:",
+      "Is the COVID-19 Vaccine Safe? | Johns Hopkins Medicine",
+      "The Covid vaccine is safe, whatever anti-vaxxers say. Here's why we can trust it. (nbcnews.com)",
+      "How do mRNA vaccines work – and why do you need a second dose? 5 essential reads (yahoo.com)"
+    ],
+    "images": [
+      "/writings/the-facts-on-vaccination/01.png"
+    ]
+  },
+  {
+    "slug": "spacex-starlink",
+    "title": "SpaceX Starlink: Internet for the Masses",
+    "date": "2021-02-15",
+    "paragraphs": [
+      "SpaceX recently came crashing onto headlines with yet another test flight crash of the Starship 9. Nevertheless, SpaceX has recently found success in a different arena: satellites. SpaceX recently successfully launched thousands of satellites into space, for their new Starlink internet service. They now own approximately a third of all active satellites in the sky (1). As one might imagine from SpaceX, this move is both controversial and game changing.",
+      "SpaceX plans to boost Starlink network with launch - UPI.com",
+      "SpaceX’s satellite web consists of 1,000 satellites orbiting 340 miles above the Earth, with the plan of eventually reaching 40,000 satellites (1). The objective of the satellite service is to beam cheap, highspeed internet to rural areas, where internet is often spotty or limited. Already, they have 10,000 customers (1). Already, it has proven a success among those that use it. At a price tag of $99 a month, users have reported that the service is significantly better than most local offerings. Elon Musk, SpaceX’s CEO, has projected the service to provide $30 billion a year for the company. This would be ten times more than their usual rocketry revenue streams — a major source of funding for their ultimate missions to Mars.",
+      "While the future of Starlink looks bright, its bright future may also pose a problem. Many astronomers have expressed concerns of light pollution from the satellites (1). Satellites have already interfered with several telescope images, requiring astronomers to do more work when parsing through their data. Furthermore, there are increased fears of collisions with space debris. SpaceX has attempted to address these concerns by keeping their satellites in low orbit and using sun visors (1). Though, it is likely that ground based observatories are on their way out due to these shifts.",
+      "On top of space concerns, there are economic concerns. While Starlink is only $99 monthly, it requires a $499 deposit for the compatible equipment (2). Additionally, SpaceX had to take out massive loans to fund this project (2). Starlink is also facing competition from many other services. Blue Origin plans to start a satellite network known as Kuiper, and there are also the networks of OneWeb and Telesat (2). Elon Musk himself has even acknowledged the ambitiousness on the project. Specifically, he had this to say: “Every new satellite constellation in history has gone bankrupt. We hope to be the first that does not” (3).",
+      "Considering the track record of SpaceX, it is safe to assume that this service is in position to be yet another massive win for the company. Risky as many of their moves are, they always are moving toward the future. There is high probability that satellite networks like Starlink are on their way to becoming a standard usage throughout the world’s rural communities.",
+      "Sources:",
+      "Elon Musk's SpaceX now owns about a third of all active satellites in the sky - CNN",
+      "SpaceX plans to boost Starlink network with launch - UPI.com",
+      "SpaceX begins accepting $99 preorders for its Starlink satellite internet service as Musk eyes IPO (msn.com)"
+    ],
+    "images": [
+      "/writings/spacex-starlink/01.jpeg"
+    ]
+  },
+  {
+    "slug": "the-science-behind-quantum-computers",
+    "title": "The Science Behind Quantum ComputersIBM is aiming for 'frictionless' quantum computing by 2025 - Compsmag",
+    "date": "2021-02-13",
+    "paragraphs": [
+      "Our world is dominated by computers small enough to fit in a pocket. Though, a new form of computing called “quantum computing” is on the rise. Moore’s law (an annual doubling of computing density) is beginning to wane, as humanity reaches the physical limits of classical computing. Quantum computing stands to reaccelerate computing advancement. It will bring a major shift in how computing works and technological capabilities never seen before.",
+      "IBM promises 100x faster quantum computers through new software foundations (msn.com)",
+      "Classical computing works off a logical system called “binary”. Transistors provide the computer outputs of 1s and 0s, known as “bits”, which are read as true or false statements. This logical system is fundamental to all computer technology we see today. Yet, quantum computing uses a concept that is stranger and more efficient, by more than just a bit. Quantum computers leverage the physics of subatomic particles, known as quantum physics, to read “qubits”. Qubits, rather than holding one of two positions like bits, are capable of superposition. Simply put, qubits can hold a range of various states all at once (1). Qubits can also become entangled with other qubits, forming a multidimensional processing network (1). This allows quantum computers to solve problems in a lateral fashion, where different possibilities are considered at the same time.",
+      "Quantum computing is in position to overhaul multiple industries. Physics simulations, chemical compositions, genetic sequences, material structures, and more will be easily processed by quantum computers. Quantum computers will arrive at solutions that are faster and better than anything classical computers can provide (1). Furthermore, the fields of machine learning and artificial intelligence will vastly increase in performance (1). A big ongoing test of quantum computing’s problem-solving ability regards trade. Exxon has teamed up with IBM to optimize shipping networks through quantum computing (2).",
+      "Currently, all major tech companies invest heavily into quantum computing, with Google, Intel, Microsoft, and IBM being among them. IBM is the current industry leader, looking to make the jump from a 27 qubit computer to a 1121 qubit computer (3). They are making their software and supply chain open source, to allow for easy parallel development throughout industry (3). The current hope of IBM is that quantum computing will be “frictionless” for developers by 2025 (4).",
+      "Despite the advantages of quantum computing, there are cold realities that must be faced. Due to the experimental nature of the technology, results are largely inconsistent. It is estimated by industry experts that it may be 5 to 10 years before consistent results are reached (1). Additionally, quantum computers require extreme conditions to operate. They are kept at a cold .015 degrees Kelvin (nearly absolute zero) and must be shielded up to 50,000 times the Earth’s magnetic field (1). Due to these factors, quantum computers are more likely to be rented out as a service than sold as industrial machines; let alone be sold for personal use.",
+      "It is quite possible that quantum computers still have a long road ahead and are decades away from reaching peak performance. This was much the case for classical computers, with them taking decades to truly advance. Yet, quantum computers are a future reality, whether that future comes sooner or later. Furthermore, whatever future reality quantum computers exist in, it will be quite unlike anything we see today.",
+      "Sources:",
+      "The CIO’s guide to quantum computing | TechRadar",
+      "IBM and ExxonMobil are building quantum algorithms to solve this giant computing problem | ZDNet",
+      "IBM promises 100x faster quantum computers through new software foundations (msn.com)",
+      "IBM is aiming for 'frictionless' quantum computing by 2025 - Compsmag"
+    ],
+    "images": [
+      "/writings/the-science-behind-quantum-computers/01.jpeg"
+    ]
+  },
+  {
+    "slug": "hydroelectric-dams",
+    "title": "Hydroelectric Dams",
+    "date": "2021-01-16",
+    "paragraphs": [
+      "With the spiraling state of the world’s climate, renewable energy resources are a must. One of the biggest producers of renewable energy today are hydroelectric dams. However, the specifics of their mechanisms are lost to many. Moreover, while hydroelectric dams have their benefits, there are also drawbacks that are often overlooked. Exploring the details of hydroelectric dams is intriguing, and well worth it.",
+      "OPG completes rehab of reservoir at 174-MW Sir Adam Beck Pump Generating Station - Hydro Review",
+      "At their core, hydroelectric dams take energy from the flow of a body of water, and convert it into electricity. However, a key condition is that the body of water sees a large drop in elevation. This is because hydroelectric dams depend on the potential energy from gravity that water holds. There are also several stages to the energy production process. First, water from the body of water gets stored in a large reservoir. Following this, water is let through a gate called a “sluice gate” (1). It then falls through a channel called a “penstock”, and its kinetic energy is used to turn a generator. The generator produces this electrical energy by generating an electrical field, from its magnetic copper coils. The electrical energy is finally sent from the generator to a transformer, which sends the electricity to the electrical grid, and to the wider populous. Meanwhile, all the water that passes through the generator is released to the downstream.",
+      "Hydroelectric Power: How it Works (usgs.gov)",
+      "One of the big advantages of hydroelectric dams is that they are amazing at giving big bursts of electricity when there is high demand. This is because they can store water in their reservoir, and release to generate electricity as needed. Its function is like that of a massive battery (1). An example of when quick power generation might be of use would be during a massive summer heatwave. Additionally, they’re incredibly efficient, accounting for 20% of the world’s energy production (3). The efficiency of a hydroelectric plant is defined by its flow and head (2). Flow is the amount of water that flows through the generator. Head is the distance that the water will drop before hitting the generator and is where the bulk of the kinetic energy comes from. Because of these two factors, the electricity that hydroelectric dams produce gives less emissions and is substantially cheaper than that of, say, thermal power plants (3).",
+      "The biggest drawback of hydroelectric dams is that they impose massive changes on the surrounding ecosystem. Populations of fish and surrounding fauna often are driven away or reduced in number. Citizens living near the construction sites of hydroelectric dams are also often forced to relocate. Furthermore, while hydroelectric dams give less emissions than other forms of power plants, they still release methane into the atmosphere, due to the standing body of water that they hold in their reservoir (2).",
+      "Limitations exist for the hydroelectric dam, decreasing their prevalence. Nevertheless, where they are successful, they provide massive benefits. Hydroelectric dams may be a complicated technology, but it is their complexity that contributes to the simple conveniences of modern society.",
+      "Sources:",
+      "Hydroelectric Power: How it Works (usgs.gov)",
+      "How HydroPower Plants / Dams Work - Working Mechanism of Hydropower Projects (aboutcivil.org)",
+      "Brief Introduction to Hydroelectric Dams: How They Work, Advantages & Disadvantages - Bright Hub Engineering"
+    ],
+    "images": [
+      "/writings/hydroelectric-dams/01.jpeg",
+      "/writings/hydroelectric-dams/02.gif"
+    ]
+  },
+  {
+    "slug": "a-description-of-crypto",
+    "title": "A Description of Cryptocurrency",
+    "date": "2020-12-27",
+    "paragraphs": [
+      "The stock market exploded in 2017, as a new business model rose to prominence: cryptocurrency. Bitcoin was the main talk of the stock market, but other cryptocurrency companies were not far behind. The rise of cryptocurrency has added massive wealth for some, but financial burden for others. Despite the success of Bitcoin and its ilk, many cryptocurrency companies on the market are little more than Ponzi schemes. Some investors wonder whether the entire cryptocurrency craze is a bubble, waiting to burst. Navigating and understanding what cryptocurrency is, and how to be safe with it, is a difficult task. Due to the potential that cryptocurrency wields, it demands to be understood.",
+      "(5)",
+      "Cryptocurrency works by using virtual tokens (2) as a form of currency. One unique feature of cryptocurrency is that there is not a specific federal body that it is maintained by. The U.S. Dollar might have a Federal reserve to fall back on, but not so for a Bitcoin (1). Another difference is that cryptocurrencies are directly exchanged from person to person (1). Unlike money moved through banks or PayPal, there is no middleman. Bitcoin and its ilk also don’t have serial numbers to transactions for tracing back to the buyer or seller (1).",
+      "Despite the lack of conventional supervising bodies, cryptocurrency has a revolutionary system that ensures security. It uses blockchains, which are an encrypted database network. Better put, blockchains consist of countless blocks, that each store bits of data. In the case of cryptocurrency, blocks store transactional data. These blocks are arranged in a decentralized way, where blocks are given timestamps and added to a chain of blocks (3); the aforementioned “blockchain”. While every block stores its own data, it also acts as a node in the chain, and references information from other nodes to ensure its own accuracy (3). In cases where a node disagrees with the wider blockchain, it corrects itself (3). Thus, corruption of a cryptocurrency system would require corrupting most of a network’s decentralized nodes.",
+      "In addition to blockchains, cryptocurrencies have other provisions for secure transactions. Namely, they restrict and regulate user activity through public keys, private keys, proof of work, and proof of stake (2). A private key is a unique identification code, known only to a user, which allows a user to make transactions (2). A public key is used to verify private keys, during transactions (2). Proof of work is when computers run through an intense mathematical algorithm to verify a block’s legitimacy. Verifiers are rewarded with cryptocurrency. In proof of stake systems, verifiers stake part of their own cryptocurrency for a chance to verify blocks and earn more cryptocurrency (4). If a verifier verifies invalid transactions, verifiers lose out on more cryptocurrency, as well as a portion of their stake (4).",
+      "There are risks inherent to cryptocurrencies. Their reliance on technology means that there is no collateral in the event of system shutdowns or fraud (5). On the issue of fraud, there are many cyberthreats who create exchanges that are fake (5). The value of cryptocurrencies are turbulent, jumping from extreme highs to extreme lows (5). Finally, since cryptocurrencies are new, it is difficult to gauge what role they have. Many markets do not recognize cryptocurrencies, and many investors believe cryptocurrencies are vastly overvalued.",
+      "Cryptocurrency is complicated and involved. It also poses several issues. That said, it possesses many advantages, and will likely continue to gain ground as a legitimate form of currency. In the future, it might be just as ubiquitous as any form of federal currency.",
+      "By: Christian Mueth",
+      "Sources:",
+      "1. What Is Bitcoin? (gizmodo.com)",
+      "2. Cryptocurrency Definition (investopedia.com)",
+      "3. Blockchain: Everything You Need to Know (investopedia.com)",
+      "4. What Is Cryptocurrency? – Forbes Advisor",
+      "5. Council Post: The Top 10 Risks Of Bitcoin Investing (And How To Avoid Them) (forbes.com)m"
+    ],
+    "images": [
+      "/writings/a-description-of-crypto/01.jpeg"
+    ]
+  },
+  {
+    "slug": "voting-machines",
+    "title": "Voting Machines: The Electronics Behind Elections",
+    "date": "2020-11-08",
+    "paragraphs": [
+      "In the United States, another historic election has occurred. As such, there are many who have questions as to how our vote counting process operates. Specifically, people are turning a critical eye toward voting machines. There are questions regarding their reliability and security. Moreover, there is the larger looming question of what is going on underneath the hoods of our voting machines. Hopefully, in explaining how voting machines work, it can be better understood why they work.",
+      "(3)",
+      "Older voting machines were purely mechanical. Some worked by reading voter punch cards (1), whereas others worked by the pulling of a mechanical lever to indicate one’s vote (2). Today, most voting machines have followed in the footsteps of punch cards, using paper ballots to count votes. The reason for this has everything to do with transparency and security. If a machine is to mechanically fail, have software error, or be hacked, votes can still be recovered and recounted. An example of this happened in 2006 in Pottawattamie County; after a major machine error, election officials managed to do a proper hand count (1).",
+      "The way that modern voting machines read ballots is through digital imaging technology. With hand-marked ballots, when a voter fills out a bubble for a candidate and inserts it into a machine, the machine reads their filled in bubble. Following this, it will read a barcode on the side of a ballot, to work out the ballot’s coordinate map (3). Finally, it will use the ballot’s coordinate map to determine the bubble’s corresponding candidate and add it to the tally. In addition to hand-marked ballots, there are also machine marked ballots. A voter selects their candidate via touchscreen, and a prefilled ballot is printed out for them (3). Though, the following steps of the process work in much the same way as a hand-marked ballot. There is always a physical paper trail for the ballots, which can be reviewed.",
+      "In addition to a robust digital imaging system, there are other methods used to increase the efficacy of voting machines. Some ballot counting machines are capable of counting 800 ballots per minute (1). There are also automatic envelope openers and signature verification scanners for absentee ballots (1). Advancements have been made in voter registration systems, to keep better track of a voter’s proper ballot and precinct (2). Additionally, according to the political science professor Charles Stewart, “there’s a very large computer network that helps to aggregate all of those tallies, and to communicate them, at least unofficial tallies, to the press, to state election authorities” (2).",
+      "(1)",
+      "While voting machines are generally reliable, there are exceptions. One example would be “direct recording” machines; these machines use software to record what a voter enters on a touchscreen. There is no paper trail produced by these machines. The problem with this form of voting is that one must trust the software to reliably record what a voter puts in; once a vote is in, it is “impossible to audit” (1). It is estimated that 5% to 10% of voters use these machines (2). While they are being phased out in many places, and malfunctions are rare, they remain a potential issue for many voters.",
+      "Despite fears of cyberattacks and are rampant, they are unfounded. According to Mark Lindeman, co-director of verified voting, the biggest threats aren’t so much hackers as they are machine and human error. In his words, “To my knowledge, there is no verified report of a machine being hacked during an election. Definitely verified reports of machines malfunctioning, scanners being misprogrammed, etc., but nothing tying those to [a] cyberattack.”(4) The United States Homeland Security Secretary, Chad Wolf, echoes much the same thoughts, with “full confidence in the country’s voting infrastructure and no indications that it had been hacked” (4).",
+      "Every time there is an election, there is undoubtedly going to be doubt cast upon our voting process. Such doubt is to be expected and is even necessary. It is what keeps our election officials and voting system held accountable. Nevertheless, being able to have faith in our voting processes and voting technology is also important. Thankfully, on most counts, the process of counting votes appears to be fine and well.",
+      "Sources:",
+      "https://www.scientificamerican.com/article/an-expert-on-voting-machines-explains-how-they-work/",
+      "https://www.marketplace.org/2020/10/30/voting-technology-machines-paper-ballots-hanging-chads-hacking-voter-registration/",
+      "https://www.essvote.com/blog/our-technology/how-are-ballots-read/",
+      "https://www.vox.com/recode/2020/11/3/21548057/voting-machine-broken-2020-elections-hacking-cybersecurity"
+    ],
+    "images": [
+      "/writings/voting-machines/01.jpeg",
+      "/writings/voting-machines/02.jpeg"
+    ]
+  },
+  {
+    "slug": "spot-the-bot",
+    "title": "Spot the Bot: The Future is a Lot Closer than Thought",
+    "date": "2020-10-26",
+    "paragraphs": [
+      "Each day, it seems that robots make another step toward achieving world dominance. The incredible work coming out of Boston Dynamics is a prime example of this. Many have likely seen viral videos of their bipedal ATLAS robot, performing flips that would put an Olympian to shame. It is right on the cutting edge of technology. Yet, the most impressive creation coming out of Boston Dynamics right now isn’t their robotic gymnast. Rather, it is Spot. This four-legged robot is incredibly helpful, with uses in homes, public life, medical service, emergency service, and industry. Released only a year ago, on September 24th 2019 (1), it’s already changing the face of the robotics market.",
+      "https://www.engadget.com/boston-dynamics-will-start-selling-arms-for-its-robodog-spot-next-year-192343407.html",
+      "Before going into Spot’s practical applications, it helps to look at some of its capabilities. It has 360 degree cameras and sensors, it can move up to 3 miles per hour, it can carry a load of up to 30 pounds, it can deftly navigate harsh terrain, and it is resistant to water and dust (4). It is also highly trainable and programmable. In the coming year, Boston Dynamics also plans to provide separate parts for upgrades. These include a recharging pack for more range, a LIDAR pack for more precise sensing, and attachable robotic arm for increased dexterity (1).",
+      "Spot’s list of capabilities is exhaustive. Yet, Spot itself seems to be tireless in its applications. It has been used to “collect data and perform hazardous tasks” for manufacturing companies, such as Ford, BP, and Merck (3). A deal was also recently made for it to begin work on construction sites, for the company Trimble. Though, Spot’s most impressive uses are in regard to the recent COVID pandemic. It has been used in Brigham and Woman’s Hospital to take vitals of patients, and it is being used to help encourage social distancing in Singapore (3).",
+      "The list above paints a pretty picture for Spot. Yet, it’s still early in its life, and one may be wondering: where does the future of Spot seem to be headed? It is difficult to say. Earlier last year, Spot’s future was pitched to be in domestic, home entertainment (2). As recently as this year, Marc Raibert (Boston Dynamics founder) discussed the idea of Spot doing chores, such as somebody’s laundry (1). Currently though, the price point for Spot is extremely high — at 75,000$, no family will be buying one any time soon (1). It is worth noting that Boston Dynamics is known to get funding from America’s DOD. Additionally, only 300 robots have been produced (3), with all of them going toward industrial purposes. While Spot may one day be used as a home companion, seeing it on a manufacturing line, or helping to do menial public tasks, is far more likely.",
+      "https://qz.com/1635500/boston-dynamics-spot-may-be-used-as-a-battle-bot/",
+      "Spot’s legacy is still developing, but its influence on society is already immense. While cultural trends have suggested that robots are to play a large role in our future, Spot is cementing this. From its example, robots will become more commonplace in the workplace. We can expect to see them giving aid in heavy manual labor, and high-risk operations (i.e., rescue work, space travel). Perhaps this comes as no surprise; lest we forget, robots have already beaten humans to Mars. Though, Spot’s greater accomplishment is its friendly and efficient design. While it may easy to fear being replaced by an army of mindless automatons, Spot proves we should have nothing to fear. Robots are a major boost to progress and productivity. Spot is better being perceived as a companion pet, than a threat.",
+      "By: Christian Mueth",
+      "Sources:",
+      "https://www.engadget.com/boston-dynamics-will-start-selling-arms-for-its-robodog-spot-next-year-192343407.html",
+      "https://qz.com/1635500/boston-dynamics-spot-may-be-used-as-a-battle-bot/",
+      "https://www.cnbc.com/2020/10/21/boston-dynamics-spot-robot-can-recharge-on-its-own-now.html",
+      "https://gizmodo.com/spot-boston-dynamics-robot-dog-is-finally-available-f-1838403372"
+    ],
+    "images": [
+      "/writings/spot-the-bot/01.jpeg",
+      "/writings/spot-the-bot/02.jpeg"
+    ]
+  },
+  {
+    "slug": "a-treatise-on-plastic-treatment",
+    "title": "A Treatise on Plastic Treatment",
+    "date": "2020-10-11",
+    "paragraphs": [
+      "Plastic polymers are a feat of material engineering, featured everywhere. It is used to store food, create tools, and design our technology. It is also a major waste. In 2017, 5.6 million tons of plastic were combusted in incinerators (1). 26.8 million tons of plastic were put in dumps (1). The pleasures plastic provides comes a price. Recycling is currently the best way we have of paying for the piles of plastic we’ve produced. If we do not pay our debt through recycling, landfills will fill our land instead.",
+      "https://www.npr.org/2020/09/11/897692090/how-big-oil-misled-the-public-into-believing-plastic-would-be-recycled",
+      "We want to save as much plastic as we can. The big question is, what kinds of plastic can be recycled. With the swath of plastics out there, it can be difficult to determine. As it turns out, a good chunk of plastics are best off being disposed of. Aluminum lined plastics (i.e., chip bags, candy wrappers), plastic wrap, and small pieces of plastic are difficult for most recycling plants to filter (2). However, there are plenty of plastics that can be recycled. Plastic bottles and containers are the strongest candidates for recycling, with nearly all recycling plants capable of treating them. Most plastics products have labels on them, which identify their type. Plastics 1, 2, 4 and 5 are generally safe to recycle (3). Though, one should contact their local municipality to best find out what kinds of plastics can be recycled.",
+      "https://apps.npr.org/plastics-recycling/:",
+      "To understand what plastics can be recycled, it helps to have an idea of the plastic recycling process. Recyclable plastics are first collected and sent to a recycling facility. There they are sorted via machines, by color and type. Plastics are then washed and cleaned of any labels or adhesive residue. These stages are critical to maintaining the plastic integrity during later steps, and failure requires resorting of the batch (3). Plastics are then shredded into granular particles. From here, the particles are tested for their properties: density, air classification (behavior in a wind tunnel), melting point, and color (3). Finally, plastic particles are organized by type again, to be compounded and melted together into pellets. These pellets can go on to be reused at other manufacturing plants, to create new products.",
+      "Admittedly, there are issues with recycling that have arisen over the years. In 2018, China notably pulled out of a trade deal for American recycled plastics. Due to this, recycling plants throughout the U.S.A. have been caught in a desperate search for companies willing to buy their recycled plastics. Additionally, there is a cap on the amount of times the resin in plastic can be recycled. Generally, it can only be recycled three times, before being unusable (4). Finally, there is still a lack of public awareness. Many people misread labels on plastic products, and accidentally recycle plastics that should not be recycled. Others simply don’t care for recycling, choosing to put perfectly reusable materials in the waste.",
+      "https://apps.npr.org/plastics-recycling/",
+      "Despite the issues that recycling faces, it remains incredibly important. It is estimated that only a third of all plastic bottles get recycled (2), and that only ten percent of all plastics have ever been recycled (4). This can easily be improved upon if everybody were to pitch in and do their part. Take the time to study the plastics you dispose of each week and consider which ones can be recycled. The problem of plastic waste, and waste in general, looms large on modern society. While recycling is not a complete solution, it is an essential component. We must do what we can today to bring about a better tomorrow.",
+      "By: Christian Mueth",
+      "References:",
+      "https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/plastics-material-specific-data",
+      "https://apps.npr.org/plastics-recycling/:",
+      "https://greentumble.com/how-is-plastic-recycled-step-by-step/",
+      "https://www.npr.org/2020/09/11/897692090/how-big-oil-misled-the-public-into-believing-plastic-would-be-recycled"
+    ],
+    "images": [
+      "/writings/a-treatise-on-plastic-treatment/01.jpeg",
+      "/writings/a-treatise-on-plastic-treatment/02.jpeg",
+      "/writings/a-treatise-on-plastic-treatment/03.jpeg"
+    ]
+  },
+  {
+    "slug": "a-good-look-into-john-b-goodenough",
+    "title": "A Good Look into John B. Goodenough’s Lithium Ion Battery",
+    "date": "2020-10-04",
+    "paragraphs": [
+      "Today, the processing power of a computer can easily fit in one’s pocket. Wireless devices like smartphones, tablets, and laptops are ubiquitous. Additionally, we now have electric cars that can match the mile range of many gasoline cars. These are arguably the biggest advances in tech of the modern era. While their existence is often attributed to advances in computing technology, there is an often overlooked advancement made over the past few decades: lithium ion batteries. This incredible piece of engineering was brought to its current state by John B. Goodenough. Without his contribution, attempting many of our modern marvels would be inconceivable.",
+      "https://chargedevs.com/newswire/tesla-introduces-third-generation-battery-pack-technology/",
+      "John B. Goodenough was no stranger to brilliance; he developed in an environment where he was surrounded by it. In the 1970s he entered the University of Chicago’s physics department as a pupil of Enrico Fermi and John Simpson (co-leader of the Manhattan Project). He went on to work at MIT, and then the University of Oxford. Though, it was at the University of Oxford where John B. Goodenough found his calling. He began studying a crude lithium ion battery designed by Michael Whittingham. From here, John B. Goodenough designed a lithium-cobalt-oxide cathode structure, which massively improved on Whittingham’s design. Due to Goodenough’s structure, the battery was given a strong storage capacity and overall stability.  Goodenough’s original structure and his later variations on it, remain in use today.",
+      "Like most batteries, the exterior of a lithium ion battery features a metal casing. On the interior, lithium ion batteries are quite unlike any other battery. It consists of three thin sheets, submerged in an electrolyte: a positive electrode, a negative electrode, and a separator. The positive electrode consists of Goodenough’s revolutionary lithium-cobalt-oxide structure. The negative electrode is built of carbon. The separator is made of a microperforated plastic, which separates the electrodes as ions travel through the electrolyte. While counterintuitive, ions leave the positive electrode for the negative electrode when gaining charge, and leave the negative electrode for the positive electrode when losing charge.",
+      "https://electronics.howstuffworks.com/everyday-tech/lithium-ion-battery.htm",
+      "The greatest benefit of lithium ion batteries is the uniquely high electro potential difference (voltage) between the positive and negative electrodes. This allows for them to store incredibly high densities of electricity, even at small scales. Additionally, they are great at holding their charge, and they can be discharged/recharged hundreds of times. Admittedly, there are shortcomings as well. Namely, lithium ion batteries degrade over time, they can be degraded even faster by extreme temperatures, and they can be expensive to produce (especially in large scale, such as for electric vehicles). There is also the small kink that they can burst into flames if they short circuit and ignite their electrolyte. Yet, it is worth reiterating: no other battery compares to their storage capacity. Moreover, as the years have gone on, the design of lithium ion batteries continues to be improved upon.",
+      "Despite the broad sweeping success of the lithium ion battery, and John B. Goodenough now being 97, he is still working on new ways to advance the design of lithium ion batteries. Early in 2020, John B. Goodenough filed a patent with the company Li-Ion for a new glass-based battery. It is supposedly more resistant to temperature changes, capable of triple the storage capacity of regular lithium-ion batteries, less susceptible to short-circuits, and more cost-effective. Time will tell if the battery lives up to the proposed capabilities.",
+      "https://www.engr.utexas.edu/goodenough#:~:text=The%20Royal%20Society%20of%20Chemistry%20grants%20an%20award,both%20of%20whom%20worked%20on%20the%20Manhattan%20Project.",
+      "Lithium ion batteries are by no means a perfected technology. Its flaws are numerous, and John B. Goodenough very well could have an advancement on it soon. Regardless, lithium ion batteries are a critical component in our electronics, with massive societal impact. John B. Goodenough’s cathode design is featured in devices throughout the world. John B. Goodenough has been recognized by many award committees, including a Nobel Prize last year (alongside several other contributors). It is doubtful that anybody could contest the merit of his work. Lithium ion batteries are 100% good enough.",
+      "By: Christian Mueth"
+    ],
+    "images": [
+      "/writings/a-good-look-into-john-b-goodenough/01.jpeg",
+      "/writings/a-good-look-into-john-b-goodenough/02.jpeg",
+      "/writings/a-good-look-into-john-b-goodenough/03.jpeg"
+    ]
+  },
+  {
+    "slug": "putting-the-microwave-under-a-microscope",
+    "title": "By: Christian Mueth",
+    "date": "2020-09-13",
+    "paragraphs": [
+      "Date: 9/12/2020",
+      "Putting the Microwave Under a Microscope",
+      "The microwave oven represents a small part of our lives, when it’s part of it at all. It’s the ten second transformation from cold, stale leftovers, to warmer, soggier leftovers. That said, it provides convenience; comfort. Moreover, the story behind the microwave oven is larger than life. There is deep meaning behind its quick-fix pizza rolls. Let’s get rolling, shall we?",
+      "Stack of Microwave Ovens: https://www.popularmechanics.com/technology/gadgets/a19567/how-the-microwave-was-invented-by-accident/#:~:text=The%20microwave%20is%20beloved%20for%20its%20speed%20and,magnetron%20and%20suddenly%20realized%20his%20snack%20had%20melted.",
+      "The microwave oven was invented by an engineer by the name of Percy Spencer. As one may guess of an inventor, Percy Spencer a bit of a genius. During WWII, Percy Spencer worked for Raytheon, designing improved fuses, detonators, and radar magnetrons (for radar sets). It was in 1946, when working on one of his radar magnetrons, which was particularly significant. By chance, Percy Spencer went to grab peanut cluster bar from his pocket, for snack — however, he found that it was melted. Naturally curious, Spencer knew he needed to do more testing. An egg was placed under the magnetron, only to explode in his face. There was another test with popcorn; it was no less catastrophic.",
+      "From here, Spencer and the rest of Raytheon went on to design the microwave oven. Introduced in 1947 as the “Raydarange”, the first microwave oven was massive. It was 1.8 meters tall and weighed 340 kg. It also guzzled 3 kw during operation and had to be water cooled. It was mainly marketed to airlines, and was a bit of a dud. The technology didn’t hit the consumer market until 1955; even then, it cost $1,295 (nearly $11,000 in today’s money). Yet, as the years went on, the technology would eventually become more affordable, and prevail.",
+      "So, how exactly does a microwave work? To begin, microwaves are a form of radiation on the electromagnetic spectrum, weak enough to not pose major danger to living cells. That said, microwave radiation is still a form of energy. Thus, it’s great at accelerating molecules, such as water molecules, upon contact. Better put, microwaves are great at generating heat in molecules. It is through this mechanism that the microwave oven heats food (which often consists of high water content). However, to generate microwaves, the microwave oven must go through a bit of a process.",
+      "Magnetron: https://www.businessinsider.com/how-do-microwaves-work-2014-6",
+      "A transformer takes electricity from the wall and converts it to high voltages (often from 120V to over 4,000V). There’s then a device called a “magnetron”, with a filament at its center that is heated up by these high voltages. Electrons are expelled and move toward positive terminals at the magnetron’s edges. However, these electrons circle back toward the magnetron’s center, due to magnets near the positive terminals. This turns to a cycle of oscillations. An energy frequency of 2.45 gigahertz emerges: microwaves. It’s from this that things can finally be quickly heated.",
+      "It is easy to handwave the microwave as being a simple kitchen appliance. However, this is a testament to the microwave’s ease of use and ingenuity, more than anything else. The microwave’s status as a kitchen staple comes from a mixture of experimental accident, and chaotic genius; this shouldn’t go overlooked. Without the microwave, the world just wouldn’t be the same. How else would we get our quick-cook oatmeal in the morning?"
+    ],
+    "images": [
+      "/writings/putting-the-microwave-under-a-microscope/01.jpeg",
+      "/writings/putting-the-microwave-under-a-microscope/02.gif"
+    ]
+  },
+  {
+    "slug": "the-future-of-space-propulsion",
+    "title": "The Future of Space Propulsion",
+    "date": "2020-09-07",
+    "paragraphs": [
+      "The future of flight is in a complicated place right now. Spaceflight? Even more so.",
+      "Currently, a 35-million-mile trip to Mars will take between six to nine months. It is often wondered who the first person will be to walk on Mars. Though a better question is whether anybody will be able to walk at all, after a trip like that. Worse, once Mars’ first earthling tourists arrive, they’ll still have a six to nine-month trip back to look forward to.",
+      "If we want to make repeat trips to Mars and throughout our solar system, six-month trips from chemical rockets will be prohibitive. The need for a faster form of spaceflight is unavoidable. Thus, I am going to discuss several propulsion systems that may dominate the future.",
+      "Photon Propulsion",
+      "Photon propulsion works by bouncing photons off a solar sail. The resulting force then accelerates the spacecraft. Methods of photon propulsion have been proven successful several times before. Perhaps the most notable is JAXA’S IKAROS. It was the first successful solar sail in space. (JAXA)",
+      "Robert Lubin, a professor from the University of California, proposed accelerating a light sail via a laser. With this method, he ambitiously predicted being able to send “a 100 kg craft to Mars in just three days” (Hall).",
+      "One difficulty is that it would be difficult to maneuver such crafts around debris. Moreover, it is best suited for probes, and unlikely that such a propulsion system could be used for large loads.",
+      "Plasma Propulsion",
+      "The Variable Specific Impulse Magnetoplasma Rocket (VASIMIR for short) is a  plasma-based propulsion system, developed by Ad Astro. The big headline for this technology is that it could get us to Mars in “39 days” (Skocik).",
+      "The VASIMIR heats up noble gases argon and pushes them through magnetic inductors. Following this, electrons are knocked from the noble gases, and they’re turned to a plasma. Finally, it uses magnetic inductors to generate a magnetic field, accelerating the plasma — thus, accelerating the rocket. (NASA)",
+      "One of the biggest problems with the VASIMIR is its power requirements. According to Robert Zubrin, “a nuclear reactor system with a power of 200,000 kilowatts and a power-to-mass ratio of 1,000 watts per kilogram. In fact, the largest space nuclear reactor ever […] had a power of 10 kilowatts and a power-to-mass ratio of 10 watts per kilogram.”  (Skocik)",
+      "Their last update had them on course for a 100 hour test in 2018. Since then, little news has come from it. Nonetheless, the technology is one that might become prevalent in the distant future. (Wang)",
+      "Ion Propulsion",
+      "Ion propulsion is a compelling form of future propulsion, due to the high speeds it can reach. It can achieve 90% efficiency, whereas chemical propulsion systems can only reach 30% efficiency. They can achieve top speeds of 200,000 mph. They work by bombarding a noble gas (commonly xenon) with electrons, which creates positive ions. These ions are then sent through a metal grid, giving acceleration.",
+      "There are many ion propulsion systems that have been introduced over the years, the most prominent being the Hall thruster. The technology is constantly being evolved. A problem faced by Ion propulsion is that it has extremely low acceleration. Thus, it works best for long trips where a minimum amount of fuel usage is desired. X3 thruster. It is currently exceeding all its tests. 105 kW power, 5.4 Newtons of thrust. (Nowakowski) The biggest advantage of the X3 engine is that it’s a three-channel nested system. Its biggest problem: it is extremely bulky, compared to its counterparts.",
+      "Nuclear Thermal Propulsion",
+      "NTP uses a fission reactor to super-heat hydrogen gas which then escapes through a small nozzle to generate thrust. This technology spans back to 1942, from Enrico Fermi experiments. Out of all the listed propulsion systems, NTP is most likely to overtake chemical rockets soon. NASA has stated, “NTP is a viable and powerful option to explore Mars and other destinations.”(NASA)",
+      "The U.S Government recently poured 100 million in researching NTP. NASA has partnered with BWXT and is projecting a launch in 2024 (Wang). Proposed rockets would be 107 times more energy dense than chemical rockets, and half as heavy (Tarantola). It is estimated that they could reduce travel time to Mars by 20-25%. Another advantage is that a Nuclear engine could abort a mission two months in, if needed (Bennett). The biggest drawback is radiation caused by its nuclear power source, similar to the VASIMIR.",
+      "Conclusion",
+      "Based on history, predicting the future rarely works out. This is especially true when it comes to technology. It is quite possible that none of these propulsion systems will be used for trips to Mars, and something entirely different will dominate the future.",
+      "Even if one of these propulsion systems do find dominance, chemical rockets will still have a role in spaceflight. With Ion propulsion and VASIMIR, for example, chemical rocketry is necessary for launch.",
+      "Nevertheless, it is intriguing to think about what alternatives to chemical propulsion humans might use to travel the solar system. As humanity reaches higher and higher velocities with its propulsion systems, we will edge ever closer to becoming a star faring civilization.",
+      "Sources:",
+      "Bennett, Jay. Popular Mechanics. (2016) Photonic Propulsion could send spacecraft to Mars in 3 days. https://www.popularmechanics.com/space/deep-space/a19604/nasa-physicists-say-photonic-propulsion-could-send-a-spacecraft-to-mars-in-3-days/",
+      "Bennett, Jay. Popular Mechanics. (2018) NASA’s Nuclear Thermal Engine. https://www.popularmechanics.com/space/moon-mars/a18345717/nasa-ntp-nuclear-engines-mars/",
+      "JAXA. (2020) https://global.jaxa.jp/projects/sas/ikaros/topics.html",
+      "Jones, Brad. Futurism. (2017) New Ion Thruster Breaks Records. https://futurisnasas-new-ion-thruster-breaks-records-could-take-humans-to-marsm.com/",
+      "NASA. (2016) Ion Propulsion. https://www.nasa.gov/centers/glenn/about/fs21grc.html",
+      "NASA. (2018) Nuclear Thermal Propulsion: Game Changing Technology for Deep Space Exploration. https://www.nasa.gov/directorates/spacetech/game_changing_development/Nuclear_Thermal_Propulsion_Deep_Space_Exploration",
+      "Nowakowski, Tomasz. Phys.org. (2018) Will the X3 thruster propel us to Mars? https://phys.org/news/2018-02-x3-ion-thruster-propel-mars.html",
+      "Skocick, Collin. Space Flight Insider. (2017) Earth to Mars in 39 Days. https://www.spaceflightinsider.com/conferences/vasimr-plasma-engine-earth-mars-39-days/",
+      "Tarantola, Andrew. Gizmodo. (2013) How NASA's Nuclear Rockets Will Take Us Way Beyond Mars. https://gizmodo.com/how-nasas-nuclear-rockets-will-take-us-way-beyond-mars-5992441",
+      "Wang, Brian. Next Big Future. (2017)  Vasimir Plasma Rocket Targeting 100. https://www.nextbigfuture.com/2017/02/vasimr-plasma-rocket-targeting-100.html"
+    ],
+    "images": []
+  },
+  {
+    "slug": "a-look-into-the-james-webb-space-telescope",
+    "title": "By: Christian Mueth",
+    "date": "2020-08-28",
+    "paragraphs": [
+      "Date: 8/28/2020aa",
+      "A Look Into the James Webb Space Telescope",
+      "A successor to the Hubble Telescope is about to join the scene. Originally announced in 1996 and scheduled for a 2007 launch, the James Webb telescope was finally completed this on August 28th, of 2019. Just slightly off schedule. Nonetheless, the James Webb telescope is a true feat of engineering. It’s an infrared telescope, set to orbit 1.5 million kilometers above Earth. It will be 100 times more powerful than the Hubble. More impressively: it’s about to become the most powerful telescope in the sky. With this title, it’s going bring forth numerous new discoveries, challenging the limits of what we know.",
+      "Image: NASA",
+      "So, what sort of discoveries might we expect? Well, sky’s the limit. As stated earlier, the James Webb Telescope is an infrared telescope, meaning it’s excellent at picking up long wavelengths. Scientists will study the atmospheres of planets for signs of life – specifically, for planets with carbon dioxide and methane. It will be able to study the origins of our universe, dating back to just 200 million years after the Big Bang. It’ll be used to study the formations of galaxies. It will study formation of planets. It will chart sections of the universe, faster than ever before. An interesting study has also been announced on how dark matter may affect gravitation between Draco and Sculptor dwarf galaxies.",
+      "What the James Webb Space Telescope is about to do can do pretty much speaks for itself. Though, there’s still the question I’m sure is all on your minds: how does the JWST do all of this? What makes it so much better than say, the Hubble, comes down to three factors: size, equipment, and temperature.",
+      "First off, size: the diameter of the JWST’s mirrors are 6.5 meters, as opposed to the Hubble’s 2.4 meters. This gives it a larger field of view, and greater sensitivity to longer wavelengths. Secondly, regarding temperature: NASA split the JWST into three subsections, all of which put emphasis on cryogenics to bring operating temperature down. It operates at “very cold 7 Kelvin” (NASA). This further allows it to read longer wavelengths. Of course, general advances in technology help too. The JWST has a massive solar shield to block out sunlight. It also has an instrument module (ISIM) which, among other things, can block out shorter wavelengths of light. With all of this combined, the JWST can read wavelengths of 30 microns. Hubble’s max? 1.8.",
+      "Impressive as all this is -- and, there’s plenty more where that comes from -- the most impressive feat of the JWST is that its design holds up at all. See, the JWST can’t fit inside a spacecraft. Its solar shield is the size “of a tennis court” (NASA), and its mirrors are also enormous.",
+      "Image: NASA",
+      "The solution? Northrop Grumman engineered a solar shield with five membranes, which fold out from the spaceship. This also applies for the mirror, designed with 18 pieces that will fold out its spaceship. These two folding processes will combine into the telescope’s final form. The concept sounds simple enough — but, the telescope’s pieces are delicate. This is especially true for the mirror, which is coated with a very thin layer of gold beryllium. It’s only 100 nanometers thick.",
+      "The folding ability has been the most critical part of JWST development, and also most prone to failure. If there’s any guilty party for all the delays, that is it. Thankfully, in May of this year the telescope finally passed “key milestone” tests in vacuums, meant to mimic extremities of space. NASA has only one shot at getting this right, and it looks like they will.",
+      "The JWST still doesn’t launch until March 31st, 2021 -- and it won’t be until 30 days after that when it will finally reach its destination. Though, similar to when 1990’s Hubble launched, the JWST is going to change the face of astronomy. Countless new discoveries are about to emerge.  Insignifiant as the JWST may at first seem, it’s anything but. Thankfully that’s what telescopes are best at: taking the things that we might sweep under the rug and showing us how sweeping they really are."
+    ],
+    "images": [
+      "/writings/a-look-into-the-james-webb-space-telescope/01.jpeg",
+      "/writings/a-look-into-the-james-webb-space-telescope/02.jpeg"
+    ]
+  },
+  {
+    "slug": "how-does-hd-work",
+    "title": "By: Christian Mueth",
+    "date": "2020-08-07",
+    "paragraphs": [
+      "Date: 8/7/2020",
+      "How Does HD Work?",
+      "High Definition video is everywhere these days. It’s to the point where the very definition of, “High Definition” should be changed to “Standard Definition”. However, while we all know what HD looks like, it’s harder to describe what it is. There are several variations of HD marketed to the consumer: 720p, 1080p, and 4k. The climbing numbers are supposed to indicate a climb in quality. Though this begs some questions. What does HD quality truly mean? Does it matter? Is there a limit to the quality of HD? An HD image might be clear as day. Yet, explaining what an HD image is, and what makes it that way? That takes a bit more work.",
+      "The quality of an image on a device comes down to pixels; small squares of color, that make the resolution. More specifically, resolution is defined by lines of pixels. A 480p (standard definition) TV is has 720 x 480 lines. This is a total of 345,000 pixels — quite a lot, especially on a small screen. As the screen size increases though, and one doesn’t increase the resolution/number of pixels? 480p’s 345,000 pixels doesn’t exactly cut it. When the size of a screen increases, pixel density decreases; this is the pixel paradox. Larger gaps have to be placed between the pixels on a 480p TV screen, as opposed to a 480p phone screen. These gaps will ultimately make a larger screen (such as the TV) blurrier, and the smaller screen (such as a phone) sharper..",
+      "That said, there’s an easy way to obfuscate gaps caused by low pixel density: increase the pixel density. In other words, increase the number of pixels. This is what drives the technology behind things like 4K HD (also defined as 3840 x 2160, or 8,294,400 pixels). An increase in the amount of pixels allows one to easily jump from a 20 inch TV to a 200 inch TV — supposing that the spirit and wallet are willing — without sacrificing image quality. The cost of larger screens has probably been the biggest barrier to increases in screen quality. While the technology might be there, the expense of producing massive screens, with massive amounts of pixels, is — you guessed it — massive.",
+      "Nevertheless, how big can image quality get? In 2019, Sony produced a 16k tv. While it’s difficult to say where our technological limit is, it would not surprise me if a 32k TV is on the horizon. That said, there are drawbacks to massive increases in HD quality. Namely, bigger screens are required to truly appreciate the effect of bigger resolutions. To the human eye, there is little difference between a 1080p and 4k phone screen; much less a 16k screen. Moreover, higher numbers of pixels also place strain on the refresh rates of video cards, causing choppier video. Finally, there are few cameras that can produce images to the quality of 16k. Thus, without significant technological advances on multiple fronts, the point of producing screens with 16k or 32k capability is pretty useless.",
+      "As stated before, there is an extent to which image quality truly doesn’t matter. A 16k television won’t sell if our vision can’t tell the difference. Yet, it’s because of this that it’s so important to be informed about the discrepancies between types of HD, and the way in which HD operates. Big terms like “Ultra HD” might elicit feelings of magic or pixie dust; but behind the marketing smokescreen, one’s phone or TV screen is still just pixels."
+    ],
+    "images": []
+  },
+  {
+    "slug": "mesmerized-from-memory",
+    "title": "Mesmerized From Memory",
+    "date": "2018-12-21",
+    "paragraphs": [
+      "Mrs. Delores had just found out her husband was cheating on her, and that her daughter had disappeared... She was amid complete crisis. Yet, Ellie had to stick to her work. She had no choice in the matter. There was a deadline to keep.",
+      "Ellie winced. Her hands had a cramp. She laid them flat on the desk.",
+      "It wasn’t fair. Not even Mrs. Delores had spasms like these… They always set Ellie behind. Her keys were constantly clacking, but she was still constantly slacking.",
+      "Ellie twirled her fingers through her hair. She tugged at a knot in the back. It was so dry there. Maybe she should’ve stopped to take a shower; lathered her head with conditioner.",
+      "She gave a yawn and leaned into her desk. It would be a waste of time. There wasn’t a point.",
+      "An alarm blared. That is, it probably was blaring. It’d been hushed by Ellie’s earmuffs, making it bleary more than anything. It was time to take the muffs off, about.",
+      "Ellie kept them on. They were comfy and did a good job at hiding her ears.",
+      "The alarm didn’t stop. She brought her fingers to the keyboard. Her fingers didn’t start. A sigh escaped her lungs. A solid twenty minutes working on her project was all she needed. Why was it so hard to focus?  She glanced at her phone — Mrs. Delores could be checked up on later.",
+      "Whack. Whack. Whack. Whack. Whack.",
+      "Ellie’s nose crunched. The alarm was around the room somewhere. If only it hadn’t been buried by a landfill of blankets, clothes, and dishes.",
+      "Dishes… She looked at the bowl sitting on her desk. It was empty, with only a spoon to keep it company. The mug beside it was similarly solitary, not a drop of coffee in it. Her stomach gurgled. She hadn’t eaten enough last night. It’d been so late when she’d gotten back. Another packet of oatmeal and surge of caffeine was bound to get her creative juices flowing.",
+      "She cracked her knuckles and stood from her chair. The alarm ceased.",
+      "In the kitchen, the microwave simultaneously took forever and no time at all. Though the oatmeal splattered and bubbled, it remained frothy. She rapped her fingers along the counter and glanced at her coffeemaker. It was equally efficient.",
+      "The oatmeal and coffee took ten minutes to slide down her throat. Heat kept her from going too fast. When she was done, she still wasn’t finished. The dishes needed to be done. At least, these ones. Dishes from her bedroom could wait.",
+      "Five more minutes, for the twenty. She squinted at the clock. Only five minutes left?",
+      "Her steps carried her to her desk. Her fingers settled on the keyboard. Though, her mind was far from the screen. Little merit was to be had in working for five minutes. True, she could extend her session. However, there’d be time for another session later in the day. It would be better that way. Hours in front of a computer screen was bad for one’s health.",
+      "Still, she sat for the several minutes, the monitor’s iridescence burning into her skin. She couldn’t afford to break the allotted time. The work session needed to be done, even if nothing came of it.",
+      "The minutes dripped away. Her eyes watered from staring at the digital clock in the corner of her screen. Only a few more seconds was left. It wasn’t her fault that nothing had been done. It was all the distractions. Her stupid mental block was to blame.",
+      "A few hours away from work would clear her head. Besides, she needed to know what was going on with Mrs. Delores.",
+      "She opened her phone with a swipe. Applications and pages rolled by. A waxiness set over Ellie face.",
+      "A room came up on the tiny screen. Ellie took pause to scan her own room. It was so much smaller — cheaper. Everything looked better on a screen.",
+      "A woman stumbled into frame and collapsed in a lounge-chair. Her cheeks were lined with runny mascara. Though, the mascara somehow still was clean. The usual blotchy nature of mascara seemed absent on this woman’s face.",
+      "Mrs. Delores’ face.",
+      "“Woe as me!” Mrs. Delores said, taking a shallow breath. “I was cheated on by Rick Prickett! This episode of my life… Is… Very sad.”",
+      "Mrs. Delores’ watery eyes turned toward the screen, dipping up and down. Ellie shivered, goosebumps running down her arms. It was as if Mrs. Delores was reading… Reading into her very soul.",
+      "Mrs. Delores stood from her chair. “No! I can’t let this be…” She paused, her gaze skimming the air. “Be… Be like this. I must do something!”",
+      "For the rest of the episode, Mrs. Delores did do something. A lot of things in fact, ranging from interrogating her neighbors on Prickett’s whereabouts, to driving across town to find him, to hiring a private investigator. All the while, Ellie clutched her blanket against her chest.",
+      "“I couldn’t get him!” the private investigator panted, walking over to Mrs. Delores.",
+      "“You couldn’t get him?”",
+      "“I couldn’t get him! He was too fast!",
+      "“Why couldn’t you get him? Why, but, he was just across the room.”",
+      "“But, you’re wrong, see. The room is too big…”",
+      "“But, that’s not true. Is there something you’re keeping from me?”",
+      "The private investigator licked his upper lip. “No. Actually, yes: turns out, Rick Prickett is your brother, back from the grave.”",
+      "“No.”",
+      "“Actually… yes.”",
+      "The screen cut to white.",
+      "“Oh, and also,” Mrs. Delores said, clearing her throat. “Private investigator, do you know what happened to my daughter? And what’s your name, by the way?”",
+      "A trumpet wailed.",
+      "“Yes.”",
+      "The screen cut to black.",
+      "Tapping her finger on the screen, Ellie made a scowl. It couldn’t be over. It had just been getting good. This wasn’t right. She needed to know what happened next.",
+      "Ellie’s frustrations went unanswered. The text, “the show will return in two weeks” hovered over the screen, before fading away. A burning irritation rose in Ellie’s chest.",
+      "Whack. Whack. Whack. Whack.",
+      "Ellie groaned and rolled from her bed. It was already time to start another twenty-minute session of work.",
+      "Fun.",
+      "The computer rattled, the mouse running across the monitor. Ellie went to reopen her work file. However, her eye was then caught by the time. It was still only 9:00. How much was twenty minutes going to get done, really? Her head was already swirling with the million other things she had to do. There was the new show Roman’s Romance that had just been released. There was also the slew of movies that she’d just rented yesterday — she only had a day to finish them, before they all expired.",
+      "Her alarm continued to blare. Though, it seemed to go distant when Ellie reopened her phone, and flopped back on her bed."
+    ],
+    "images": []
+  }
+]

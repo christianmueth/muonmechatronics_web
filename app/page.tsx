@@ -15,7 +15,7 @@ export default function Home() {
           <span>Christian Mueth&apos;s Blog</span>
         </a>
         <nav className="nav-links" aria-label="Primary navigation">
-          <a href="#writing" className="nav-link">Writing</a>
+          <a href="/writing" className="nav-link">Writing</a>
         </nav>
       </header>
 
@@ -26,16 +26,6 @@ export default function Home() {
         </p>
       </section>
 
-      <section id="writing" className="section-block">
-        <div className="post-list">
-          <article className="post-card featured-post">
-            <h3>Building a practice of thoughtful work</h3>
-          </article>
-          <article className="post-card">
-            <h3>Tools should make room for better questions</h3>
-          </article>
-        </div>
-      </section>
     </main>
   );
 }
