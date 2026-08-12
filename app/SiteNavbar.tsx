@@ -15,7 +15,6 @@ export default function SiteNavbar() {
         <span>Christian Mueth&apos;s Blog</span>
       </Link>
       <nav className="nav-links" aria-label="Primary navigation">
-        <Link href="/" className="nav-link">Home</Link>
         <Link href="/writing" className="nav-link">Science and Tech Articles</Link>
         <Link href="/lego-comics" className="nav-link">Old Lego Comics</Link>
       </nav>

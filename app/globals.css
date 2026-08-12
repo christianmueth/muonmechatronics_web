@@ -130,6 +130,15 @@ a {
   padding-bottom: 64px;
 }
 
+.hero-logo {
+  display: block;
+  width: clamp(120px, 18vw, 210px);
+  height: auto;
+  margin: 0 0 28px;
+  border-radius: 28px;
+  box-shadow: 0 20px 42px rgba(0, 141, 168, 0.2);
+}
+
 .blog-hero h1 {
   font-size: clamp(3rem, 7vw, 5.4rem);
   font-weight: 700;
