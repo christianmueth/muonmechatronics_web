@@ -22,8 +22,8 @@ export default async function CreativeWritingsPage({
         <h1>Creative Writings</h1>
       </section>
       <nav className="content-tabs" aria-label="Creative writing categories">
-        <Link href="/creative-writings?category=novels" className={activeCategory === "novels" ? "content-tab active" : "content-tab"}>Novels</Link>
         <Link href="/creative-writings?category=short-fiction" className={activeCategory === "short fiction" ? "content-tab active" : "content-tab"}>Short Fiction</Link>
+        <Link href="/creative-writings?category=novels" className={activeCategory === "novels" ? "content-tab active" : "content-tab"}>Novels</Link>
       </nav>
       <section className="writing-grid" aria-label={activeCategory === "novels" ? "Novels" : "Short fiction"}>
         {categoryWritings.map((writing) => (
