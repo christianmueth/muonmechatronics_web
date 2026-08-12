@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import SiteNavbar from "../../SiteNavbar";
 import writings from "../content.json";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -28,10 +28,7 @@ export default async function WritingPage({
 
   return (
     <main className="shell article-shell">
-      <header className="topbar">
-        <Link href="/" className="brand-mark">Christian Mueth&apos;s Blog</Link>
-        <Link href="/writing" className="nav-link">Science and Tech Articles</Link>
-      </header>
+      <SiteNavbar />
 
       <article className="article">
         <time dateTime={writing.date} className="article-date">

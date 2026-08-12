@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SiteNavbar from "../SiteNavbar";
 import comics from "./content.json";
 
 const comicsNewestFirst = [...comics].reverse();
@@ -7,10 +8,7 @@ const comicsNewestFirst = [...comics].reverse();
 export default function LegoComicIndex() {
   return (
     <main className="shell">
-      <header className="topbar">
-        <Link href="/" className="brand-mark">Christian Mueth&apos;s Blog</Link>
-        <span className="nav-link">Old Lego Comics</span>
-      </header>
+      <SiteNavbar />
 
       <section className="writing-hero">
         <h1>Old Lego Comics</h1>

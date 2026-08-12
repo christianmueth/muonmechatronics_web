@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SiteNavbar from "../SiteNavbar";
 import writings from "./content.json";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
@@ -12,10 +13,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 export default function WritingIndex() {
   return (
     <main className="shell">
-      <header className="topbar">
-        <Link href="/" className="brand-mark">Christian Mueth&apos;s Blog</Link>
-        <span className="nav-link">Science and Tech Articles</span>
-      </header>
+      <SiteNavbar />
 
       <section className="writing-hero">
         <h1>Science and Tech Articles</h1>
