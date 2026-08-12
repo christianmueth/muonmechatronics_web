@@ -32,7 +32,7 @@ export default function Home() {
               <a href="#products" className="primary-cta">
                 View products
               </a>
-              <a href="mailto:muonmechatronics@gmail.com" className="secondary-cta">
+              <a href="mailto:christianmueth@muonmechatronics.com" className="secondary-cta">
                 Contact Muon
               </a>
             </div>
@@ -122,8 +122,8 @@ export default function Home() {
           </p>
         </div>
 
-        <a className="primary-cta large" href="mailto:muonmechatronics@gmail.com">
-          muonmechatronics@gmail.com
+        <a className="primary-cta large" href="mailto:christianmueth@muonmechatronics.com">
+          christianmueth@muonmechatronics.com
         </a>
       </section>
     </main>
