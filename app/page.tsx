@@ -50,6 +50,9 @@ export default function Home() {
           <a href="https://github.com/christianmueth" className="social-link" target="_blank" rel="noreferrer">
             GitHub
           </a>
+          <a href="https://www.linkedin.com/in/christianmueth" className="social-link" target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
           <a href="https://x.com/ChristianMueth" className="social-link" target="_blank" rel="noreferrer">
             X / Twitter
           </a>
